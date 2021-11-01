@@ -15,8 +15,8 @@ return (
 		<Bars />
 
 		<NavMenu>
-		<NavLink to='/about' activeStyle>
-			About
+		<NavLink to='/excursions' activeStyle>
+			Excursions
 		</NavLink>
 		<NavLink to='/events' activeStyle>
 			Events

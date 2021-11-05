@@ -4,6 +4,9 @@ const About = () => {
 return (
 	<div
 	style={{
+		backgroundColor: '#B4BF5E',
+		marginLeft: '282px',
+		marginRight: '282px',
 		display: 'flex',
 		justifyContent: 'Right',
 		alignItems: 'Right',

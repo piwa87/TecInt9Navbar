@@ -1,5 +1,5 @@
 import React from 'react';
-import Cabin from '../images/Cabin.jpg'; 
+import Cabin from '../images/cabin.jpg'; 
 import '../App.css';
 
 

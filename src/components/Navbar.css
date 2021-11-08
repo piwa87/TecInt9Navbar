@@ -1,18 +1,9 @@
 .Navbar {
-    position: absolute;
-    width: 100%;
-    height: 130px;
-    left: 0px;
-    top: 0px;
-    background: #CAD959;
-
-
-
-.Navbar {
+  position: absolute;
+  width: 100%;
   background-color: #CAD959;
-  padding: 46px 282px; 
+  padding: 46px 282px;
 }
-
 
 a:link {
   color: #34401A;

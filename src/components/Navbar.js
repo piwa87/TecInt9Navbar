@@ -1,9 +1,13 @@
-import React from "react";
+import React from "react"
+import { Link } from "react-router-dom"
 
-function Navbar() {
+const Navbar = () => {
     return (
-        <div className="Navbar234S">
-            <h1>Navigation bar - basic</h1>
+        <div>
+            <li><Link to="/excursions">Excursion</Link></li>
+            <li><Link to="/transport">Transportation</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/signup">Sign up</Link></li>
         </div>
     )
 }

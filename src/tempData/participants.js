@@ -3,19 +3,25 @@ const tempParData = [
         pid: 1,
         name: "Anne Nielsen",
         birthDate: 23,
-        dutyPreference: "Kitchen, cleaning, cooking"
+        dutyPreference: "Kitchen, Cleaning, Cooking"
     },
     {
-        pid: 1,
+        pid: 2,
         name: "Benny Andersen",
         birthDate: 42,
-        dutyPreference: "Shopping, Morning, cleaning"
+        dutyPreference: "Shopping, Morning, Cleaning"
     },
     {
-        pid: 1,
+        pid: 3,
         name: "Cecilie Lindberg Olsen",
         birthDate: 15,
-        dutyPreference: "Kitchen, Dinner, cleaning"
+        dutyPreference: "Kitchen, Dinner, Cleaning"
+    },
+    {
+        pid: 4,
+        name: "Anders Bentson",
+        birthDate: 77,
+        dutyPreference: "Kitchen, Cleaning"
     }
 ]
 

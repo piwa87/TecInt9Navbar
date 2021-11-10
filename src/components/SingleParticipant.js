@@ -2,8 +2,7 @@ import React from "react"
 
 function SingleParticipant(props) {
     return (
-        <div>
-            
+        <div>            
             <p>{props.par.name} | {props.par.dutyPreference} | {props.par.birthDate}</p> 
         </div>
     )

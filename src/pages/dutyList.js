@@ -6,6 +6,7 @@ const DutyList = () => {
             <h3>
                 List of duties!
             </h3>
+            <code>Under Construction!</code>
         </div>
     )
 }

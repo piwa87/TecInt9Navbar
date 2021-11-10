@@ -1,16 +1,16 @@
 import React from "react"
 import "../App.css"
+import { Link } from "react-router-dom"
 
-const Home = () => {
+
+function Home() {
     return (
         <div className="General">
-            <h3>
-                Home!
-            </h3>
-            Welcome to landing page.
+            <h1>Choose to sign in as</h1>
+            <Link to="/excursions">Participant</Link>
+            <Link to="/excursions">Organizer</Link>
         </div>
     )
 }
-
 
 export default Home

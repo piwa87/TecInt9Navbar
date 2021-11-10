@@ -6,6 +6,7 @@ const Contact = () => {
             <h3>
                 Contact page!
             </h3>
+            <code>Under Construction!</code>
         </div>
     )
 }

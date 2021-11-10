@@ -1,10 +1,10 @@
 import React from "react"
 
-const Signup = () => {
+const ShoppingList = () => {
     return (
         <div className="General">
             <h3>
-                Sign Up page!
+                Shopping List!
             </h3>
             <code>Under Construction!</code>
         </div>
@@ -12,4 +12,4 @@ const Signup = () => {
 }
 
 
-export default Signup
+export default ShoppingList

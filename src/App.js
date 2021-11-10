@@ -20,7 +20,7 @@ function App() {
 	return (
 
 		<Router>
-			<Navbar mode="2"/>
+			<Navbar />
 			<Switch>
 				<Route path="/" exact component={Home} />
 				<Route path="/excursions" exact component={Excursions} />

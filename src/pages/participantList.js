@@ -1,11 +1,16 @@
 import React from "react"
+import SingleParticipant from "./SingleParticipant"
+import tempParData from "../tempData/participants"
 
-const ParticipantList = () => {
+
+function ParticipantList() {
+
+    const participantList = tempParData.map(item => <SingleParticipant key={item.pid} par={item}/>)
+
     return (
         <div className="General">
-            <h3>
-                List of participants!
-            </h3>
+            <h3>Name: | Duty Prefrences: | Age:</h3> 
+            {participantList}
         </div>
     )
 }

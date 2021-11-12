@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+
+## ITU Technical Interaction Design Fall 2021 | Group 9
+### P, L, M, A
+
+### --------------------------------------------------
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

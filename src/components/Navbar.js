@@ -6,7 +6,7 @@ class Navbar extends Component {
     constructor() {
         super()
         this.state = {
-            user: "organizer"    // For the displayed menu items depend on this 'user' state.
+            user: "participant"    // For the displayed menu items depend on this 'user' state.
         }
     }
 

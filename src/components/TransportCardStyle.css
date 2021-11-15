@@ -1,0 +1,15 @@
+.card{
+background-color: #8A9828;
+border-color: black;
+border-style: dotted;
+border-width: 50px;
+height: 36px;
+width: 115px;
+}
+
+.cardText{
+font: "STIXVariants";
+font-size: 18;
+text-align: left;
+color: white;
+}

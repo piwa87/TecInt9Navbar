@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Button, ButtonDisabled, ButtonText } from './Button';
-import styles from "styled-components";
+import { GreenButton, ButtonDisabled, ButtonText } from './Button';
+import style from "styled-components";
 
 
 
@@ -9,9 +9,10 @@ export function transportCard() {
         <div className= "card">
             <p className="cardText"> 
                 Mikkel Larsen
+                <br></br>
                 Car color : Blue
             </p>
-            <Button><ButtonText> Reserve seat</ButtonText></Button>
+            <GreenButton><ButtonText> Reserve seat</ButtonText></GreenButton>
             <ButtonDisabled><ButtonText>Cancel seat</ButtonText></ButtonDisabled>
         </div>
     )

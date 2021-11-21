@@ -12,11 +12,11 @@ class Navbar extends Component {
 
     render() {
 
-        if (this.state.user == "none") {
+        if (this.state.user === "none") {
             return (<div className="Navbar">
                 <Link to="/">Start</Link>
             </div>)
-        } else if (this.state.user == "participant") {
+        } else if (this.state.user === "participant") {
             return (
                 <div className="Navbar">
                     <Link to="/excursions">Excursion</Link>
@@ -26,7 +26,7 @@ class Navbar extends Component {
                     <Link to="/">Start</Link>
                 </div>
             )
-        } else if (this.state.user == "organizer") {
+        } else if (this.state.user === "organizer") {
             return (
                 <div className="Navbar">
                     <Link to="/excursions">Excursion</Link>

@@ -6,17 +6,17 @@ class Navbar extends Component {
     constructor() {
         super()
         this.state = {
-            user: "organizer"    // For the displayed menu items depend on this 'user' state.
+            user: "participant"    // For the displayed menu items depend on this 'user' state.
         }
     }
 
     render() {
 
-        if (this.state.user == "none") {
+        if (this.state.user === "none") {
             return (<div className="Navbar">
                 <Link to="/">Start</Link>
             </div>)
-        } else if (this.state.user == "participant") {
+        } else if (this.state.user === "participant") {
             return (
                 <div className="Navbar">
                     <Link to="/excursions">Excursion</Link>
@@ -26,7 +26,7 @@ class Navbar extends Component {
                     <Link to="/">Start</Link>
                 </div>
             )
-        } else if (this.state.user == "organizer") {
+        } else if (this.state.user === "organizer") {
             return (
                 <div className="Navbar">
                     <Link to="/excursions">Excursion</Link>

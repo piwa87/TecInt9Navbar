@@ -21,14 +21,6 @@ border-radius: 12px;
 border: 0px;
 `
 
-export const RedButton = styled.button`
-background-color: #591420;
-height: 36px;
-width: 115px;
-border-radius: 12px;
-border: 0px
-`
-
 export const ButtonText = styled.label`
 font: "STIXVariants";
 font-size: 18;

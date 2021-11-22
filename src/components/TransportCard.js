@@ -1,8 +1,6 @@
 import { GreenButton, ButtonDisabled, ButtonText } from './Button';
 import "./TransportCardStyle.css";
 import "../tempData/transportParticipants.js"
-import "./ProfilePicture"
-
 
 
 export function TransportCard(props){

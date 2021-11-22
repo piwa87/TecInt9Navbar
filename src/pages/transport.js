@@ -15,7 +15,7 @@ const Transport = () => {
             </h3>
             
             <h3>Here you can find an avaliable seat:</h3> 
-            {transportList}
+               <section className="cardShow">{transportList}</section>
             
         </div>
     )

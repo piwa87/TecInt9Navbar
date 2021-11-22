@@ -1,17 +1,36 @@
 .card{
 background-color: #C7DA3B;
-width: 442px;
-height: 260px;
-left: 469px;
-top: 356px;
+padding-right: 50px;
+width: 175px;
 border: 2px solid #000202;
 box-sizing: border-fit;
-padding-top: 15px;
-padding-bottom: 42px;
+border-spacing: 200px;
+padding-bottom: 25px;
 margin: 1.5rem;
-font: "STIXVariants";
-font-size: 12;
-text-align: left;
-color: white;
 border-radius: 12px;
+padding-left: 25px;
+}
+
+.card--text{
+    font-size: small;
+    text-align:left;
+    color: black;
+
+}
+.card--picture{
+height: 150px;
+width: 200px;
+border-radius: 9px;
+}
+.card--heading{
+    font: "STIXVariants";
+    font-size: large;
+    text-align:left;
+    color: black;
+    font-weight: bold;
+}
+
+.card--button{
+    align-self: center;
+    margin-top: auto;
 }

@@ -7,10 +7,9 @@ border-radius: 12px;
     left: auto;
     transition: .3s;
     content: '';
-    width: 0;
+    width: fit;
     bottom: 0;
-    height: 3px;
-    background: #164ca7;
+    height: fit;
 `
 
 export const RedButton = styled.button`
@@ -32,10 +31,10 @@ background-color: grey;
     right: 0;
     left: auto;
     transition: .3s;
+    border-radius: 12px;
     content: '';
-    width: 0;
+    width: fit;
     bottom: 0;
-    height: 3px;
-    background: #164ca7;
+    height: fit;
 `
 

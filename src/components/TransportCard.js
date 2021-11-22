@@ -1,4 +1,3 @@
-import React from 'react';
 import { GreenButton, ButtonDisabled, ButtonText } from './Button';
 import "./TransportCardStyle.css";
 import "../tempData/transportParticipants.js"
@@ -20,8 +19,4 @@ export function TransportCard(props){
     )
 }
 
-
 export default TransportCard
-
-
-

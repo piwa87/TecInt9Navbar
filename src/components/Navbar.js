@@ -1,42 +1,30 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import "./Navbar.css"
 
-class Navbar extends Component {
-    constructor() {
-        super()
-        this.state = {
-            user: "participant"    // For the displayed menu items depend on this 'user' state.
-        }
-    }
+export default function Navbar() {
 
-    render() {
+    const user = "o"
 
-        if (this.state.user === "none") {
-            return (<div className="Navbar">
-                <Link to="/">Start</Link>
-            </div>)
-        } else if (this.state.user === "participant") {
-            return (
-                <div className="Navbar">
-                    <Link to="/excursions">Excursion</Link>
-                    <Link to="/transport">Transportation</Link>
-                    <Link to="/contact">Contact</Link>
-                    <Link to="/signup">Sign up</Link>
-                    <Link to="/">Start</Link>
-                </div>
-            )
-        } else if (this.state.user === "organizer") {
-            return (
-                <div className="Navbar">
-                    <Link to="/excursions">Excursion</Link>
-                    <Link to="/participantList">Participant List</Link>
-                    <Link to="/dutyList">Duty List</Link>
-                    <Link to="/shoppingList">Shopping List</Link>
-                    <Link to="/">Start</Link>
-                </div>
-            )
-        }
-    }
+    return (
+        <div className="navbar">
+
+            {(user === "p") && (
+                <>
+                    <a href="/excursions">Excursion</a>
+                    <a href="/transport">Transportation</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/signup">Sign up</a>
+                    <a href="/Home">Log Out</a>
+                </>
+            )}
+            {(user === "o") && (
+                <>
+                    <a href="/excursions">Excursion</a>
+                    <a href="/participantList">Participant List</a>
+                    <a href="/dutyList">Duty List</a>
+                    <a href="/shoppingList">Shopping List</a>
+                    <a href="/Home">Log Out</a>
+                </>
+            )}
+        </div>
+
+    )
 }
-export default Navbar

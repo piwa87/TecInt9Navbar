@@ -1,8 +1,7 @@
-import React from 'react';
 import Cabin from '../images/cabin.jpg';
 import '../App.css';
 
-const Excursions = () => {
+export default function Excursions() {
 	return (
 		<div className='Container'
 			style={{
@@ -80,5 +79,3 @@ const Excursions = () => {
 
 	);
 };
-
-export default Excursions

@@ -1,6 +1,4 @@
-import React from "react"
-
-const ShoppingList = () => {
+export default function ShoppingList() {
     return (
         <div className="General">
             <h3>
@@ -10,6 +8,3 @@ const ShoppingList = () => {
         </div>
     )
 }
-
-
-export default ShoppingList

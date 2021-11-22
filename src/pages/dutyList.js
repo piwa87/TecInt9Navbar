@@ -1,6 +1,4 @@
-import React from "react"
-
-const DutyList = () => {
+export default function DutyList () {
     return (
         <div className="General">
             <h3>
@@ -10,6 +8,3 @@ const DutyList = () => {
         </div>
     )
 }
-
-
-export default DutyList

@@ -22,3 +22,30 @@
   padding-top: 130px;
   padding-bottom: 100%; */
 }
+
+/* Navbar styling */
+
+.navbar {
+  position: absolute;
+  width: 100%;
+  background-color: #CAD959;
+  padding: 46px 282px;
+}
+
+.navbar a:link {
+  color: #34401A;
+  text-decoration: none;
+  font-size: 24px;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+.navbar a:visited {
+  color: #34401A;
+}
+
+.navbar a:hover {
+  background-color: #64732F;
+  padding-top: 42px;
+  padding-bottom: 42px;
+}

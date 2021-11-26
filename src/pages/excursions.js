@@ -3,14 +3,8 @@ import '../App.css';
 
 export default function Excursions() {
 	return (
-		<div className='Container'
-			style={{
-				backgroundColor: '#B4BF5E',
-				marginTop: '-21px',
-				marginLeft: '282px',
-				marginRight: '282px',
-				height: '180vh'
-			}}>
+		<div className='container'>
+
 			<h1 className='about_h1' style={{
 				textAlign: "center",
 				paddingTop: 50
@@ -48,16 +42,7 @@ export default function Excursions() {
 				</p>
 			</div>
 			<div className='line'>
-				<hr
-					style={{
-						backgroundColor: "black",
-						width: 790,
-						height: 5,
-						marginLeft: "auto",
-						marginRight: "auto",
-						border: 0
-					}}
-				/>
+				<hr/>
 
 			</div>
 
@@ -65,7 +50,6 @@ export default function Excursions() {
 				<p
 					style={{
 						fontWeight: 300,
-						fontFamily: "STIXVariants",
 						paddingTop: 15,
 						textAlign: "center",
 						fontSize: 28,

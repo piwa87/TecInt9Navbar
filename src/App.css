@@ -13,6 +13,26 @@
 
 .cardShow {
   display: flex;
+}
+.container {
+  background-color: #215086;
+  margin-top: -21 px;
+  margin-left: 282px;
+  margin-right: 282 px;
+  height: 180vh;
+}
+
+.hr {
+  background-color: black;
+  width: auto;
+  height: 5;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1;
+}
+
+.cardShow{
+  display:flex;
   flex-wrap: wrap;
   margin-left: 10%;
   margin-right: 10%;

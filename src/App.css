@@ -1,32 +1,35 @@
-
-.General {
+.main-window {
   background: rgba(201, 217, 88, 0.45);
-  text-align: center;
-  /* margin-top: 130px; */
-  margin-left: 282px;
-  margin-right: 282px;
-  padding-top: 130px;
+  display: flex;
+  position: flex;
+  top: 46px;
+  bottom: 0;
+  padding-left: 125px;
   padding-bottom: 100%;
+
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
+.cardShow {
+  display: flex;
+}
 .container {
   background-color: #215086;
   margin-top: -21 px;
   margin-left: 282px;
   margin-right: 282 px;
   height: 180vh;
-
-
 }
 
-hr {
+.hr {
   background-color: black;
   width: auto;
   height: 5;
   margin-left: auto;
   margin-right: auto;
   border: 1;
-
+}
 
 .cardShow{
   display:flex;
@@ -35,9 +38,36 @@ hr {
   margin-right: 10%;
   gap: 50px;
   overflow-x: auto;
- /*  /* margin-top: 130px;
+  /*  /* margin-top: 130px;
   margin-left: 282px;
   margin-right: 282px;
   padding-top: 130px;
   padding-bottom: 100%; */
+}
+
+/* Navbar styling */
+
+.navbar {
+  /* position: absolute; */
+  width: 100%;
+  background-color: #cad959;
+  padding: 46px 282px;
+}
+
+.navbar a:link {
+  color: #34401a;
+  text-decoration: none;
+  font-size: 24px;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+.navbar a:visited {
+  color: #34401a;
+}
+
+.navbar a:hover {
+  background-color: #64732f;
+  padding-top: 100%;
+  padding-bottom: 46px;
 }

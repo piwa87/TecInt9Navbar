@@ -1,6 +1,4 @@
-import React from "react"
-
-const Contact = () => {
+export default function Contact() {
     return (
         <div className="General">
             <h3>
@@ -10,6 +8,3 @@ const Contact = () => {
         </div>
     )
 }
-
-
-export default Contact

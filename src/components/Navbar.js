@@ -1,42 +1,42 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import "./Navbar.css"
+import Parse from "parse"
+import { useState } from "react"
+import Cat from "../images/cat.jpg"
 
-class Navbar extends Component {
-    constructor() {
-        super()
-        this.state = {
-            user: "participant"    // For the displayed menu items depend on this 'user' state.
-        }
-    }
+export default function Navbar() {
 
-    render() {
+    const [currentUser] = useState(Parse.User.current().getUsername())
 
-        if (this.state.user === "none") {
-            return (<div className="Navbar">
-                <Link to="/">Start</Link>
-            </div>)
-        } else if (this.state.user === "participant") {
-            return (
-                <div className="Navbar">
-                    <Link to="/excursions">Excursion</Link>
-                    <Link to="/transport">Transportation</Link>
-                    <Link to="/contact">Contact</Link>
-                    <Link to="/signup">Sign up</Link>
-                    <Link to="/">Start</Link>
-                </div>
-            )
-        } else if (this.state.user === "organizer") {
-            return (
-                <div className="Navbar">
-                    <Link to="/excursions">Excursion</Link>
-                    <Link to="/participantList">Participant List</Link>
-                    <Link to="/dutyList">Duty List</Link>
-                    <Link to="/shoppingList">Shopping List</Link>
-                    <Link to="/">Start</Link>
-                </div>
-            )
-        }
-    }
+    console.log("Current:" + currentUser)
+    
+    return (
+        <div className="navbar">
+
+            {!currentUser && (
+                <>
+                    <a href="/Home">
+                        <img alt="" src={Cat} width="10%" />
+                    </a>
+                </>
+            )}
+            {(currentUser === "par") && (
+                <>
+                    <a href="/excursions">Excursion</a>
+                    <a href="/transport">Transportation</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/signup">Sign up</a>
+                    <a href="/Home">Log Out</a>
+                </>
+            )}
+            {(currentUser === "org") && (
+                <>
+                    <a href="/excursions">Excursion</a>
+                    <a href="/participantList">Participant List</a>
+                    <a href="/dutyList">Duty List</a>
+                    <a href="/shoppingList">Shopping List</a>
+                    <a href="/Home">Log Out</a>
+                </>
+            )}
+        </div>
+
+    )
 }
-export default Navbar

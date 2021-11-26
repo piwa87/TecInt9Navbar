@@ -1,5 +1,4 @@
 const tempTransportParticipant = [
-    
 {
     tid: 1,
     name: "Mikkel Larsen",

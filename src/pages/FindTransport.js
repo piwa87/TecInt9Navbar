@@ -4,8 +4,7 @@ import transportParticipant from "../tempData/transportParticipants"
 
 export default function FindTransport() {
 
-    const transportList = transportParticipant.map((item) =>
-        <TransportCard key={item.tid} par={item} />)
+    const transportList = transportParticipant.map((item) => <TransportCard key={item.tid} par={item} />)
 
     return (
 

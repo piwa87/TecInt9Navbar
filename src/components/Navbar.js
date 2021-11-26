@@ -7,9 +7,7 @@ export default function Navbar() {
     const [currentUser] = useState(Parse.User.current().getUsername())
 
     console.log("Current:" + currentUser)
-
     
-
     return (
         <div className="navbar">
 
@@ -19,7 +17,6 @@ export default function Navbar() {
                         <img alt="" src={Cat} width="10%" />
                     </a>
                 </>
-                
             )}
             {(currentUser === "par") && (
                 <>

@@ -1,9 +1,12 @@
 import SingleParticipant from "../components/SingleParticipant"
 import tempParData from "../tempData/participants"
 import Parse from "parse"
+import { useEffect, useState } from "react"
 
 
 export default function ParticipantList() {
+
+    const [participants, setParticipants] = useState()
 
     function createParticipant() {
         const Participant = Parse.Object.extend("Participant")
@@ -21,17 +24,24 @@ export default function ParticipantList() {
         return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     }
 
-    const list = (async () => {
-        const query = new Parse.Query('Participant');
-        try {
-          const results = await query.find();
-          console.log(`ParseObjects found: ${JSON.stringify(results)}`);
-        } catch (error) {
-          console.log(`Error: ${JSON.stringify(error)}`);
-        }
-      })();
-    
-    const participantList = tempParData.map((item) => <SingleParticipant key={item.pid} par={item} />)
+    useEffect(() => {
+        (async () => {
+            const query = new Parse.Query('Participant');
+            try {
+                const results = await query.find();
+                setParticipants(results)
+
+            } catch (error) {
+                console.log(`Error: ${JSON.stringify(error)}`);
+            }
+        })();
+    }, [])
+
+    if (!participants) { return "LOADING..." }
+    console.log("PARTICIPANTS: " + participants);
+
+    // const participantList = tempParData.map((item) => <SingleParticipant key={item.pid} par={item} />)
+    const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
 
     return (
         <div className="General">

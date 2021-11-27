@@ -18,9 +18,9 @@ export default function App() {
 
 	return (
 		<div>
-			<Navbar />
-			<section className="main-window">
-				<BrowserRouter>
+			<BrowserRouter>
+				<Navbar />
+				<section className="main-window">
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/Home" element={<Home />} />
@@ -32,8 +32,8 @@ export default function App() {
 						<Route path="/dutyList" element={<DutyList />} />
 						<Route path="/shoppingList" element={<ShoppingList />} />
 					</Routes>
-				</BrowserRouter>
-			</section>
+				</section>
+			</BrowserRouter>
 		</div>
 	)
 }

@@ -12,10 +12,10 @@ export default function Home() {
         user.setUsername("org")
         user.setPassword("1234")
         user.logIn().then((loggedInUser) => {
-            console.log("Logged in user: " + loggedInUser)
+            console.log("Logged in user: " , loggedInUser)
             navigate("/Home")
-            window.location.reload()
-        })
+            // window.location.reload()
+        }).catch((error) => {console.error(error);})
     }
 
     function logInParticipant() {
@@ -23,11 +23,16 @@ export default function Home() {
         user.setUsername("par")
         user.setPassword("1234")
         user.logIn().then((loggedInUser) => {
-            console.log("Logged in user: " + loggedInUser)
+            console.log("Logged in user: " , loggedInUser)
             navigate("/Home")
-            window.location.reload()
-        })
+            // window.location.reload()
+        }).catch((error) => {console.error(error);})
     }
+
+    function logOut() {
+        Parse.User().logOut()
+    }
+    
 
     return (
         <div className="General">
@@ -35,6 +40,8 @@ export default function Home() {
             <GreenButton onClick={logInOrganizer}>Organizer</GreenButton>
             <br/>
             <GreenButton onClick={logInParticipant}>Participant</GreenButton>
+            <br/>
+            <GreenButton onClick={logOut}>LogOut</GreenButton>
     
         </div>
     )

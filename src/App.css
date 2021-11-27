@@ -71,3 +71,8 @@
   padding-top: 100%;
   padding-bottom: 46px;
 }
+
+.single-participant {
+  display: flex;
+  background-color: rgb(232, 142, 142);
+}

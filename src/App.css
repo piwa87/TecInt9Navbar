@@ -3,13 +3,17 @@
   bottom: 0;
   margin-left: 15%;
   margin-right: 15%;
-  padding-bottom: 50%;
-  padding-left: 2rem;
-  padding-right: 2rem;
   padding-top: 2rem;
+  padding-bottom: 50%;
+  
+  padding-left: 8rem;
+  padding-right: 8rem;
 }
 
-.main > h1,h2,h3,h4 {
+.main > h1,
+h2,
+h3,
+h4 {
   margin: 0;
 }
 
@@ -30,8 +34,6 @@
   gap: 40px;
   overflow-x: auto;
 }
-
-
 
 /* 
 
@@ -63,11 +65,21 @@
   padding-bottom: 3%;
 }
 
-.single-participant {
-  display: flex;
-}
-
 .logout--button {
   position: absolute;
   right: 0px;
 }
+
+
+.participant--header {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr 0.5fr 0.5fr;
+
+}
+
+.participant--single {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr 0.5fr 0.5fr;
+  /* margin: 0% 10%; */
+}
+

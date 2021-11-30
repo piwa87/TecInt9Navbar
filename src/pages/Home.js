@@ -14,7 +14,7 @@ export default function Home() {
         user.logIn().then((loggedInUser) => {
             console.log("Logged in user: " , loggedInUser)
             navigate("/Home")
-            // window.location.reload()
+            window.location.reload()
         }).catch((error) => {console.error(error);})
     }
 
@@ -25,23 +25,23 @@ export default function Home() {
         user.logIn().then((loggedInUser) => {
             console.log("Logged in user: " , loggedInUser)
             navigate("/Home")
-            // window.location.reload()
+            window.location.reload()
         }).catch((error) => {console.error(error);})
     }
 
-    function logOut() {
-        Parse.User().logOut()
-    }
+    // function logOut() {
+    //     new Parse.User().logOut()
+    //     window.location.reload()
+    // }
     
 
     return (
-        <div className="General">
+        <div className="main">
             <h1>Choose to sign in as:</h1>
+            <br/>
             <GreenButton onClick={logInOrganizer}>Organizer</GreenButton>
-            <br/>
             <GreenButton onClick={logInParticipant}>Participant</GreenButton>
-            <br/>
-            <GreenButton onClick={logOut}>LogOut</GreenButton>
+            <GreenButton>LogOut</GreenButton>
     
         </div>
     )

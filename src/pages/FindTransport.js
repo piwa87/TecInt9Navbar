@@ -8,11 +8,7 @@ export default function FindTransport() {
 
     return (
 
-        <div className="General">
-
-            <h3>
-                Transportation page!
-            </h3>
+        <div className="main">
 
             <h3>Here you can find an avaliable seat:</h3>
             <section className="cardShow">{transportList}</section>

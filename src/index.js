@@ -14,9 +14,3 @@ ReactDOM.render(
   document.getElementById('root')
   )
   
-  
-  
-  
-  
-//  API KEY: "y1pkFZswJRDe8jhue98PGNh4mxxu5geUNCvNKXK1"
-//   JS_KEY: "HrNmgVEuGQ8macNhM9BbXfkORi4wJOr5HFFks8O6"

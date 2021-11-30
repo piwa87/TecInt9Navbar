@@ -14,10 +14,12 @@ border-radius: 12px;
 
 export const RedButton = styled.button`
 background-color: #591420;
-height: auto;
-width: auto;
 border-radius: 12px;
-border: 0px;
+    color: white;
+    height: fit;
+    width: fit;
+    border: 2px;
+    border-color: azure;
 `
 
 export const ButtonText = styled.label`

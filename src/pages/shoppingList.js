@@ -1,6 +1,6 @@
 export default function ShoppingList() {
     return (
-        <div className="General">
+        <div className="main">
             <h3>
                 Shopping List!
             </h3>

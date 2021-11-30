@@ -1,6 +1,6 @@
 export default function Contact() {
     return (
-        <div className="General">
+        <div className="main">
             <h3>
                 Contact page!
             </h3>

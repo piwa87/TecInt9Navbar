@@ -3,8 +3,7 @@ import '../App.css';
 
 export default function Excursions() {
 	return (
-		<div className='main'>
-
+		<div>
 			<h1 className='about_h1' style={{
 				textAlign: "center",
 				paddingTop: 50

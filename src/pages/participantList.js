@@ -25,13 +25,16 @@ export default function ParticipantList() {
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
 
     return (
-        <div className="main">
+        <div>
             <h3>Name: | Duty Prefrences: | Age:</h3>
             {participantList}
             <br />
             <GreenButton onClick={createParticipant}><ButtonText>Add participant</ButtonText></GreenButton>
         </div>
     )
+
+
+
 
 
     //  HELPING FUNCTIONS:
@@ -52,8 +55,3 @@ export default function ParticipantList() {
         return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     }
 }
-
-//         pid: 1,
-//         name: "Anne Nielsen",
-//         birthDate: 23,
-//         dutyPreference: "Kitchen, Cleaning, Cooking"

@@ -36,13 +36,12 @@ export default function Home() {
     
 
     return (
-        <div className="main">
+        <div>
             <h1>Choose to sign in as:</h1>
             <br/>
             <GreenButton onClick={logInOrganizer}>Organizer</GreenButton>
             <GreenButton onClick={logInParticipant}>Participant</GreenButton>
             <GreenButton>LogOut</GreenButton>
-    
         </div>
     )
 }

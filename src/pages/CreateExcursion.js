@@ -3,7 +3,7 @@ import { GreenButton, RedButton } from "../components/Button"
 
 export default function CreateExcursion() {
     return (
-        <div className="main">
+        <div>
             <h2 className="create">Page for creating excursions:</h2>
             <form className="create--form">
                 <p className="create--description">Title:</p> <input className="create--input" type="text" placeholder="Title:" />

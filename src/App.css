@@ -3,7 +3,6 @@
   bottom: 0;
   margin-left: 15%;
   margin-right: 15%;
-
   padding-bottom: 50%;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -30,19 +29,20 @@
   margin-right: 10%;
   gap: 40px;
   overflow-x: auto;
-  /*  /* margin-top: 130px;
-  margin-left: 282px;
-  margin-right: 282px;
-  padding-top: 130px;
-  padding-bottom: 100%; */
 }
 
-/* Navbar styling */
+
+
+/* 
+
+      Navbar styling 
+
+*/
 
 .navbar {
   width: 100%;
   background-color: #cad959;
-  padding: 46px 282px;
+  padding: 3% 15%;
 }
 
 .navbar a:link {
@@ -59,8 +59,8 @@
 
 .navbar a:hover {
   background-color: #64732f;
-  padding-top: 100%;
-  padding-bottom: 46px;
+  padding-top: 46px;
+  padding-bottom: 3%;
 }
 
 .single-participant {

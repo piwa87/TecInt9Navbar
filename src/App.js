@@ -20,7 +20,7 @@ export default function App() {
 	return (
 		<BrowserRouter>
 			<Navbar />
-			<section className="main-window">
+			<section className="main">
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/home" element={<Home />} />

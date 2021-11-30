@@ -1,29 +1,135 @@
 import "./create-excursion.css"
 import { ButtonText, GreenButton, RedButton } from "../components/Button"
+import { useState } from "react"
+import Parse from "parse"
 
 export default function CreateExcursion() {
+
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [date, setDate] = useState("")
+    const [price, setPrice] = useState("")
+    const [location, setLocation] = useState("")
+    const [deadline, setDeadline] = useState("")
+    const [capacity, setCapacity] = useState("")
+
+    function titleChange(e) {
+        setTitle(e.target.value)
+    }
+    function descriptionChange(e) {
+        setDescription(e.target.value)
+    }
+    function dateChange(e) {
+        setDate(e.target.value)
+    }
+    function priceChange(e) {
+        setPrice(e.target.value)
+    }
+    function locationChange(e) {
+        setLocation(e.target.value)
+    }
+    function deadlineChange(e) {
+        setDeadline(e.target.value)
+    }
+    function capacityChange(e) {
+        setCapacity(e.target.value)
+    }
+
+    function clearInput() {
+        setTitle("")
+        setDescription("")
+        setDate("")
+        setPrice("")
+        setLocation("")
+        setDeadline("")
+        setCapacity("")
+    }
+
+    function uploadExcursion() {
+        const Excursion = Parse.Object.extend("Excursion");
+        const excursion = new Excursion();
+        excursion.set("title", title);
+        excursion.set("description", description);
+        excursion.set("date", date);
+        excursion.set("price", price);
+        excursion.set("location", location);
+        excursion.set("capacity", capacity);
+        excursion.save().then((excursion) => {
+            clearInput();
+            alert('Success, your excursion has been created: ' + excursion.get("title") + ' (ID: ' + excursion.id + ')')
+        }, (error) => {
+            alert('Something went wrong ' + error.message);
+        });
+    }
+
     return (
         <div>
             <h3>Page for creating excursions:</h3>
             <br />
             <form className="create--form">
-                <p className="create--description">Title:</p>
-                <input className="create--input" type="text" placeholder="Title:" />
-                <p className="create--description">Description:</p>
-                <input className="create--input" type="text" placeholder="Description:" />
-                <p className="create--description">Date:</p>
-                <input className="create--input" type="text" placeholder="Date:" />
-                <p className="create--description">Price:</p>
-                <input className="create--input" type="text" placeholder="Price:" />
-                <p className="create--description">Location:</p>
-                <input className="create--input" type="text" placeholder="Location:" />
-                <p className="create--description">Deadline:</p>
-                <input className="create--input" type="text" placeholder="Deadline:" />
-                <p className="create--description">Max. Capacity:</p>
-                <input className="create--input" type="text" placeholder="Max. Capacity:" />
+                <p>Title:</p>
+                <input
+                    onChange={titleChange}
+                    value={title}
+                    className="create--input"
+                    type="text"
+                    placeholder="Title:" />
+
+                <p>Description:</p>
+                <input
+                    onChange={descriptionChange}
+                    value={description}
+                    className="create--input"
+                    type="text"
+                    placeholder="Description:" />
+
+                <p>Date:</p>
+                <input
+                    onChange={dateChange}
+                    value={date}
+                    className="create--input"
+                    type="text"
+                    placeholder="Date:" />
+
+                <p>Price:</p>
+                <input
+                    onChange={priceChange}
+                    value={price}
+                    className="create--input"
+                    type="number"
+                    placeholder="Price: (in DKK)" />
+
+                <p>Location:</p>
+                <input
+                    onChange={locationChange}
+                    value={location}
+                    className="create--input"
+                    type="text"
+                    placeholder="Location:" />
+
+                <p>Deadline:</p>
+                <input
+                    onChange={deadlineChange}
+                    value={deadline}
+                    className="create--input"
+                    type="text"
+                    placeholder="Deadline:" />
+
+                <p>Max. Capacity:</p>
+                <input
+                    onChange={capacityChange}
+                    value={capacity}
+                    className="create--input"
+                    type="number"
+                    placeholder="Max. Capacity:" />
+
             </form>
-            <GreenButton><ButtonText>Create Excursion</ButtonText></GreenButton>
-            <RedButton><ButtonText>Cancel</ButtonText></RedButton>
+            <GreenButton onClick={uploadExcursion}>
+                <ButtonText>Create Excursion</ButtonText>
+            </GreenButton>
+            <RedButton onClick={clearInput}>
+                <ButtonText>Cancel</ButtonText>
+            </RedButton>
         </div>
     )
 }

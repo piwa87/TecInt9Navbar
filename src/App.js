@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import './App.css'
 
 // Importing Navbar component:
@@ -15,7 +16,9 @@ import DutyList from './pages/DutyList'
 import ShoppingList from './pages/ShoppingList'
 import CreateExcursion from './pages/CreateExcursion'
 
+
 export default function App() {
+
 
 	return (
 		<BrowserRouter>

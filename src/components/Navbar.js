@@ -1,9 +1,11 @@
 import Parse from "parse"
-import { useState } from "react"
-import Cat from "../images/cat.jpg"
+import Cat from "../Images/cat.jpg"
 
 export default function Navbar() {
 
+    let currentUser = ""
+    // currentUser = "par"
+    currentUser = Parse.User.current().getUsername();
     const [isLoggedIn, setIsLoggedIn] = useState(true)
 
     const currentUser = Parse.User.current().getUsername()

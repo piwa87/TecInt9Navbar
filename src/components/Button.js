@@ -39,4 +39,20 @@ background-color: grey;
     bottom: 0;
     height: fit;
 `
+export const ButtonSignup = styled.button`
+    background-color: #8A9828;
+    width: 350px;
+    height: 70px;
+    left: 746px;
+    top: 905px;
+    border-radius: 8px;
+   
+`
+export const ButtonTextSignUp = styled.label`
+    font: "STIXVariants";
+    font-size: 36px;
+    text-align: center;
+    color: white;
+
+`
 

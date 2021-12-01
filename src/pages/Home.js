@@ -10,7 +10,7 @@ export default function Home() {
         e.preventDefault()
         const user = new Parse.User()
         user.setUsername("org")
-        user.setPassword("1234")
+        user.setPassword("12345")
         user.logIn().then((loggedInUser) => {
             console.log("Logged in user: " + loggedInUser)
             navigate("/Home")

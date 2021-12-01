@@ -1,7 +1,6 @@
 import "../tempData/excursionDetails";
 import { ButtonSignup, ButtonTextSignUp } from './Button';
 import "./Ex.css";
-import { useHistory } from 'react-router-dom';
 
 
 

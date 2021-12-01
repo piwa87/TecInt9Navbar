@@ -29,9 +29,7 @@ h4 {
 .cardShow {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 10%;
-  margin-right: 10%;
-  gap: 40px;
+  gap: 30px;
   overflow-x: auto;
 }
 

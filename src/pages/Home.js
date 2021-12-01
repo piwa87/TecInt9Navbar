@@ -11,37 +11,33 @@ export default function Home() {
         const user = new Parse.User()
         user.setUsername("org")
         user.setPassword("12345")
-        user.logIn().then((loggedInUser) => {
-            console.log("Logged in user: " , loggedInUser)
-            navigate("/Home")
-            window.location.reload()
-        }).catch((error) => {console.error(error);})
+        user.logIn().then(
+            navigate("/home"),
+            window.location.reload(),
+            console.log("User: '" + user.getUsername() + "' logged on successfully")
+        ).catch((error) => { console.error(error); })
+
     }
 
     function logInParticipant() {
         const user = new Parse.User()
         user.setUsername("par")
         user.setPassword("1234")
-        user.logIn().then((loggedInUser) => {
-            console.log("Logged in user: " , loggedInUser)
-            navigate("/Home")
-            window.location.reload()
-        }).catch((error) => {console.error(error);})
+        user.logIn().then(
+            navigate("/home"),
+            window.location.reload(),
+            console.log("User: '" + user.getUsername() + "' logged on successfully")
+        ).catch((error) => { console.error(error); })
     }
-
-    // function logOut() {
-    //     new Parse.User().logOut()
-    //     window.location.reload()
-    // }
-    
 
     return (
         <div>
-            <h1>Choose to sign in as:</h1>
-            <br/>
+            <h1>Welcome to the annual excursion planner.</h1>
+            <h3>Choose to sign in as:</h3>
+            <br />
             <GreenButton onClick={logInOrganizer}>Organizer</GreenButton>
             <GreenButton onClick={logInParticipant}>Participant</GreenButton>
-            <GreenButton>LogOut</GreenButton>
+            <GreenButton onClick={() => alert("Logout")}>LogOut</GreenButton>
         </div>
     )
 }

@@ -5,7 +5,7 @@ background-color: #8A9828;
 border-radius: 12px;
     right: 0;
     left: auto;
-    transition: .3s;
+    transition: .10s;
     content: '';
     width: fit;
     bottom: 0;
@@ -15,11 +15,13 @@ border-radius: 12px;
 export const RedButton = styled.button`
 background-color: #591420;
 border-radius: 12px;
-    color: white;
-    height: fit;
+    right: 0;
+    left: auto;
+    transition: .3s;
+    content: '';
     width: fit;
-    border: 2px;
-    border-color: azure;
+    bottom: 0;
+    height: fit;
 `
 
 export const ButtonText = styled.label`

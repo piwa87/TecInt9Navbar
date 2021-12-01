@@ -5,6 +5,9 @@ import { GreenButton, ButtonText } from '../components/Button';
 
 export default function ParticipantList() {
 
+
+    // BUSINESS LOGIC:
+
     const [participants, setParticipants] = useState([])
 
     useEffect(() => {
@@ -19,39 +22,60 @@ export default function ParticipantList() {
         })();
     }, [])
 
-    if (!participants) { return "LOADING..." }
-    console.log("PARTICIPANTS: " + participants);
 
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
 
-    return (
-        <div>
-            <h3>Name: | Duty Prefrences: | Age:</h3>
-            {participantList}
-            <br />
-            <GreenButton onClick={createParticipant}><ButtonText>Add participant</ButtonText></GreenButton>
-        </div>
-    )
-
-
-
-
-
     //  HELPING FUNCTIONS:
+
+    const possibleNames = ["Anne", "Bob", "Kevin", "Janek", "Niels", "Nick", "Liam", "Laurenz"]
+    const possibleSurnames = ["Nielsen", "Nowak", "Langeree", "Walker", "Bond", "Frederiksen", "Lykke", "Kjaergaard"]
+    const possiblePreferences = ["Kitchen", "Toilet", "Shopping", "Cleaning", "Cooking", "Scouting", "Plowing", "Guarding"]
 
     function createParticipant() {
         const Participant = Parse.Object.extend("Participant")
         const participant = new Participant()
         participant.save({
-            name: makeName() + " " + makeName(),
-            age: Math.floor(Math.random() * 13),
-            preference: "Kitchen, Cleaning, Cooking"
+            name: makeName(),
+            age: makeRandomAge(12, 90),
+            preference: makePreferences()
         }).then(
-            (participant) => {console.log("Created a new participant: " + participant.get("name"))
-        })
+            (participant) => {
+                console.log("Created a new participant: " + participant.get("name"));
+                window.location.reload()
+            })
     }
 
     function makeName() {
-        return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+        return possibleNames[Math.floor(Math.random() * possibleNames.length)]
+            + " "
+            + possibleSurnames[Math.floor(Math.random() * possibleSurnames.length)]
     }
+
+    function makeRandomAge(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    function makePreferences() {
+        return possiblePreferences[Math.floor(Math.random()* possiblePreferences.length)]
+        + ", " + possiblePreferences[Math.floor(Math.random()* possiblePreferences.length)]
+        + ", " + possiblePreferences[Math.floor(Math.random()* possiblePreferences.length)]
+    }
+
+
+    // RENDER THIS:
+
+    return (
+        <div className="participant--list">
+            <h3 className="participant--header">
+                <span>Name:</span>
+                <span>Duty Prefrences:</span>
+                <span>Age:</span>
+            </h3>
+            <br />
+            {participantList}
+            <br />
+            <GreenButton onClick={createParticipant}><ButtonText>Add random participant</ButtonText></GreenButton>
+        </div>
+    )
+
 }

@@ -12,10 +12,10 @@ export default function Home() {
         user.setUsername("org")
         user.setPassword("12345")
         user.logIn().then((loggedInUser) => {
-            console.log("Logged in user: " + loggedInUser)
+            console.log("Logged in user: " , loggedInUser)
             navigate("/Home")
             window.location.reload()
-        })
+        }).catch((error) => {console.error(error);})
     }
 
     function logInParticipant() {
@@ -23,19 +23,25 @@ export default function Home() {
         user.setUsername("par")
         user.setPassword("1234")
         user.logIn().then((loggedInUser) => {
-            console.log("Logged in user: " + loggedInUser)
+            console.log("Logged in user: " , loggedInUser)
             navigate("/Home")
             window.location.reload()
-        })
+        }).catch((error) => {console.error(error);})
     }
 
-    return (
-        <div className="General">
-            <h1>Choose to sign in as:</h1>
-            <GreenButton onClick={logInOrganizer}>Organizer</GreenButton>
-            <br/>
-            <GreenButton onClick={logInParticipant}>Participant</GreenButton>
+    // function logOut() {
+    //     new Parse.User().logOut()
+    //     window.location.reload()
+    // }
     
+
+    return (
+        <div>
+            <h1>Choose to sign in as:</h1>
+            <br/>
+            <GreenButton onClick={logInOrganizer}>Organizer</GreenButton>
+            <GreenButton onClick={logInParticipant}>Participant</GreenButton>
+            <GreenButton>LogOut</GreenButton>
         </div>
     )
 }

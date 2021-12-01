@@ -1,8 +1,8 @@
-export default function Contact() {
+export default function Signup() {
     return (
-        <div className="General">
+        <div>
             <h3>
-                Contact page!
+                Sign Up page!
             </h3>
             <code>Under Construction!</code>
         </div>

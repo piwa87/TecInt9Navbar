@@ -6,38 +6,38 @@ export default function Navbar() {
     let currentUser = ""
     // currentUser = "par"
     currentUser = Parse.User.current().getUsername();
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
 
-    console.log("Current:" + currentUser)
-    
+    const currentUser = Parse.User.current().getUsername()
+    console.log("Current user: " + currentUser);
+
+    isLoggedIn ? (console.log("Logged in!")) : console.log("Not logged in!");;
+
     return (
-        <div className="navbar">
+        <nav className="navbar">
+            {
+                !isLoggedIn ? (
+                    <a href="/Home"><img alt="" src={Cat} width="10%" />    </a>
 
-            {!currentUser && (
-                <>
-                    <a href="/Home">
-                        <img alt="" src={Cat} width="10%" />
-                    </a>
-                </>
-            )}
-            {(currentUser === "par") && (
-                <>
-                    <a href="/excursions">Excursion</a>
-                    <a href="/transport">Transportation</a>
-                    <a href="/contact">Contact</a>
-                    <a href="/signup">Sign up</a>
-                    <a href="/Home">Log Out</a>
-                </>
-            )}
-            {(currentUser === "org") && (
-                <>
-                    <a href="/excursions">Excursion</a>
-                    <a href="/participantList">Participant List</a>
-                    <a href="/dutyList">Duty List</a>
-                    <a href="/shoppingList">Shopping List</a>
-                    <a href="/Home">Log Out</a>
-                </>
-            )}
-        </div>
+                ) : (currentUser === "par") ? (                     // PARTICIPANTS:
+                    <>
+                        <a href="/excursions">Excursions</a>
+                        <a href="/transport">Find transport</a>
+                        <a href="/contact">Contact</a>
+                        <a href="/signup">Sign up</a>
+                    </>
+                ) : (currentUser === "org") && (                    // ORGANIZERS:
+                    <>
+                        <a href="/createExcursion">Create Excursion</a>
+                        <a href="/participantList">Participant List</a>
+                        <a href="/dutyList">Duty List</a>
+                        <a href="/shoppingList">Shopping List</a>
+                    </>
+                )
+            }
+            <a className="logout--button" href="/Home">Log Out</a>
+        </nav>
 
     )
 }
+

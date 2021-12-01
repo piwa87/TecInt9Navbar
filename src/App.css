@@ -2,25 +2,25 @@
   background: rgba(201, 217, 88, 0.45);
   display: flex;
   position: flex;
-  top: 46px;
+  /* top: 46px;
   bottom: 0;
-  padding-left: 125px;
-  padding-bottom: 100%;
-
+  padding-bottom: 100%; */
   margin-left: 15%;
   margin-right: 15%;
+  overflow-x: hidden;
 }
 
 .cardShow {
   display: flex;
 }
+/* }
 .container {
   background-color: #215086;
   margin-top: -21 px;
   margin-left: 282px;
   margin-right: 282 px;
   height: 180vh;
-}
+} */
 
 .hr {
   background-color: black;

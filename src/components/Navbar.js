@@ -1,10 +1,14 @@
-// import Parse from "parse"
+
+import Parse from "parse"
 import Cat from "../images/cat.jpg"
 
 export default function Navbar() {
 
     const isLoggedIn = true;
     const currentUser = "par";
+  
+    // currentUser = Parse.User.current().getUsername();
+    // const [isLoggedIn, setIsLoggedIn] = useState(true)
 
     console.log("User: " + currentUser);
 

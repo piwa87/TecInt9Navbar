@@ -16,6 +16,7 @@ export default function Home() {
             window.location.reload(),
             console.log("User: '" + user.getUsername() + "' logged on successfully")
         ).catch((error) => { console.error(error); })
+
     }
 
     function logInParticipant() {

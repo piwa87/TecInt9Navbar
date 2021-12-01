@@ -1,14 +1,36 @@
 .main {
   background: rgba(201, 217, 88, 0.45);
+  display: flex;
+  position: flex;
+  /* top: 46px;
+  bottom: 0;
+  padding-bottom: 100%; */
+  margin-left: 15%;
+  margin-right: 15%;
+  overflow-x: hidden;
+}
+
+.cardShow {
+  display: flex;
+}
+/* }
+.container {
+  background-color: #215086;
+  margin-top: -21 px;
+  margin-left: 282px;
+  margin-right: 282 px;
+  height: 180vh;
+} 
   bottom: 0;
   margin-left: 15%;
   margin-right: 15%;
   padding-top: 2rem;
-  padding-bottom: 50%;
-  
+  padding-bottom: 50%;  
   padding-left: 8rem;
   padding-right: 8rem;
 }
+
+}*/
 
 .main > h1,
 h2,

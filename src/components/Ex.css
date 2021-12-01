@@ -1,0 +1,41 @@
+
+/* .container{
+  text-align: center;
+  padding-top: 50;  
+} */
+
+.ex-info p {
+    font-weight: 300;
+    font-family:"STIXVariants";
+    padding-top: 500;
+    text-align: center;
+    font-size: 27px;
+}
+
+
+.ex-info {
+  width: 100%; 
+   
+}
+
+.ex-info hr {
+    border: 1px solid black;
+    width: 90%;
+}
+
+.ex-image{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.info{
+    font-weight: 300;
+    font-family:"STIXVariants";
+    padding-top: 500;
+    text-align: center;
+    font-size: 27px;
+}
+
+

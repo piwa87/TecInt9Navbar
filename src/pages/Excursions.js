@@ -1,26 +1,13 @@
-import Cabin from '../images/cabin.jpg';
+import ExcursionDisplay from '../components/ExcursionDisplay';
+import tempExcursionData from '../tempData/excursionDetails';
 import '../App.css';
 
 export default function Excursions() {
+
+
+	const excusrionList = tempExcursionData.map((item) => <ExcursionDisplay key={item.ExcursionId} par={item} />)
+
 	return (
-		<div className="show-excursion">
-			<h1 >Excursion 2021</h1>
-			<img src={Cabin} alt="sweden" width="70%" />
-			<p>
-				Friday to sunday<strong> June 7-9 2021</strong>
-				<br />
-				Location: <strong>Vilshult in Småland, SWEDEN</strong>
-				<br />
-				Price: Adult 950 kr.
-				<br />
-				Child 475 kr.
-			</p>
-			<hr />
-			<p>
-				Join this year’s excursion, there is room for 150 people. 
-				So sign up before your colleague </p>
-
-		</div>
-
-	);
-};
+		<section>{excusrionList}</section>
+	)
+}

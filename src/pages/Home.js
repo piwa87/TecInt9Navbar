@@ -13,7 +13,7 @@ export default function Home(props) {
         user.setUsername("org")
         user.setPassword("1234")
         user.logIn().then(
-            navigate("/home"),
+            navigate("/createexcursion"),
             window.location.reload(),
             console.log("User: '" + user.getUsername() + "' logged on successfully")
         ).catch((error) => { console.error(error); })
@@ -24,7 +24,7 @@ export default function Home(props) {
         user.setUsername("par")
         user.setPassword("1234")
         user.logIn().then(
-            navigate("/home"),
+            navigate("/excursions"),
             window.location.reload(),
             console.log("User: '" + user.getUsername() + "' logged on successfully")
         ).catch((error) => { console.error(error); })
@@ -45,9 +45,9 @@ export default function Home(props) {
             <code>For some reason the Parse.User is not working now. 
                 I think something broke on the Parse server with session logging and such. 
                 These two butons managed to switch user and then refresh the page, which rendered a different menu.
-                Since it broke, we almost broke our necks on this.</code>
+                Fixing this is the next step.</code>
             <br />
-            <code>To get the effect please change the 'user' variable between "par" and "org" in order to see the different menus, which ten will take you to the right pages.</code>
+            <code>As a workaround now the menu renders as the "org" user, and it's possible to switch the user with the 2 small buttons.</code>
 
         </div>
     )

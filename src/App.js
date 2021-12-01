@@ -19,22 +19,24 @@ import CreateExcursion from './pages/CreateExcursion'
 export default function App() {
 
 	return (
-		<BrowserRouter>
-			<Navbar />
-			<section className="main">
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/home" element={<Home />} />
-					<Route path="/excursions" element={<Excursions />} />
-					<Route path="/createexcursion" element={<CreateExcursion />} />
-					<Route path="/transport" element={<Transport />} />
-					<Route path="/contact" element={<Contact />} />
-					<Route path="/signup" element={<Signup />} />
-					<Route path="/participantList" element={<ParticipantList />} />
-					<Route path="/dutyList" element={<DutyList />} />
-					<Route path="/shoppingList" element={<ShoppingList />} />
-				</Routes>
-			</section>
-		</BrowserRouter>
+		<>
+			<BrowserRouter>
+				<Navbar />
+				<section className="main">
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/home" element={<Home />} />
+						<Route path="/excursions" element={<Excursions />} />
+						<Route path="/createexcursion" element={<CreateExcursion />} />
+						<Route path="/transport" element={<Transport />} />
+						<Route path="/contact" element={<Contact />} />
+						<Route path="/signup" element={<Signup />} />
+						<Route path="/participantList" element={<ParticipantList />} />
+						<Route path="/dutyList" element={<DutyList />} />
+						<Route path="/shoppingList" element={<ShoppingList />} />
+					</Routes>
+				</section>
+			</BrowserRouter>
+		</>
 	)
 }

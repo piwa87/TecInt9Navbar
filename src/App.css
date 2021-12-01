@@ -1,27 +1,5 @@
 .main {
   background: rgba(201, 217, 88, 0.45);
-  display: flex;
-  position: flex;
-  /* top: 46px;
-  bottom: 0;
-  padding-bottom: 100%; */
-  margin-left: 15%;
-  margin-right: 15%;
-  overflow-x: hidden;
-}
-
-.cardShow {
-  display: flex;
-}
-/* }
-.container {
-  background-color: #215086;
-  margin-top: -21 px;
-  margin-left: 282px;
-  margin-right: 282 px;
-  height: 180vh;
-} 
-  bottom: 0;
   margin-left: 15%;
   margin-right: 15%;
   padding-top: 2rem;
@@ -30,12 +8,7 @@
   padding-right: 8rem;
 }
 
-}*/
-
-.main > h1,
-h2,
-h3,
-h4 {
+.main > h1, h2, h3, h4 {
   margin: 0;
 }
 
@@ -55,11 +28,23 @@ h4 {
   overflow-x: auto;
 }
 
-/* 
 
-      Navbar styling 
+.create--form {
+  display: grid;
+  grid-template: 40px 40px / 1fr 3fr;
+  gap: 10px;
+  font-weight: bold;
+}
 
-*/
+.create--input {
+  text-indent: 6px;
+  border: 0;
+  border-radius: 5px;
+}
+
+
+/* - - - - Navbar styling - - - - */
+
 
 nav {
   background-color: #cad959;
@@ -86,20 +71,16 @@ nav > a:hover {
 }
 
 .logout--button {
-  right: 0px;
-  vertical-align: auto;
+  color: #34401a;
+  text-decoration: none;
 }
-
 
 .participant--header {
   display: grid;
   grid-template-columns: 2fr 3fr 2fr 0.5fr 0.5fr;
-
 }
 
 .participant--single {
   display: grid;
   grid-template-columns: 2fr 3fr 2fr 0.5fr 0.5fr;
-  /* margin: 0% 10%; */
 }
-

@@ -16,9 +16,7 @@ import DutyList from './pages/DutyList'
 import ShoppingList from './pages/ShoppingList'
 import CreateExcursion from './pages/CreateExcursion'
 
-
 export default function App() {
-
 
 	return (
 		<BrowserRouter>

@@ -9,8 +9,8 @@ export default function CreateSignUp() {
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [preferences, setPreferences] = useState("")
-    const [deadline, setDeadline] = useState("")
-    const [capacity, setCapacity] = useState("")
+    const [carStatus, setCarStatus] = useState("")
+    const [numberOfGuests, setNumberOfGuests] = useState("")
 
     function fullNameChange(e) {
         setFullName(e.target.value)
@@ -27,11 +27,11 @@ export default function CreateSignUp() {
     function preferenceChange(e) {
         setPreferences(e.target.value)
     }
-    function deadlineChange(e) {
-        setDeadline(e.target.value)
+    function carStatusChange(e) {
+        setCarStatus(e.target.value)
     }
-    function capacityChange(e) {
-        setCapacity(e.target.value)
+    function numberOfGuestsChange(e) {
+        setNumberOfGuests(e.target.value)
     }
 
     function clearInput() {
@@ -40,8 +40,8 @@ export default function CreateSignUp() {
         setEmail("")
         setPhone("")
         setPreferences("")
-        setDeadline("")
-        setCapacity("")
+        setCarStatus("")
+        setNumberOfGuests(null)
     }
 
     function uploadSignUp() {
@@ -52,7 +52,8 @@ export default function CreateSignUp() {
         signUp.set("Email", email);
         signUp.set("Phone", phone);
         signUp.set("Preferences", preferences);
-        signUp.set("capacity", capacity);
+        signUp.set("CarStatus", carStatus)
+        signUp.set("NumberOfGuests", numberOfGuests);
         signUp.save().then((signUp) => {
             alert('You have successfully signed up: ' + signUp.get("Fullname"))
             clearInput();
@@ -106,21 +107,21 @@ export default function CreateSignUp() {
                     type="Dropdown"
                     placeholder="Preferences" />
 
-                <p>Deadline:</p>
+                <p>Car Status:</p>
                 <input
-                    onChange={deadlineChange}
-                    value={deadline}
+                    onChange={carStatusChange}
+                    value={carStatus}
                     className="create--input"
-                    type="text"
-                    placeholder="Deadline:" />
+                    type="checkbox"
+                    placeholder="Car status" />
 
-                <p>Max. Capacity:</p>
+                <p>Number of guests:</p>
                 <input
-                    onChange={capacityChange}
-                    value={capacity}
+                    onChange={numberOfGuestsChange}
+                    value={numberOfGuests}
                     className="create--input"
                     type="number"
-                    placeholder="Max. Capacity:" />
+                    placeholder="Number of guests" />
 
             </form>
             <GreenButton onClick={uploadSignUp}>

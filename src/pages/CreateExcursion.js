@@ -72,7 +72,7 @@ export default function CreateExcursion() {
                     value={title}
                     className="create--input"
                     type="text"
-                    placeholder="Title:" />
+                    placeholder="Title" />
 
                 <p>Description:</p>
                 <input
@@ -80,7 +80,7 @@ export default function CreateExcursion() {
                     value={description}
                     className="create--input"
                     type="text"
-                    placeholder="Description:" />
+                    placeholder="Description" />
 
                 <p>Date:</p>
                 <input
@@ -88,7 +88,7 @@ export default function CreateExcursion() {
                     value={date}
                     className="create--input"
                     type="text"
-                    placeholder="Date:" />
+                    placeholder="Date" />
 
                 <p>Price:</p>
                 <input
@@ -96,7 +96,7 @@ export default function CreateExcursion() {
                     value={price}
                     className="create--input"
                     type="number"
-                    placeholder="Price: (in DKK)" />
+                    placeholder="Price (in DKK)" />
 
                 <p>Location:</p>
                 <input
@@ -104,7 +104,7 @@ export default function CreateExcursion() {
                     value={location}
                     className="create--input"
                     type="text"
-                    placeholder="Location:" />
+                    placeholder="Location" />
 
                 <p>Deadline:</p>
                 <input
@@ -112,7 +112,7 @@ export default function CreateExcursion() {
                     value={deadline}
                     className="create--input"
                     type="text"
-                    placeholder="Deadline:" />
+                    placeholder="Deadline" />
 
                 <p>Max. Capacity:</p>
                 <input
@@ -120,7 +120,7 @@ export default function CreateExcursion() {
                     value={capacity}
                     className="create--input"
                     type="number"
-                    placeholder="Max. Capacity:" />
+                    placeholder="Max. Capacity" />
 
             </form>
             <GreenButton onClick={uploadExcursion}>

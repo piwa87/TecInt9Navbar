@@ -12,7 +12,7 @@ export default function CreateSignUp() {
     const [deadline, setDeadline] = useState("")
     const [capacity, setCapacity] = useState("")
 
-    function nameChange(e) {
+    function fullNameChange(e) {
         setFullName(e.target.value)
     }
     function addressChange(e) {
@@ -47,15 +47,15 @@ export default function CreateSignUp() {
     function uploadSignUp() {
         const SignUp = Parse.Object.extend("SignUp");
         const signUp = new SignUp();
-        signUp.set("full name", fullName);
+        signUp.set("Fullname", fullName);
         signUp.set("Address", address);
         signUp.set("Email", email);
         signUp.set("Phone", phone);
         signUp.set("Preferences", preferences);
         signUp.set("capacity", capacity);
-        signUp.save().then((SignUp) => {
+        signUp.save().then((signUp) => {
+            alert('You have successfully signed up: ' + signUp.get("Fullname"))
             clearInput();
-            alert('Success, your excursion has been created: ' + signUp.get("full name") )
         }, (error) => {
             alert('Something went wrong ' + error.message);
         });
@@ -68,7 +68,7 @@ export default function CreateSignUp() {
             <form className="create--form">
                 <p>Full name:</p>
                 <input
-                    onChange={nameChange}
+                    onChange={fullNameChange}
                     value={fullName}
                     className="create--input"
                     type="text"

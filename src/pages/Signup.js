@@ -41,7 +41,7 @@ export default function CreateSignUp() {
         setPhone("")
         setPreferences("")
         setCarStatus("")
-        setNumberOfGuests(null)
+        setNumberOfGuests("")
     }
 
     function uploadSignUp() {
@@ -113,7 +113,7 @@ export default function CreateSignUp() {
                     value={carStatus}
                     className="create--input"
                     type="checkbox"
-                    placeholder="Car status" />
+                    placeholder="Car status"/>
 
                 <p>Number of guests:</p>
                 <input

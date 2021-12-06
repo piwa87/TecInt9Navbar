@@ -4,7 +4,7 @@ import { ButtonText, GreenButton } from "./Button"
 
 export default function GuestSignUpComponent(){
     
-    const [fullName, setFullName] = useState("")
+    const [fullname, setFullName] = useState("")
     const [birthday, setBirthday] = useState("")
     const [preferences, setPreferences] = useState("")
 
@@ -33,10 +33,10 @@ export default function GuestSignUpComponent(){
     function uploadGuest() {
         const Participant = Parse.Object.extend("Participant");
         const guest = new Participant();
-        guest.set("fullname", fullName);
+        guest.set("fullname", fullname);
         guest.set("birthday", birthday);
         guest.set("preferences", preferences);
-        guest.set("name", fullName.split(" ")[0])
+        guest.set("name", fullname.split(" ")[0])
         guest.set("age", getAge(birthday))
 
         guest.save().then((guest) => {
@@ -54,7 +54,7 @@ export default function GuestSignUpComponent(){
         <p>Guest full name: </p>
                 <input
                     onChange={fullNameChange}
-                    value={fullName}
+                    value={fullname}
                     className="create--input"
                     type="text"
                     placeholder="Guest full name" />

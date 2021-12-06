@@ -6,7 +6,7 @@ import GuestSignUpComponent from "../components/GuestSignUpComponent"
 
 export default function CreateSignUp() {
 
-    const [fullName, setFullName] = useState("")
+    const [fullname, setFullName] = useState("")
     const [address, setAddress] = useState("")
     const [birthday, setBirthday] = useState("")
     const [email, setEmail] = useState("")
@@ -67,7 +67,7 @@ export default function CreateSignUp() {
     function getGuests(){
         //const guests = x; 
         const myGuests = [] 
-        if (numberOfGuests > 0){
+        if (numberOfGuests > 0 && numberOfGuests<5){
                  for (let index = 0; index < numberOfGuests; index++) {
                      
                     myGuests.push(<GuestSignUpComponent/>)
@@ -83,8 +83,8 @@ export default function CreateSignUp() {
     function uploadSignUp() {
         const Participant = Parse.Object.extend("Participant");
         const participant = new Participant();
-        participant.set("fullname", fullName);
-        participant.set("name", fullName.split(" ")[0]);
+        participant.set("fullname", fullname);
+        participant.set("name", fullname.split(" ")[0]);
         participant.set("birthday", birthday);
         participant.set("age", getAge(birthday));
         participant.set("address", address);
@@ -110,7 +110,7 @@ export default function CreateSignUp() {
                 <p>Full name:</p>
                 <input
                     onChange={fullNameChange}
-                    value={fullName}
+                    value={fullname}
                     className="create--input"
                     type="text"
                     placeholder="Full name" />
@@ -171,6 +171,7 @@ export default function CreateSignUp() {
                     type="number"
                     min="0"
                     max="4"
+                    pattern="[0-9]+"
                     placeholder="Number of guests"
                     />
 

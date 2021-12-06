@@ -45,6 +45,12 @@
   border-radius: 5px;
 }
 
+.create--checkbox {
+  margin: left;
+  display: block;
+
+}
+
 
 /* - - - - Navbar styling - - - - */
 
@@ -122,4 +128,9 @@ nav > a:hover {
 
 .tmpButton:focus:not(:active) {
   box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
+}
+
+.guest-save{
+  float: right;
+  margin-top: 10px;
 }

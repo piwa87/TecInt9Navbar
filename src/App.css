@@ -45,6 +45,12 @@
   border-radius: 5px;
 }
 
+.create--checkbox {
+  margin: left;
+  display: block;
+
+}
+
 
 /* - - - - Navbar styling - - - - */
 

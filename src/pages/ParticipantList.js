@@ -34,13 +34,15 @@ export default function ParticipantList() {
     function createParticipant() {
         const Participant = Parse.Object.extend("Participant")
         const participant = new Participant()
+        var fullname = makeName()
         participant.save({
-            name: makeName(),
+            fullName: fullname,
             age: makeRandomAge(12, 90),
-            preference: makePreferences()
+            preference: makePreferences(),
+            name: fullname.split(" ")[0],
         }).then(
             (participant) => {
-                console.log("Created a new participant: " + participant.get("name"));
+                console.log("Created a new participant: " + participant.get("fullName"));
                 window.location.reload()
             })
     }

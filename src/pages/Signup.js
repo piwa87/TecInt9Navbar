@@ -1,20 +1,26 @@
 import { ButtonText, GreenButton, RedButton } from "../components/Button"
-import { useState } from "react"
+import {  useState } from "react"
 import Parse from "parse"
 import GuestSignUpComponent from "../components/GuestSignUpComponent"
+
 
 export default function CreateSignUp() {
 
     const [fullName, setFullName] = useState("")
     const [address, setAddress] = useState("")
+    const [birthday, setBirthday] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [preferences, setPreferences] = useState("")
-    const [carStatus, setCarStatus] = useState("")
-    const [numberOfGuests, setNumberOfGuests] = useState(1)
+    const [carStatus, setCarStatus] = useState(false)
+    const [numberOfGuests, setNumberOfGuests] = useState(0)
 
     function fullNameChange(e) {
         setFullName(e.target.value)
+    }
+
+    function birthdayChange(e){
+        setBirthday(e.target.value)
     }
     function addressChange(e) {
         setAddress(e.target.value)
@@ -28,8 +34,8 @@ export default function CreateSignUp() {
     function preferenceChange(e) {
         setPreferences(e.target.value)
     }
-    function carStatusChange(e) {
-        setCarStatus(e.target.value)
+    function carStatusChange() {
+        setCarStatus(true);
     }
     function numberOfGuestsChange(e) {
         setNumberOfGuests(e.target.value)
@@ -38,22 +44,36 @@ export default function CreateSignUp() {
 
     function clearInput() {
         setFullName("")
+        setBirthday("")
         setAddress("")
         setEmail("")
         setPhone("")
         setPreferences("")
-        setCarStatus("")
+        setCarStatus(false)
         setNumberOfGuests(0)
     }
+    //Calculates the age based on the birth date
+    function getAge(dateString) {
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    }
 
-    function getGuests(x){
-        const guests = x; 
+    function getGuests(){
+        //const guests = x; 
         const myGuests = [] 
-        if (x > 0){
-                 for (let index = 0; index < x; index++) {
+        if (numberOfGuests > 0){
+                 for (let index = 0; index < numberOfGuests; index++) {
                      
                     myGuests.push(<GuestSignUpComponent/>)
                  }
+            } else{
+                
             }
             return(
                 myGuests
@@ -61,17 +81,21 @@ export default function CreateSignUp() {
         }
 
     function uploadSignUp() {
-        const SignUp = Parse.Object.extend("SignUp");
-        const signUp = new SignUp();
-        signUp.set("Fullname", fullName);
-        signUp.set("Address", address);
-        signUp.set("Email", email);
-        signUp.set("Phone", phone);
-        signUp.set("Preferences", preferences);
-        signUp.set("CarStatus", carStatus)
-        signUp.set("NumberOfGuests", numberOfGuests);
-        signUp.save().then((signUp) => {
-            alert('You have successfully signed up: ' + signUp.get("Fullname"))
+        const Participant = Parse.Object.extend("Participant");
+        const participant = new Participant();
+        participant.set("fullname", fullName);
+        participant.set("name", fullName.split(" ")[0]);
+        participant.set("birthday", birthday);
+        participant.set("age", getAge(birthday));
+        participant.set("address", address);
+        participant.set("email", email);
+        participant.set("phone", phone);
+        participant.set("preferences", preferences);
+        participant.set("carStatus", carStatus);
+        participant.set("numberOfGuests", numberOfGuests);
+
+        participant.save().then((participant) => {
+            alert('You have successfully signed up: ' + participant.get("Fullname"))
             clearInput();
         }, (error) => {
             alert('Something went wrong ' + error.message);
@@ -90,6 +114,14 @@ export default function CreateSignUp() {
                     className="create--input"
                     type="text"
                     placeholder="Full name" />
+                
+                <p>Birthday:</p>
+                <input
+                    onChange={birthdayChange}
+                    value={birthday}
+                    className="create--input"
+                    type="date"
+                    placeholder="Birthday" />
 
                 <p>Address:</p>
                 <input
@@ -123,13 +155,13 @@ export default function CreateSignUp() {
                     type="Dropdown"
                     placeholder="Preferences" />
 
-                <p>Car Status:</p>
-                <input
-                    onChange={carStatusChange}
+                <p>Car Status: </p>                    
+                <label> Check the box if you will drive to the destination <input
+                    onClick={carStatusChange}
                     value={carStatus}
-                    className="create--input"
+                    className="create--checkbox"
                     type="checkbox"
-                    placeholder="Car status"/>
+                    /></label>
 
                 <p>Number of guests:</p>
                 <input

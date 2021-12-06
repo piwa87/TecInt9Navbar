@@ -75,7 +75,9 @@ export default function GuestSignUpComponent(){
                     type="text"
                     placeholder="Preferences of guest" />
     </form>
-        <GreenButton onClick={uploadGuest}><ButtonText>Save</ButtonText></GreenButton>
+        <GreenButton className = "guest-save" onClick={uploadGuest}><ButtonText>Save Guest</ButtonText></GreenButton>
+        <br/>
+        <br/>
         </div>
     )
 }

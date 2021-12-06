@@ -1,6 +1,7 @@
 import { ButtonText, GreenButton, RedButton } from "../components/Button"
 import { useState } from "react"
 import Parse from "parse"
+import GuestSignUpComponent from "../components/GuestSignUpComponent"
 
 export default function CreateSignUp() {
 
@@ -10,7 +11,7 @@ export default function CreateSignUp() {
     const [phone, setPhone] = useState("")
     const [preferences, setPreferences] = useState("")
     const [carStatus, setCarStatus] = useState("")
-    const [numberOfGuests, setNumberOfGuests] = useState("")
+    const [numberOfGuests, setNumberOfGuests] = useState(1)
 
     function fullNameChange(e) {
         setFullName(e.target.value)
@@ -33,6 +34,7 @@ export default function CreateSignUp() {
     function numberOfGuestsChange(e) {
         setNumberOfGuests(e.target.value)
     }
+
     function clearInput() {
         setFullName("")
         setAddress("")
@@ -40,8 +42,22 @@ export default function CreateSignUp() {
         setPhone("")
         setPreferences("")
         setCarStatus("")
-        setNumberOfGuests("")
+        setNumberOfGuests(0)
     }
+
+    function getGuests(x){
+        const guests = x; 
+        const myGuests = [] 
+        if (x > 0){
+                 for (let index = 0; index < x; index++) {
+                     
+                    myGuests.push(<GuestSignUpComponent/>)
+                 }
+            }
+            return(
+                myGuests
+            )
+        }
 
     function uploadSignUp() {
         const SignUp = Parse.Object.extend("SignUp");
@@ -120,9 +136,15 @@ export default function CreateSignUp() {
                     value={numberOfGuests}
                     className="create--input"
                     type="number"
-                    placeholder="Number of guests" />
+                    min="0"
+                    max="4"
+                    placeholder="Number of guests"
+                    />
 
+                    <br/>
             </form>
+            {getGuests(numberOfGuests)}
+
             <GreenButton onClick={uploadSignUp}>
                 <ButtonText>Sign Up</ButtonText>
             </GreenButton>

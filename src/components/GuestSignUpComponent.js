@@ -40,7 +40,7 @@ export default function GuestSignUpComponent(){
         guest.set("age", getAge(birthday))
 
         guest.save().then((guest) => {
-            alert('You have added a guest: ' + guest.get("Fullname"));
+            alert('You have added a guest: ' + guest.get("fullname"));
         }, (error) => {
             alert('Something went wrong ' + error.message);
         });

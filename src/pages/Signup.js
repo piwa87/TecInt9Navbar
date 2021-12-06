@@ -95,7 +95,7 @@ export default function CreateSignUp() {
         participant.set("numberOfGuests", numberOfGuests);
 
         participant.save().then((participant) => {
-            alert('You have successfully signed up: ' + participant.get("Fullname"))
+            alert('You have successfully signed up: ' + participant.get("fullname"))
             clearInput();
         }, (error) => {
             alert('Something went wrong ' + error.message);

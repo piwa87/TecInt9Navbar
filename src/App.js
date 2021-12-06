@@ -24,16 +24,16 @@ export default function App() {
 				<Navbar />
 				<section className="main">
 					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/home" element={<Home />} />
-						<Route path="/excursions" element={<Excursions />} />
-						<Route path="/createexcursion" element={<CreateExcursion />} />
-						<Route path="/transport" element={<Transport />} />
-						<Route path="/contact" element={<Contact />} />
-						<Route path="/signup" element={<Signup />} />
-						<Route path="/participantList" element={<ParticipantList />} />
-						<Route path="/dutyList" element={<DutyList />} />
-						<Route path="/shoppingList" element={<ShoppingList />} />
+						<Route exact path="/" element={<Home />} />
+						<Route exact path="/home" element={<Home />} />
+						<Route exact path="/excursions" element={<Excursions />} />
+						<Route exact path="/createexcursion" element={<CreateExcursion />} />
+						<Route exact path="/transport" element={<Transport />} />
+						<Route exact path="/contact" element={<Contact />} />
+						<Route exact path="/signup" element={<Signup />} />
+						<Route exact path="/participantList" element={<ParticipantList />} />
+						<Route exact path="/dutyList" element={<DutyList />} />
+						<Route exact path="/shoppingList" element={<ShoppingList />} />
 					</Routes>
 				</section>
 			</BrowserRouter>

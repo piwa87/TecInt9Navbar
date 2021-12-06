@@ -2,10 +2,12 @@ import { ButtonText, GreenButton, RedButton } from "../components/Button"
 import {  useState } from "react"
 import Parse from "parse"
 import GuestSignUpComponent from "../components/GuestSignUpComponent"
+import { useNavigate } from "react-router"
 
 
 export default function CreateSignUp() {
 
+    const navigate = useNavigate()
     const [fullname, setFullName] = useState("")
     const [address, setAddress] = useState("")
     const [birthday, setBirthday] = useState("")
@@ -89,14 +91,13 @@ export default function CreateSignUp() {
         participant.set("age", getAge(birthday));
         participant.set("address", address);
         participant.set("email", email);
-        participant.set("phone", phone);
+        participant.set("phone", Number(phone));
         participant.set("preferences", preferences);
         participant.set("carStatus", carStatus);
-        participant.set("numberOfGuests", numberOfGuests);
+        participant.set("numberOfGuests", Number(numberOfGuests));
 
         participant.save().then((participant) => {
-            alert('You have successfully signed up: ' + participant.get("fullname"))
-            clearInput();
+            navigate("/afterSignUp")
         }, (error) => {
             alert('Something went wrong ' + error.message);
         });
@@ -144,7 +145,7 @@ export default function CreateSignUp() {
                     onChange={phoneChange}
                     value={phone}
                     className="create--input"
-                    type="tel"
+                    type="number"
                     placeholder="Phone" />
 
                 <p>Preferences:</p>

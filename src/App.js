@@ -15,6 +15,7 @@ import ParticipantList from './pages/ParticipantList'
 import DutyList from './pages/DutyList'
 import ShoppingList from './pages/ShoppingList'
 import CreateExcursion from './pages/CreateExcursion'
+import AfterSignUp from './pages/AfterSignUp'
 
 export default function App() {
 
@@ -34,6 +35,7 @@ export default function App() {
 						<Route exact path="/participantList" element={<ParticipantList />} />
 						<Route exact path="/dutyList" element={<DutyList />} />
 						<Route exact path="/shoppingList" element={<ShoppingList />} />
+						<Route exact path="/afterSignUp" element={<AfterSignUp />} />
 					</Routes>
 				</section>
 			</BrowserRouter>

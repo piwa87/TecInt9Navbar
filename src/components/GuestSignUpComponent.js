@@ -18,12 +18,6 @@ export default function GuestSignUpComponent(){
         setPreferences(e.target.value)
     }
 
-    function clearInput() {
-        setFullName("")
-        setBirthday("")
-        setPreferences("")
-    }
-
     //Calculates the age based on the birth date
     function getAge(dateString) {
         var today = new Date();
@@ -46,8 +40,7 @@ export default function GuestSignUpComponent(){
         guest.set("age", getAge(birthday))
 
         guest.save().then((guest) => {
-            alert('You have added a guest: ' + guest.get("Fullname"))
-            clearInput();
+            alert('You have added a guest: ' + guest.get("Fullname"));
         }, (error) => {
             alert('Something went wrong ' + error.message);
         });

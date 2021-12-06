@@ -33,7 +33,6 @@ export default function CreateSignUp() {
     function numberOfGuestsChange(e) {
         setNumberOfGuests(e.target.value)
     }
-
     function clearInput() {
         setFullName("")
         setAddress("")

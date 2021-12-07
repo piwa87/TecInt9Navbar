@@ -1,8 +1,10 @@
 import { ButtonText, GreenButton, RedButton } from "../components/Button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Parse from "parse"
 
-export default function CreateExcursion() {
+export default function CreateExcursion({ setUser }) {
+
+    useEffect(() => { setUser("org") })
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")

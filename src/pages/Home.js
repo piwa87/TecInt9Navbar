@@ -1,54 +1,48 @@
-import Parse from "parse"
 import { useNavigate } from "react-router"
-import { GreenButton } from "../components/Button"
+import { Icon } from '@iconify/react';
 
-export default function Home(props) {
+export default function Home({ setUser }) {
 
- 
     const navigate = useNavigate()
 
-    function logInOrganizer(e) {
-        e.preventDefault()
-        const user = new Parse.User()
-        user.setUsername("org")
-        user.setPassword("1234")
-        user.logIn().then(
-            navigate("/createexcursion"),
-            window.location.reload(),
-            console.log("User: '" + user.getUsername() + "' logged on successfully")
-        ).catch((error) => { console.error(error); })
+    function logInOrganizer() {
+        setUser("org")
+        navigate("/createexcursion")
     }
 
     function logInParticipant() {
-        const user = new Parse.User()
-        user.setUsername("par")
-        user.setPassword("1234")
-        user.logIn().then(
-            navigate("/excursions"),
-            window.location.reload(),
-            console.log("User: '" + user.getUsername() + "' logged on successfully")
-        ).catch((error) => { console.error(error); })
+        setUser("par")
+        navigate("/excursions")
     }
 
     return (
-        <div>
-            <h3>Welcome to the annual excursion planner.</h3>
-            <h3>Choose to sign in as:</h3>
+        <div className="home">
+            <h1>Welcome to your annual excursion planner.</h1>
             <br />
-            <GreenButton onClick={logInOrganizer}>Organizer</GreenButton>
-            <GreenButton onClick={logInParticipant}>Participant</GreenButton>
+            <h3>Please choose your role:</h3>
             <br />
-            <br />
-            <br />
-            <code>{"#!%€%&/&##!!!€#"}</code>
-            <br />
-            <code>For some reason the Parse.User is not working now. 
-                I think something broke on the Parse server with session logging and such. 
-                These two butons managed to switch user and then refresh the page, which rendered a different menu.
-                Fixing this is the next step.</code>
-            <br />
-            <code>As a workaround now the menu renders as the "org" user, and it's possible to switch the user with the 2 small buttons.</code>
-
-        </div>
+            <div className="home--icons">
+                <div className="home--par">
+                    <Icon
+                        icon="healthicons:travel"
+                        color="#555"
+                        width="190"
+                        height="190"
+                        onClick={logInParticipant}
+                        cursor="pointer"
+                    />
+                    <h4>Participant</h4>
+                </div>
+                <div className="home--org">
+                    <Icon icon="clarity:administrator-solid"
+                        color="#555"
+                        width="190"
+                        height="190"
+                        onClick={logInOrganizer}
+                        cursor="pointer" />
+                    <h4>Organizer</h4>
+                </div>
+            </div >
+        </div >
     )
 }

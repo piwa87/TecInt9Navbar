@@ -171,16 +171,17 @@ export default function CreateSignUp() {
 
         <p>Car Status: </p>
         <label>
-          {" "}
-          Check the box if you will drive to the destination{" "}
+          
+          Check the box if you will drive to the destination
+          <br/>
           <input
             onClick={carStatusChangeToYes}
             value={carStatus}
-            className="create--checkbox"
+            className="create--input"
             type="checkbox"
           />
         </label>
-
+        <p/>
         <input
           onChange={carStatusChangeToNo}
           value={carStatus}
@@ -190,8 +191,9 @@ export default function CreateSignUp() {
         />
       </form>
       {carAvailable()}
-      <br />{" "}
-      <form>
+      <br />
+      <br/>
+      <form className='create--form'>
         <p>Number of guests:</p>
         <input
           onChange={numberOfGuestsChange}

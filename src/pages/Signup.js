@@ -2,6 +2,7 @@ import { ButtonText, GreenButton, RedButton } from "../components/Button";
 import { useState } from "react";
 import Parse from "parse";
 import GuestSignUpComponent from "../components/GuestSignUpComponent";
+import CarSignUpComponent from "../components/carSignUpComponent";
 import { useNavigate } from "react-router";
 
 export default function CreateSignUp() {
@@ -173,7 +174,7 @@ export default function CreateSignUp() {
           {" "}
           Check the box if you will drive to the destination{" "}
           <input
-            onClick={carStatusChange}
+            onClick={carStatusChangeToYes}
             value={carStatus}
             className="create--checkbox"
             type="checkbox"

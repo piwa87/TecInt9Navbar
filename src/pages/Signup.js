@@ -86,6 +86,13 @@ export default function CreateSignUp() {
             )
         }
 
+        function carAvailable(x) {
+          if (carStatus) {
+            return <CarSignUpComponent />;
+            
+          }
+        }
+
     function uploadSignUp() {
         const Participant = Parse.Object.extend("Participant");
         const participant = new Participant();

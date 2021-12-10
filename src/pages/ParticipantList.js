@@ -5,7 +5,6 @@ import { GreenButton, ButtonText } from '../components/Button';
 
 export default function ParticipantList() {
 
-
     // BUSINESS LOGIC:
 
     const [participants, setParticipants] = useState([])
@@ -21,6 +20,8 @@ export default function ParticipantList() {
             }
         })();
     }, [])
+
+    console.log(participants);
 
 
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)

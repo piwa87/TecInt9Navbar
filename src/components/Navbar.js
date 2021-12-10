@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Navbar(props) {
 
     const isLoggedIn = (!props.user ? false : true);
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
     const user = props.user
 
     return (

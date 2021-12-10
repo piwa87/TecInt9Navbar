@@ -75,13 +75,13 @@ export default function CreateExcursion({ setUser }) {
                     placeholder="Duration"
                     required />
 
-                <p>Date:</p>
+                <p>Start date - End date:</p>
                 <input
                     onChange={dateChange}
                     value={date}
                     className="create--input"
                     type="text"
-                    placeholder="Date"
+                    placeholder="ex. day/month/year - day/month/year"
                     required />
 
                 <p>Location:</p>

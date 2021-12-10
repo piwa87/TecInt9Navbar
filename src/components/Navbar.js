@@ -24,11 +24,10 @@ export default function Navbar(props) {
                         <NavLink to="/participantList">Participant List</NavLink>
                         <NavLink to="/dutyList">Duty List</NavLink>
                         <NavLink to="/shoppingList">Shopping List</NavLink>
-                        <a className="logout--button" href="/home">Home</a>
+                        <a href="/home">Home</a>
                     </>
                 )
             }
-            
         </nav>
     )
 }

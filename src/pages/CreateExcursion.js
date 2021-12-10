@@ -53,39 +53,38 @@ export default function CreateExcursion({ setUser }) {
         excursion.set("price", price);
         excursion.set("capacity", capacity);
         excursion.set("imgurl", imgurl)
-        excursion.save().then((excursion) => {
+        excursion.save().then(() => {
             clearInput();
-            alert('Success, your excursion has been created: '
-                + location
-                + ' (ID: ' + excursion.id + ')')
+            alert('Success, your excursion has been created: ' + duration)
             navigate('/home')
+            setUser("org")
         }, (error) => {
             alert('Something went wrong ' + error.message);
         });
     }
 
     return (
-            < div >
+        <div>
             <h3>Page for creating excursions:</h3>
             <br />
             <form className="create--form">
 
-                <p>Duration:</p>
+                <p>Title:</p>
                 <input
                     onChange={durationChange}
                     value={duration}
                     className="create--input"
                     type="text"
-                    placeholder="Duration"
+                    placeholder="Title"
                     required />
 
-                <p>Start date - End date:</p>
+                <p>Date:</p>
                 <input
                     onChange={dateChange}
                     value={date}
                     className="create--input"
                     type="text"
-                    placeholder="ex. day/month/year - day/month/year"
+                    placeholder="ex ' 7 - 9 Februar 2021 '"
                     required />
 
                 <p>Location:</p>
@@ -123,7 +122,6 @@ export default function CreateExcursion({ setUser }) {
                     type="text"
                     placeholder="URL of the title picture"
                     required />
-
             </form>
             <GreenButton onClick={uploadExcursion}>
                 <ButtonText>Create Excursion</ButtonText>
@@ -132,6 +130,5 @@ export default function CreateExcursion({ setUser }) {
                 <ButtonText>Cancel</ButtonText>
             </RedButton>
         </div >
-        
     )
 }

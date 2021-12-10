@@ -3,7 +3,9 @@ import Parse from "parse"
 import { useEffect, useState } from "react"
 import { GreenButton, ButtonText } from '../components/Button';
 
-export default function ParticipantList() {
+export default function ParticipantList({ setUser }) {
+
+    useEffect(() => setUser("org"))
 
     // BUSINESS LOGIC:
 
@@ -28,9 +30,14 @@ export default function ParticipantList() {
 
     //  HELPING FUNCTIONS:
 
-    const possibleNames = ["Anne", "Bob", "Kevin", "Janek", "Niels", "Nick", "Liam", "Laurenz"]
-    const possibleSurnames = ["Nielsen", "Nowak", "Langeree", "Walker", "Bond", "Frederiksen", "Lykke", "Kjaergaard"]
-    const possiblePreferences = ["Kitchen", "Toilet", "Shopping", "Cleaning", "Cooking", "Scouting", "Plowing", "Guarding"]
+    const possibleNames = ["Aliz", "Amalie", "Amanda", "Anders", "Bjørn", "Daniel", "Edith", "Gina", "Gustav", "Helena",
+        "Ida Maria", "Ingrid", "Jeppe", "Johanne", "Lea Hannah", "Sara", "Mircea", "Paulia", "Piotrek", "Evgenios"]
+
+    const possibleSurnames = ["Szakacs", "Frøling", "Munk Johnsen", "Hjorth Westh", "Bruhn", "Terte Andersen", "Teglbrænder",
+        "Pampoukos", "Fischer", "Krivaa", "Hauser", "Lungu", "Tolstrup", "Wasilewski"]
+        
+    const possiblePreferences = ["Kitchen", "Toilet", "Shopping", "Cleaning", "Cooking", "Scouting", "Plowing", "Guarding",
+        "Driving", "Eating", "Heavy Lifting", "Babysitting"]
 
     function createParticipant() {
         const Participant = Parse.Object.extend("Participant")
@@ -59,9 +66,9 @@ export default function ParticipantList() {
     }
 
     function makePreferences() {
-        return possiblePreferences[Math.floor(Math.random()* possiblePreferences.length)]
-        + ", " + possiblePreferences[Math.floor(Math.random()* possiblePreferences.length)]
-        + ", " + possiblePreferences[Math.floor(Math.random()* possiblePreferences.length)]
+        return possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
+            + ", " + possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
+            + ", " + possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
     }
 
 

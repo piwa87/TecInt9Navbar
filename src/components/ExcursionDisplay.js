@@ -17,7 +17,7 @@ export default function ExcursionDisplay(props) {
             <p>Child: <b>{props.price / 2} Kr.</b></p>
 
             <hr />
-            <p>Join this year’s excursion, there is room for {props.capacity} people. We look forWard to seeing you!</p>
+            <p>Join this year’s excursion, there is room for {props.capacity} people. We look forward to seeing you!</p>
             <p>
                 <ButtonSignup className="ex-button" onClick={() => navigate("/signup")}>
                     <ButtonTextSignUp>Sign up</ButtonTextSignUp>

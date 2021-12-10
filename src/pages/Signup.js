@@ -1,156 +1,188 @@
-import { ButtonText, GreenButton, RedButton } from "../components/Button"
-import { useState } from "react"
-import Parse from "parse"
-import GuestSignUpComponent from "../components/GuestSignUpComponent"
+import { ButtonText, GreenButton, RedButton } from "../components/Button";
+import { useState } from "react";
+import Parse from "parse";
+import GuestSignUpComponent from "../components/GuestSignUpComponent";
+import CarSignUpComponent from "../components/carSignUpComponent";
 
 export default function CreateSignUp() {
+  const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [preferences, setPreferences] = useState("");
+  const [carStatus, setCarStatus] = useState(false);
 
-    const [fullName, setFullName] = useState("")
-    const [address, setAddress] = useState("")
-    const [email, setEmail] = useState("")
-    const [phone, setPhone] = useState("")
-    const [preferences, setPreferences] = useState("")
-    const [carStatus, setCarStatus] = useState("")
-    const [numberOfGuests, setNumberOfGuests] = useState(1)
+  const [numberOfGuests, setNumberOfGuests] = useState(1);
 
-    function fullNameChange(e) {
-        setFullName(e.target.value)
+  function fullNameChange(e) {
+    setFullName(e.target.value);
+  }
+  function addressChange(e) {
+    setAddress(e.target.value);
+  }
+  function emailChange(e) {
+    setEmail(e.target.value);
+  }
+  function phoneChange(e) {
+    setPhone(e.target.value);
+  }
+  function preferenceChange(e) {
+    setPreferences(e.target.value);
+  }
+  function carStatusChangeToYes(e){
+    setCarStatus(true);
+  }
+  function carStatusChangeToNo(e){
+    setCarStatus(false);
+  }
+  function numberOfGuestsChange(e) {
+    setNumberOfGuests(e.target.value);
+  }
+
+  function clearInput() {
+    setFullName("");
+    setAddress("");
+    setEmail("");
+    setPhone("");
+    setPreferences("");
+    setCarStatus("");
+    setNumberOfGuests(0);
+  }
+
+  function carAvailable(x) {
+    if (carStatus) {
+      return <CarSignUpComponent />;
+      
     }
-    function addressChange(e) {
-        setAddress(e.target.value)
+  }
+
+
+  function getGuests(x) {
+    const guests = x;
+    const myGuests = [];
+    if (x > 0) {
+      for (let index = 0; index < x; index++) {
+        myGuests.push(<GuestSignUpComponent />);
+      }
     }
-    function emailChange(e) {
-        setEmail(e.target.value)
-    }
-    function phoneChange(e) {
-        setPhone(e.target.value)
-    }
-    function preferenceChange(e) {
-        setPreferences(e.target.value)
-    }
-    function carStatusChange(e) {
-        setCarStatus(e.target.value)
-    }
-    function numberOfGuestsChange(e) {
-        setNumberOfGuests(e.target.value)
-    }
+    return myGuests;
+  }
 
-    function clearInput() {
-        setFullName("")
-        setAddress("")
-        setEmail("")
-        setPhone("")
-        setPreferences("")
-        setCarStatus("")
-        setNumberOfGuests(0)
-    }
+  function uploadSignUp() {
+    const Participant = Parse.Object.extend("Participant");
+    const participant = new Participant();
+    participant.set("fullname", fullName);
+    participant.set("address", address);
+    participant.set("email", email);
+    participant.set("phone", phone);
+    participant.set("preferences", preferences);
+    participant.set("carStatus", carStatus);
 
-    function getGuests(x){
-        const guests = x; 
-        const myGuests = [] 
-        if (x > 0){
-                 for (let index = 0; index < x; index++) {
-                     
-                    myGuests.push(<GuestSignUpComponent/>)
-                 }
-            }
-            return(
-                myGuests
-            )
-        }
+    participant.set("numberOfGuests", Number(numberOfGuests));
+    participant.save().then(
+      (signUp) => {
+        alert("You have successfully signed up: " + participant.get("Fullname"));
+        clearInput();
+      },
+      (error) => {
+        alert("Something went wrong " + error.message);
+      }
+    );
+  }
 
-    function uploadSignUp() {
-        const SignUp = Parse.Object.extend("SignUp");
-        const signUp = new SignUp();
-        signUp.set("Fullname", fullName);
-        signUp.set("Address", address);
-        signUp.set("Email", email);
-        signUp.set("Phone", phone);
-        signUp.set("Preferences", preferences);
-        signUp.set("CarStatus", carStatus)
-        signUp.set("NumberOfGuests", numberOfGuests);
-        signUp.save().then((signUp) => {
-            alert('You have successfully signed up: ' + signUp.get("Fullname"))
-            clearInput();
-        }, (error) => {
-            alert('Something went wrong ' + error.message);
-        });
-    }
+  return (
+    <div>
+      <h3> Sign Up for this year's annual excursion</h3>
+      <br />
+      <form className="create--form">
+        <p>Full name:</p>
+        <input
+          onChange={fullNameChange}
+          value={fullName}
+          className="create--input"
+          type="text"
+          placeholder="Full name"
+        />
 
-    return (
-        <div>
-            <h3>Sign Up for this year's annual excursion</h3>
-            <br />
-            <form className="create--form">
-                <p>Full name:</p>
-                <input
-                    onChange={fullNameChange}
-                    value={fullName}
-                    className="create--input"
-                    type="text"
-                    placeholder="Full name" />
+        <p>Address:</p>
+        <input
+          onChange={addressChange}
+          value={address}
+          className="create--input"
+          type="text"
+          placeholder="Address"
+        />
 
-                <p>Address:</p>
-                <input
-                    onChange={addressChange}
-                    value={address}
-                    className="create--input"
-                    type="text"
-                    placeholder="Address" />
+        <p>Email:</p>
+        <input
+          onChange={emailChange}
+          value={email}
+          className="create--input"
+          type="text"
+          placeholder="Email"
+        />
 
-                <p>Email:</p>
-                <input
-                    onChange={emailChange}
-                    value={email}
-                    className="create--input"
-                    type="text"
-                    placeholder="Email" />
+        <p>Phone:</p>
+        <input
+          onChange={phoneChange}
+          value={phone}
+          className="create--input"
+          type="tel"
+          placeholder="Phone"
+        />
 
-                <p>Phone:</p>
-                <input
-                    onChange={phoneChange}
-                    value={phone}
-                    className="create--input"
-                    type="tel"
-                    placeholder="Phone" />
+        <p>Preferences:</p>
+        <input
+          onChange={preferenceChange}
+          value={preferences}
+          className="create--input"
+          type="Dropdown"
+          placeholder="Preferences"
+        />
 
-                <p>Preferences:</p>
-                <input
-                    onChange={preferenceChange}
-                    value={preferences}
-                    className="create--input"
-                    type="Dropdown"
-                    placeholder="Preferences" />
+        <p>Car Status:</p>
+        <input
+          onChange={carStatusChangeToYes}
+          value={carStatus}
+          className="create--input"
+          type="checkbox"
+          placeholder="Car status"
+        />   
+        <p></p>
+        <input
+          onChange={carStatusChangeToNo}
+          value={carStatus}
+          className="create--input"
+          type="checkbox"
+          placeholder="Car status"
+        />       
+        </form>
 
-                <p>Car Status:</p>
-                <input
-                    onChange={carStatusChange}
-                    value={carStatus}
-                    className="create--input"
-                    type="checkbox"
-                    placeholder="Car status"/>
+      {carAvailable()}
+      <br/> 
+      <form className="create--form">
+        <p>Number of guests:</p>
+        <input
+          onChange={numberOfGuestsChange}
+          value={numberOfGuests}
+          className="create--input"
+          type="number"
+          min="0"
+          max="4"
+          placeholder="Number of guests"
+        />
 
-                <p>Number of guests:</p>
-                <input
-                    onChange={numberOfGuestsChange}
-                    value={numberOfGuests}
-                    className="create--input"
-                    type="number"
-                    min="0"
-                    max="4"
-                    placeholder="Number of guests"
-                    />
+        <br />
+      </form>
 
-                    <br/>
-            </form>
-            {getGuests(numberOfGuests)}
+      {getGuests(numberOfGuests)}
 
-            <GreenButton onClick={uploadSignUp}>
-                <ButtonText>Sign Up</ButtonText>
-            </GreenButton>
-            <RedButton onClick={clearInput}>
-                <ButtonText>Cancel</ButtonText>
-            </RedButton>
-        </div>
-    )
+      <GreenButton onClick={uploadSignUp}>
+        <ButtonText>Sign Up</ButtonText>
+      </GreenButton>
+      <RedButton onClick={clearInput}>
+        <ButtonText>Cancel</ButtonText>
+      </RedButton>
+    </div>
+  );
 }

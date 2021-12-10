@@ -36,8 +36,11 @@ export default function CreateSignUp() {
     function preferenceChange(e) {
         setPreferences(e.target.value)
     }
-    function carStatusChange() {
-        setCarStatus(true);
+    function carStatusChangeToYes(e){
+      setCarStatus(true);
+    }
+    function carStatusChangeToNo(e){
+      setCarStatus(false);
     }
     function numberOfGuestsChange(e) {
         setNumberOfGuests(e.target.value)

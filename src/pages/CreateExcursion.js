@@ -1,10 +1,13 @@
 import { ButtonText, GreenButton, RedButton } from "../components/Button"
 import { useEffect, useState } from "react"
 import Parse from "parse"
+import { useNavigate } from "react-router-dom"
 
 export default function CreateExcursion({ setUser }) {
 
     useEffect(() => { setUser("org") })
+
+    const navigate = useNavigate();
 
     const [duration, setDuration] = useState("")
     const [date, setDate] = useState("")
@@ -55,13 +58,14 @@ export default function CreateExcursion({ setUser }) {
             alert('Success, your excursion has been created: '
                 + location
                 + ' (ID: ' + excursion.id + ')')
+            navigate('/home')
         }, (error) => {
             alert('Something went wrong ' + error.message);
         });
     }
 
     return (
-        <div>
+            < div >
             <h3>Page for creating excursions:</h3>
             <br />
             <form className="create--form">
@@ -127,6 +131,7 @@ export default function CreateExcursion({ setUser }) {
             <RedButton onClick={clearInput}>
                 <ButtonText>Cancel</ButtonText>
             </RedButton>
-        </div>
+        </div >
+        
     )
 }

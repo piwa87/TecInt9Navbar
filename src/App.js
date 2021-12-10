@@ -37,7 +37,7 @@ export default function App() {
 						<Route path="/dutyList" element={<DutyList />} />
 						<Route path="/shoppingList" element={<ShoppingList />} />	
 						
-						<Route path="/excursions" element={<Excursions setUser={() => setUser("par")} />} />
+						<Route path="/excursions" element={<Excursions setUser={() => setUser("par")} user={user} />} />
 						<Route path="/transport" element={<Transport />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/signup" element={<Signup />} />

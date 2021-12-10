@@ -7,7 +7,7 @@ export default function Home({ setUser }) {
 
     function logInOrganizer() {
         setUser("org")
-        navigate("/createexcursion")
+        navigate("/createExcursion")
     }
 
     function logInParticipant() {

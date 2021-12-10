@@ -69,6 +69,7 @@ export default function CarSignUpComponent(props){
                     type="text"
                     placeholder="Color of Car" />
     </form>
+    <br />
 
     <GreenButton className = "car-save" onClick={uploadCar}><ButtonText>Save Car Info</ButtonText></GreenButton>
     </div>

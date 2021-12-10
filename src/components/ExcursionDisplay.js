@@ -11,7 +11,8 @@ export default function ExcursionDisplay(props) {
     return (
         <div className="ex-info">
             <img alt="" className="ex-image" src={props.img} />
-            <p>Duration: <b>{props.duration} {props.date}</b> </p>
+            <p><h2>{props.duration}</h2></p>
+            <p>Date: <b>{props.date}</b> </p>
             <p>Location: <b>{props.location}</b></p>
             <p>Adult: <b>{props.price} Kr.</b></p>
             <p>Child: <b>{props.price / 2} Kr.</b></p>

@@ -57,7 +57,7 @@ export default function CreateExcursion({ setUser }) {
             clearInput();
             alert('Success, your excursion has been created: ' + duration)
             navigate('/home')
-            setUser("org")
+            window.location.reload()
         }, (error) => {
             alert('Something went wrong ' + error.message);
         });

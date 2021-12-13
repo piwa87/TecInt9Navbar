@@ -23,10 +23,9 @@ export default function ParticipantList({ setUser }) {
         })();
     }, [])
 
-    console.log(participants);
-
-
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
+
+    console.log(participantList);
 
     //  HELPING FUNCTIONS:
 
@@ -35,7 +34,7 @@ export default function ParticipantList({ setUser }) {
 
     const possibleSurnames = ["Szakacs", "Frøling", "Munk Johnsen", "Hjorth Westh", "Bruhn", "Terte Andersen", "Teglbrænder",
         "Pampoukos", "Fischer", "Krivaa", "Hauser", "Lungu", "Tolstrup", "Wasilewski"]
-        
+
     const possiblePreferences = ["Kitchen", "Toilet", "Shopping", "Cleaning", "Cooking", "Scouting", "Plowing", "Guarding",
         "Driving", "Eating", "Heavy Lifting", "Babysitting"]
 
@@ -84,7 +83,9 @@ export default function ParticipantList({ setUser }) {
             <br />
             {participantList}
             <br />
-            <GreenButton onClick={createParticipant}><ButtonText>Add random participant</ButtonText></GreenButton>
+            <GreenButton onClick={createParticipant}>
+                <ButtonText>Add random participant</ButtonText>
+            </GreenButton>
         </div>
     )
 

@@ -1,63 +1,63 @@
 import { ButtonText, GreenButton, RedButton } from "../components/Button"
 import { useEffect, useState } from "react"
 import Parse from "parse"
+import { useNavigate } from "react-router-dom"
 
 export default function CreateExcursion({ setUser }) {
 
     useEffect(() => { setUser("org") })
 
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
-    const [date, setDate] = useState("")
-    const [price, setPrice] = useState("")
-    const [location, setLocation] = useState("")
-    const [deadline, setDeadline] = useState("")
-    const [capacity, setCapacity] = useState("")
+    const navigate = useNavigate();
 
-    function titleChange(e) {
-        setTitle(e.target.value)
-    }
-    function descriptionChange(e) {
-        setDescription(e.target.value)
+    const [duration, setDuration] = useState("")
+    const [date, setDate] = useState("")
+    const [location, setLocation] = useState("")
+    const [price, setPrice] = useState("")
+    const [capacity, setCapacity] = useState("")
+    const [imgurl, setImgurl] = useState("")
+
+    function durationChange(e) {
+        setDuration(e.target.value)
     }
     function dateChange(e) {
         setDate(e.target.value)
     }
-    function priceChange(e) {
-        setPrice(e.target.value)
-    }
     function locationChange(e) {
         setLocation(e.target.value)
     }
-    function deadlineChange(e) {
-        setDeadline(e.target.value)
+    function priceChange(e) {
+        setPrice(e.target.value)
     }
     function capacityChange(e) {
         setCapacity(e.target.value)
     }
+    function imgurlChange(e) {
+        setImgurl(e.target.value)
+    }
 
     function clearInput() {
-        setTitle("")
-        setDescription("")
+        setDuration("")
         setDate("")
-        setPrice("")
         setLocation("")
-        setDeadline("")
+        setPrice("")
         setCapacity("")
+        setImgurl("")
     }
 
     function uploadExcursion() {
         const Excursion = Parse.Object.extend("Excursion");
         const excursion = new Excursion();
-        excursion.set("title", title);
-        excursion.set("description", description);
+        excursion.set("duration", duration);
         excursion.set("date", date);
-        excursion.set("price", price);
         excursion.set("location", location);
+        excursion.set("price", price);
         excursion.set("capacity", capacity);
-        excursion.save().then((excursion) => {
+        excursion.set("imgurl", imgurl)
+        excursion.save().then(() => {
             clearInput();
-            alert('Success, your excursion has been created: ' + excursion.get("title") + ' (ID: ' + excursion.id + ')')
+            alert('Success, your excursion has been created: ' + duration)
+            navigate('/home')
+            window.location.reload()
         }, (error) => {
             alert('Something went wrong ' + error.message);
         });
@@ -68,21 +68,15 @@ export default function CreateExcursion({ setUser }) {
             <h3>Page for creating excursions:</h3>
             <br />
             <form className="create--form">
+
                 <p>Title:</p>
                 <input
-                    onChange={titleChange}
-                    value={title}
+                    onChange={durationChange}
+                    value={duration}
                     className="create--input"
                     type="text"
-                    placeholder="Title" />
-
-                <p>Description:</p>
-                <input
-                    onChange={descriptionChange}
-                    value={description}
-                    className="create--input"
-                    type="text"
-                    placeholder="Description" />
+                    placeholder="Title"
+                    required />
 
                 <p>Date:</p>
                 <input
@@ -90,15 +84,8 @@ export default function CreateExcursion({ setUser }) {
                     value={date}
                     className="create--input"
                     type="text"
-                    placeholder="Date" />
-
-                <p>Price:</p>
-                <input
-                    onChange={priceChange}
-                    value={price}
-                    className="create--input"
-                    type="number"
-                    placeholder="Price (in DKK)" />
+                    placeholder="ex ' 7 - 9 Februar 2021 '"
+                    required />
 
                 <p>Location:</p>
                 <input
@@ -106,15 +93,17 @@ export default function CreateExcursion({ setUser }) {
                     value={location}
                     className="create--input"
                     type="text"
-                    placeholder="Location" />
+                    placeholder="Location"
+                    required />
 
-                <p>Deadline:</p>
+                <p>Price:</p>
                 <input
-                    onChange={deadlineChange}
-                    value={deadline}
+                    onChange={priceChange}
+                    value={price}
                     className="create--input"
-                    type="text"
-                    placeholder="Deadline" />
+                    type="number"
+                    placeholder="Price (in DKK)"
+                    required />
 
                 <p>Max. Capacity:</p>
                 <input
@@ -122,8 +111,17 @@ export default function CreateExcursion({ setUser }) {
                     value={capacity}
                     className="create--input"
                     type="number"
-                    placeholder="Max. Capacity" />
+                    placeholder="Max. Capacity"
+                    required />
 
+                <p>Picture:</p>
+                <input
+                    onChange={imgurlChange}
+                    value={imgurl}
+                    className="create--input"
+                    type="text"
+                    placeholder="URL of the title picture"
+                    required />
             </form>
             <GreenButton onClick={uploadExcursion}>
                 <ButtonText>Create Excursion</ButtonText>
@@ -131,6 +129,6 @@ export default function CreateExcursion({ setUser }) {
             <RedButton onClick={clearInput}>
                 <ButtonText>Cancel</ButtonText>
             </RedButton>
-        </div>
+        </div >
     )
 }

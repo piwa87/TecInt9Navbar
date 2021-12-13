@@ -88,12 +88,12 @@ nav > a:hover {
 
 .participant--header {
   display: grid;
-  grid-template-columns: 2fr 3fr 2fr 0.5fr 0.5fr;
+  grid-template-columns: 2fr 3fr 0.5fr 0.5fr 0.5fr;
 }
 
 .participant--single {
   display: grid;
-  grid-template-columns: 2fr 3fr 2fr 0.5fr 0.5fr;
+  grid-template-columns: 2fr 3fr 0.5fr 0.5fr 0.5fr;
 }
 
 .guest-save {

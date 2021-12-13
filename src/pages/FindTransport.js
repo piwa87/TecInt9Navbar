@@ -1,8 +1,11 @@
+import { useEffect } from "react"
 import TransportCard from "../components/TransportCard"
 import transportParticipant from "../tempData/transportParticipants"
 
 
-export default function FindTransport() {
+export default function FindTransport({ setUser }) {
+
+    useEffect(() => setUser("par"))
 
     const transportList = transportParticipant.map((item) => <TransportCard key={item.tid} par={item} />)
 

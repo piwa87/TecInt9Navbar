@@ -7,8 +7,8 @@ export default function SingleParticipant(props) {
             <span>{props.par.get("fullname")}</span>
             <span>{props.par.get("preferences")}</span>
             <span>{props.par.get("age")}</span>
-            <BiPencil />
-            <BiTrash />
+            <BiPencil cursor="pointer" onClick={() => alert("TO DO: Function to edit participant")}/>
+            <BiTrash cursor="pointer" onClick={() => alert("TO DO: Function to delete participant")} />
         </div>
     )
 }

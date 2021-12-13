@@ -2,8 +2,8 @@ import Parse from "parse"
 import { useState } from "react"
 import { ButtonText, GreenButton } from "./Button"
 
-export default function GuestSignUpComponent(){
-    
+export default function GuestSignUpComponent() {
+
     const [fullname, setFullName] = useState("")
     const [birthday, setBirthday] = useState("")
     const [preferences, setPreferences] = useState("")
@@ -46,12 +46,12 @@ export default function GuestSignUpComponent(){
         });
     }
 
-    return(
-    <div>
-    <form className ="create--form">
-        <br/>
-        <h3> Guest information:</h3>
-        <p>Guest full name: </p>
+    return (
+        <div>
+            <form className="create--form">
+                <br />
+                <h3> Guest information:</h3>
+                <p>Guest full name: </p>
                 <input
                     onChange={fullNameChange}
                     value={fullname}
@@ -59,7 +59,7 @@ export default function GuestSignUpComponent(){
                     type="text"
                     placeholder="Guest full name" />
 
-        <p>Birthday of guest:</p>
+                <p>Birthday of guest:</p>
                 <input
                     onChange={birthdayChange}
                     value={birthday}
@@ -67,17 +67,17 @@ export default function GuestSignUpComponent(){
                     type="date"
                     placeholder="Birhday of guest" />
 
-        <p>Preferences of guest:</p>
+                <p>Preferences of guest:</p>
                 <input
                     onChange={preferencesChange}
                     value={preferences}
                     className="create--input"
                     type="text"
                     placeholder="Preferences of guest" />
-    </form>
-        <GreenButton className = "guest-save" onClick={uploadGuest}><ButtonText>Save Guest</ButtonText></GreenButton>
-        <br/>
-        <br/>
+            </form>
+            <GreenButton className="guest-save" onClick={uploadGuest}><ButtonText>Save Guest</ButtonText></GreenButton>
+            <br />
+            <br />
         </div>
     )
 }

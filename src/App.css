@@ -128,3 +128,32 @@ nav > a:hover {
   margin-top: 10;
 
 }
+
+.contact--div{
+  width: 925px;
+  height: 526px;
+  left: 501px;
+  top: 252px;
+}
+
+.contact--header{
+  font-family: STIXVariants;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 54px;
+  text-decoration-line: underline;
+}
+.contact--text{
+  font-family: STIXVariants;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 54px;
+}
+.email{
+  font-family: STIXVariants;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: underline;
+  color: blue;
+}

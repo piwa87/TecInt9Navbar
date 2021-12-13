@@ -2,7 +2,7 @@ import { ButtonText, GreenButton, RedButton } from "../components/Button";
 import { useState } from "react";
 import Parse from "parse";
 import GuestSignUpComponent from "../components/GuestSignUpComponent";
-import CarSignUpComponent from "../components/carSignUpComponent";
+import CarSignUpComponent from "../components/CarSignUpComponent";
 import { useNavigate } from "react-router";
 
 export default function CreateSignUp() {

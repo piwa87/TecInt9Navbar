@@ -118,25 +118,19 @@ nav > a:hover {
   text-align: center;
 }
 
-
-.tmpButton:focus:not(:active) {
-  box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
-}
-
-.car-save{
+.car-save {
   float: right;
   margin-top: 10;
-
 }
 
-.contact--div{
+.contact--div {
   width: 925px;
   height: 526px;
   left: 501px;
   top: 252px;
 }
 
-.contact--header{
+.contact--header {
   font-family: STIXVariants;
   font-style: normal;
   font-weight: normal;
@@ -144,13 +138,13 @@ nav > a:hover {
   line-height: 54px;
   text-decoration-line: underline;
 }
-.contact--text{
+.contact--text {
   font-family: STIXVariants;
   font-style: normal;
   font-weight: normal;
   line-height: 54px;
 }
-.email{
+.email {
   font-family: STIXVariants;
   font-style: normal;
   font-weight: normal;

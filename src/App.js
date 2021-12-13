@@ -1,34 +1,51 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import './App.css'
 
-import Home from "./pages"
+// Importing Navbar component:
 import Navbar from "./components/Navbar"
-import Contact from './pages/contact'
-import Excursions from './pages/excursions'
-import Signup from './pages/signup'
-import Transport from './pages/transport'
 
-// import MainWindow from './components/MainWindow';
+// Importing pages from the Navbar menu:
+import Home from "./pages/Home"
+import Excursions from './pages/Excursions'
+import Transport from './pages/FindTransport'
+import Contact from './pages/Contact'
+import Signup from './pages/Signup'
+import ParticipantList from './pages/ParticipantList'
+import DutyList from './pages/DutyList'
+import ShoppingList from './pages/ShoppingList'
+import CreateExcursion from './pages/CreateExcursion'
+import AfterSignUp from './pages/AfterSignUp'
+import { useState } from 'react'
 
-function App() {
+export default function App() {
+
+	const [user, setUser] = useState(null)
+	console.log("App rendered. User: " + user);
 
 	return (
+		<>
+			<BrowserRouter>
+				<Navbar user={user} />
+				<section className="main">
+					<Routes>
+						<Route path="/" element={<Home setUser={setUser} />} />
+						<Route path="/home" element={<Home setUser={setUser} />} />
+						
+						<Route path="/createExcursion" element={<CreateExcursion setUser={() => setUser("org")} />} />
+						<Route path="/participantList" element={<ParticipantList setUser={setUser} />} />
+						<Route path="/dutyList" element={<DutyList />} />
+						<Route path="/shoppingList" element={<ShoppingList />} />	
+						
+						<Route path="/excursions" element={<Excursions setUser={() => setUser("par")} user={user} />} />
+						<Route path="/transport" element={<Transport setUser={setUser} />} />
+						<Route path="/contact" element={<Contact />} />
+						<Route path="/signup" element={<Signup />} />
 
-		<Router>
-			<Navbar />
-			<Switch>
-				<Route path="/" exact component={Home}/>
-				<Route path="/excursions" exact component={Excursions}/>
-				<Route path="/transport" exact component={Transport}/>
-				<Route path="/contact" exact component={Contact}/>
-				<Route path="/signup" exact component={Signup}/>
-			</Switch>
-
-		</Router>
-
+						<Route path="/afterSignUp" element={<AfterSignUp />} />
+					</Routes>
+				</section>
+			</BrowserRouter>
+		</>
 	)
 }
-
-export default App;
-

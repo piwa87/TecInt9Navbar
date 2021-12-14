@@ -31,13 +31,13 @@ export default function App() {
 					<Routes>
 						<Route path="/" element={<Home setUser={setUser} />} />
 						<Route path="/home" element={<Home setUser={setUser} />} />
-						
-						<Route path="/createExcursion" element={<CreateExcursion setUser={() => setUser("org")} />} />
+
+						<Route path="/createExcursion" element={<CreateExcursion setUser={setUser} />} />
 						<Route path="/participantList" element={<ParticipantList setUser={setUser} />} />
-						<Route path="/dutyList" element={<DutyList />} />
-						<Route path="/shoppingList" element={<ShoppingList />} />	
-						
-						<Route path="/excursions" element={<Excursions setUser={() => setUser("par")} user={user} />} />
+						<Route path="/dutyList" element={<DutyList setUser={setUser} />} />
+						<Route path="/shoppingList" element={<ShoppingList />} />
+
+						<Route path="/excursions" element={<Excursions setUser={setUser} user={user} />} />
 						<Route path="/transport" element={<Transport setUser={setUser} />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/signup" element={<Signup />} />

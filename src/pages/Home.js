@@ -5,12 +5,14 @@ export default function Home({ setUser }) {
 
     const navigate = useNavigate()
 
-    function logInOrganizer() {
+    function logInOrganizer(e) {
+        e.preventDefault()
         setUser("org")
         navigate("/createExcursion")
     }
 
-    function logInParticipant() {
+    function logInParticipant(e) {
+        e.preventDefault()
         setUser("par")
         navigate("/excursions")
     }

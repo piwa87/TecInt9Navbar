@@ -23,6 +23,8 @@ export default function ParticipantList({ setUser }) {
         })();
     }, [])
 
+    console.log("Participants: " + participants);
+
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
 
     console.log(participantList);

@@ -7,7 +7,7 @@ export default function Excursions({ setUser }) {
 
 	useEffect(() => { setUser("par") })
 
-	const [duration, setDuration] = useState("")
+	const [title, setTitle] = useState("")
 	const [date, setDate] = useState("")
 	const [location, setLocation] = useState("")
 	const [price, setPrice] = useState("")
@@ -22,7 +22,7 @@ export default function Excursions({ setUser }) {
 				const results = await query.find();
 				for (const object of results) {
 					// Access the Parse Object attributes using the .GET method
-					setDuration(object.get('duration'))
+					setTitle(object.get('title'))
 					setDate(object.get('date'))
 					setLocation(object.get('location'))
 					setPrice(object.get('price'))
@@ -35,15 +35,15 @@ export default function Excursions({ setUser }) {
 		})();
 	}, [])
 
-	if (duration) {
+	if (title) {
 		return (
-				< ExcursionDisplay
-					img={imgurl}
-					duration={duration}
-					date={date}
-					location={location}
-					price={price}
-					capacity={capacity} />
+			< ExcursionDisplay
+				img={imgurl}
+				title={title}
+				date={date}
+				location={location}
+				price={price}
+				capacity={capacity} />
 		)
 	} else {
 		return <h3>Unfortunately there are no excursions yet.</h3>

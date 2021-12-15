@@ -1,9 +1,8 @@
 import { NavLink } from "react-router-dom";
 
-export default function Navbar(props) {
+export default function Navbar({ user }) {
 
-    const isLoggedIn = (!props.user ? false : true);
-    const user = props.user
+    const isLoggedIn = (!user ? false : true);
 
     return (
         <nav className="navbar">

@@ -16,9 +16,9 @@ export default function DutyList({ setUser }) {
 
     function handleChange(e) {
         const { name, value } = e.target
-        setData(prev => {
+        setData(prevState => {
             return {
-                ...prev,
+                ...prevState,
                 [name]: value
             }
         })

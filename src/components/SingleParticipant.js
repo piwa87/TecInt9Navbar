@@ -4,13 +4,14 @@ import { useState } from "react";
 import Modal, { setAppElement } from "react-modal";
 import { GreenButton, RedButton, ButtonText } from '../components/Button';
 
-export default function SingleParticipant(props) {
+export default function SingleParticipant({ par }) {
 
-    const pid = props.par.id;
+    const [isOpen, setIsOpen] = useState(false);
+    const [parName, setParName] = useState('');
 
     async function deleteParticipant() {
         const Participant = new Parse.Object('Participant');
-        Participant.set('objectId', pid);
+        Participant.set('objectId', par.id);
         try {
             await Participant.destroy();
             window.location.reload();
@@ -41,34 +42,30 @@ export default function SingleParticipant(props) {
         },
     };
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [parName, setParName] = useState('');
-
     function openModal() {
         setIsOpen(true);
-    }
+    };
 
     function afterOpenModal() {
-        console.log("Name:" + props.par.get("fullname"));
-        setParName(props.par.get("fullname"));
-    }
+        setParName(par.get("fullname"));
+    };
 
     function closeModal() {
         setIsOpen(false)
-    }
+    };
 
     function closeAndDelete() {
         deleteParticipant()
-        setIsOpen(false)
-    }
+        closeModal()
+    };
 
 
     return (
         <>
             <div className="participant--single">
-                <span>{props.par.get("fullname")}</span>
-                <span>{props.par.get("preferences")}</span>
-                <span>{props.par.get("age")}</span>
+                <span>{par.get("fullname")}</span>
+                <span>{par.get("preferences")}</span>
+                <span>{par.get("age")}</span>
                 <BiPencil cursor="pointer" onClick={() => alert("TO DO: Function to edit participant")} />
                 <BiTrash cursor="pointer" onClick={openModal} />
             </div>

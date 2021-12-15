@@ -1,6 +1,21 @@
+/*  Color variables from our Figma prototype */
+
+:root {
+  --color1: #34401a;
+  --color2: #64732f;
+  --color3: #cad959;
+  --color4: #7d8541;
+  --color5: #252617;
+  --red1: #591420;
+  --red2: #350c13;
+  --darkgrey: #c4c4c4;
+  --lightgreen: #c9d95873;
+}
+
+/*  The general styling of our main content window */
 .main {
   font-family: STIXVariants;
-  background: rgba(201, 217, 88, 0.45);
+  background: var(--lightgreen);
   margin-left: 15%;
   margin-right: 15%;
   padding-top: 2rem;
@@ -57,34 +72,37 @@ h4 {
 /* - - - - Navbar styling - - - - */
 
 nav {
-  /* display: flex; */
-  height: 80px;
-  background-color: #cad959;
   font-family: STIXVariants;
+  background-color: var(--color3);
+  height: 80px;
   padding-left: 15%;
   padding-right: 15%;
   padding-top: 40px;
   padding-bottom: 0px;
 }
 
-nav > a:link {
-  color: #34401a;
+nav > a:link,
+a:visited {
+  color: var(--color1);
   text-decoration: none;
   font-size: 20px;
   padding-left: 36px;
   padding-right: 36px;
 }
 
-nav > a:visited {
-  color: #34401a;
-}
-
 nav > a:hover {
-  background-color: #64732f;
+  background-color: var(--color4);
   padding-top: 40px;
   padding-bottom: 50px;
-  border-radius: 7px;
 }
+
+nav > .active {
+  background-color: var(--color4);
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+/*  Grid for participant list:  */
 
 .participant--header {
   display: grid;
@@ -100,6 +118,8 @@ nav > a:hover {
   float: right;
   margin-top: 10px;
 }
+
+/*  Landing page (home)  styling:   */
 
 .home {
   display: flex;
@@ -122,6 +142,8 @@ nav > a:hover {
   float: right;
   margin-top: 10;
 }
+
+/*  Contact page styling:   */
 
 .contact--div {
   width: 925px;
@@ -152,7 +174,7 @@ nav > a:hover {
   color: blue;
 }
 
-/* Duty list: */
+/*  Duty list styling:    */
 
 .duty-list {
   display: flex;

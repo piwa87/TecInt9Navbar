@@ -75,7 +75,9 @@ export default function DutyList({ setUser }) {
     const dutyList = duties.map(d =>
         <li key={d.id}
             onClick={() => deleteDuty(d.id)}
-            cursor="pointer">
+            style={{
+                cursor: "pointer"
+            }}>
             {d.get('name')}
         </li>
     )

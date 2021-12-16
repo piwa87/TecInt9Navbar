@@ -2,32 +2,35 @@ import SingleParticipant from "../components/SingleParticipant"
 import Parse from "parse"
 import { useEffect, useState } from "react"
 import { GreenButton, ButtonText } from '../components/Button';
+import { fetchParticipants } from "../api";
 
 export default function ParticipantList({ setUser }) {
 
-    useEffect(() => setUser("org"))
-
-    // BUSINESS LOGIC:
-
     const [participants, setParticipants] = useState([])
 
-    useEffect(() => {
-        (async () => {
-            const query = new Parse.Query('Participant');
-            try {
-                const results = await query.find();
-                setParticipants(results)
-            } catch (error) {
-                console.log(`Error: ${JSON.stringify(error)}`);
-            }
-        })();
-    }, [])
+    useEffect(() => setUser("org"));
 
-    console.log("Participants: " + participants);
+    useEffect(async () => {
+        setParticipants(await fetchParticipants())
+    }, []);
+
+    // useEffect(() => {
+    //     async function fetch() {
+    //         const response = await fetchParticipants()
+    //         setParticipants(response)
+    //     }
+    //     fetch()
+    // }, []);
+
+    useEffect(() => {
+        console.log("Changed ", participants)
+    }, [participants]);
+
+    // console.log("Participants", participants);
 
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
 
-    console.log(participantList);
+    // console.log(participantList);
 
     //  HELPING FUNCTIONS:
 
@@ -52,7 +55,9 @@ export default function ParticipantList({ setUser }) {
         }).then(
             (participant) => {
                 console.log("Created a new participant: " + participant.get("fullname"));
-                window.location.reload()
+                setParticipants(prevState => [...prevState, {
+                    id: participant.id, fullname: participant.get("fullname"), preferences: participant.get("preferences"), age: participant.get("age")
+                }])
             })
     }
 

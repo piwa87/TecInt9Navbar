@@ -74,7 +74,7 @@ h4 {
 nav {
   font-family: STIXVariants;
   background-color: var(--color3);
-  height: 80px;
+  height: 70px;
   padding-left: 15%;
   padding-right: 15%;
   padding-top: 40px;
@@ -91,15 +91,20 @@ a:visited {
 }
 
 nav > a:hover {
+  border: 0;
+  background-color: transparent;
   background-color: var(--color4);
+  transition-property: background-color;
+  transition-duration: 0.25s;
   padding-top: 40px;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 nav > .active {
+  border: 0;
   background-color: var(--color4);
   padding-top: 40px;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 /*  Grid for participant list:  */

@@ -20,9 +20,26 @@ export default function SingleParticipant({ par }) {
         };
     };
 
-    // Modal tryout:
+    // Modal functionality:
 
     setAppElement('#root');
+
+    function openModal() {
+        setIsOpen(true);
+    };
+
+    function afterOpenModal() {
+        setParName(par.fullname);
+    };
+
+    function closeModal() {
+        setIsOpen(false)
+    };
+
+    function closeAndDelete() {
+        deleteParticipant()
+        closeModal()
+    };
 
     const customStyles = {
         content: {
@@ -38,34 +55,17 @@ export default function SingleParticipant({ par }) {
             boxShadow: '5%',
         },
         overlay: {
-            backgroundColor: "transparent",
+            backgroundColor: "rgba(0, 0, 0, 0.35)",
+            transition: "all 0.6s linear"
         },
     };
-
-    function openModal() {
-        setIsOpen(true);
-    };
-
-    function afterOpenModal() {
-        setParName(par.get("fullname"));
-    };
-
-    function closeModal() {
-        setIsOpen(false)
-    };
-
-    function closeAndDelete() {
-        deleteParticipant()
-        closeModal()
-    };
-
 
     return (
         <>
             <div className="participant--single">
-                <span>{par.get("fullname")}</span>
-                <span>{par.get("preferences")}</span>
-                <span>{par.get("age")}</span>
+                <span>{par.fullname}</span>
+                <span>{par.preferences}</span>
+                <span>{par.age}</span>
                 <BiPencil cursor="pointer" onClick={() => alert("TO DO: Function to edit participant")} />
                 <BiTrash cursor="pointer" onClick={openModal} />
             </div>
@@ -75,7 +75,7 @@ export default function SingleParticipant({ par }) {
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal" >
-                <h3>You are about to delete <b>{parName}</b> from this excursion.</h3>
+                <p>You are about to delete <b>{parName}</b> from this excursion.</p>
                 <p>Are you sure?</p>
                 <GreenButton onClick={closeAndDelete}>
                     <ButtonText>Delete</ButtonText>

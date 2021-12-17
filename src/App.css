@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
 /*  Color variables from our Figma prototype */
 
 :root {
@@ -12,7 +15,7 @@
   --darkgrey: #c4c4c4;
   --lightgreen: #c9d95873;
 
-  --main-font: "Montserrat";
+  --main-font: 'Nunito Sans';
 }
 
 ::placeholder {
@@ -22,14 +25,15 @@
 /*  The general styling of our main content window */
 .main {
   font-family: var(--main-font);
-  background: var(--lightgreen);
+  line-height: 1.5;
+  background-color: var(--lightgreen);
   margin-left: 15%;
   margin-right: 15%;
   padding-top: 2rem;
   padding-bottom: 50%;
   padding-left: 8rem;
   padding-right: 8rem;
-  height: 50vh;
+  height: 100%;
 }
 
 .main > h1,
@@ -121,12 +125,16 @@ nav > .active {
 
 .participant--header {
   display: grid;
-  grid-template-columns: 2fr 3fr 0.5fr 0.5fr 0.5fr;
+  grid-template-columns: 2fr 3fr 0.8fr 0.2fr 0.2fr;
+  gap: 15px;
+
 }
 
 .participant--single {
   display: grid;
-  grid-template-columns: 2fr 3fr 0.5fr 0.5fr 0.5fr;
+  grid-template-columns: 2fr 3fr 0.8fr 0.2fr 0.2fr;
+  padding: 3px 0px;
+  gap: 15px;
 }
 
 .guest-save {
@@ -205,3 +213,4 @@ select {
   border-radius: 8px;
   box-sizing: border-box;
 }
+

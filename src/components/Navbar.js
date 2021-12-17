@@ -8,7 +8,7 @@ export default function Navbar({ user }) {
         <nav className="navbar">
             {
                 !isLoggedIn ? (
-                    <a className="logout--button" href="/home"> </a>
+                    <a href="/home"> </a>
                 ) : (user === "par") ? (                     // Navbar for participants:
                     <>
                         <NavLink to="/excursions">Join Excursion</NavLink>
@@ -23,7 +23,7 @@ export default function Navbar({ user }) {
                         <NavLink to="/participantList">Participant List</NavLink>
                         <NavLink to="/dutyList">Duty List</NavLink>
                         <NavLink to="/shoppingList">Shopping List</NavLink>
-                        <a href="/home">Home</a>
+                        <a className="nav--logout" href="/home">Home</a>
                     </>
                 )
             }

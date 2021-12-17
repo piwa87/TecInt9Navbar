@@ -43,7 +43,7 @@ export default function SingleParticipant({ par }) {
 
     const customStyles = {
         content: {
-            fontFamily: 'Montserrat',
+            fontFamily: 'Nunito Sans',
             flexGrow: 1,
             top: '30%',
             left: '50%',

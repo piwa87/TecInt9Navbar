@@ -43,7 +43,7 @@ export default function SingleParticipant({ par }) {
 
     const customStyles = {
         content: {
-            fontFamily: 'STIXVariants',
+            fontFamily: 'Montserrat',
             flexGrow: 1,
             top: '30%',
             left: '50%',
@@ -51,6 +51,7 @@ export default function SingleParticipant({ par }) {
             bottom: 'auto',
             transform: 'translate(-50%, -50%)',
             background: "#cad959",
+            border: "1px solid #34401a",
             borderRadius: '8px',
             boxShadow: '5%',
         },

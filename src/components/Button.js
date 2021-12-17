@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const GreenButton = styled.button`
 background-color: #8A9828;
-font-family: STIXVariants;
+font-family: var(--main-font);
 border-radius: 12px;
     right: 0;
     left: auto;
@@ -15,7 +15,7 @@ border-radius: 12px;
 
 export const RedButton = styled.button`
 background-color: #591420;
-font-family: STIXVariants;
+font-family: var(--main-font);
 border-radius: 12px;
     right: 0;
     left: auto;
@@ -27,7 +27,7 @@ border-radius: 12px;
 `
 
 export const ButtonText = styled.label`
-font: STIXVariants;
+  font-family: var(--main-font);
 font-size: 18;
 text-align: center;
 color: white;
@@ -53,7 +53,7 @@ export const ButtonSignup = styled.button`
    
 `
 export const ButtonTextSignUp = styled.label`
-    font-family: STIXVariants;
+  font-family: var(--main-font);
     font-size: 36px;
     text-align: center;
     color: white;

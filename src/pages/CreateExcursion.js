@@ -64,7 +64,6 @@ export default function CreateExcursion({ setUser }) {
     };
 
     console.log(excursionData);
-    
 
     return (
         <div>
@@ -98,6 +97,7 @@ export default function CreateExcursion({ setUser }) {
                 <p>Location:</p>
                 <input className="create--input"
                     type="text"
+                    placeholder="Locationa"
                     onChange={handleChange}
                     name="location"
                     value={excursionData.location}

@@ -35,11 +35,8 @@ export default function CreateSignUp() {
   function preferenceChange(e) {
     setPreferences(e.target.value);
   }
-  function carStatusChangeToYes(e) {
-    setCarStatus(true);
-  }
-  function carStatusChangeToNo(e) {
-    setCarStatus(false);
+  function carStatusToggle(e) {
+    setCarStatus(!carStatus);
   }
   function numberOfGuestsChange(e) {
     setNumberOfGuests(e.target.value);
@@ -175,20 +172,15 @@ export default function CreateSignUp() {
           Check the box if you will drive to the destination
           <br/>
           <input
-            onClick={carStatusChangeToYes}
+            onChange={carStatusToggle}
             value={carStatus}
             className="create--input"
             type="checkbox"
+            placeholder="Car status"
           />
         </label>
-        <p/>
-        <input
-          onChange={carStatusChangeToNo}
-          value={carStatus}
-          className="create--input"
-          type="checkbox"
-          placeholder="Car status"
-        />
+        {/* <p/> */}
+        
       </form>
       {carAvailable()}
       <br />

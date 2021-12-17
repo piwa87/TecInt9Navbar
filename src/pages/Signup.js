@@ -6,51 +6,50 @@ import CarSignUpComponent from "../components/CarSignUpComponent";
 import { useNavigate } from "react-router";
 
 export default function CreateSignUp() {
+
   const navigate = useNavigate();
-  const [fullname, setFullName] = useState("");
-  const [address, setAddress] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [preferences, setPreferences] = useState("");
-  const [carStatus, setCarStatus] = useState(false);
-  const [numberOfGuests, setNumberOfGuests] = useState(0);
 
-  function fullNameChange(e) {
-    setFullName(e.target.value);
-  }
+  const [signupData, setSignupData] = useState({
+    fullname: "",
+    birthday: "",
+    address: "",
+    email: "",
+    phone: "",
+    pref1: "",
+    pref2: "",
+    pref3: "",
+    carStatus: false,
+    noGuests: "",
+  });
 
-  function birthdayChange(e) {
-    setBirthday(e.target.value);
-  }
-  function addressChange(e) {
-    setAddress(e.target.value);
-  }
-  function emailChange(e) {
-    setEmail(e.target.value);
-  }
-  function phoneChange(e) {
-    setPhone(e.target.value);
-  }
-  function preferenceChange(e) {
-    setPreferences(e.target.value);
-  }
-  function carStatusToggle(e) {
-    setCarStatus(!carStatus);
-  }
-  function numberOfGuestsChange(e) {
-    setNumberOfGuests(e.target.value);
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target
+    setSignupData(prevState => {
+      return {
+        ...prevState,
+        [name]: type === "checkbox" ? checked : value
+      }
+    })
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    // code here
   }
 
-  function clearInput() {
-    setFullName("");
-    setBirthday("");
-    setAddress("");
-    setEmail("");
-    setPhone("");
-    setPreferences("");
-    setCarStatus(false);
-    setNumberOfGuests(0);
+  function resetSignupData() {
+    setSignupData({
+      fullname: "",
+      birthday: "",
+      address: "",
+      email: "",
+      phone: "",
+      pref1: "",
+      pref2: "",
+      pref3: "",
+      carStatus: "",
+      noGuests: "",
+    })
   }
 
   //Calculates the age based on the birth date
@@ -68,9 +67,9 @@ export default function CreateSignUp() {
   function getGuests() {
     //const guests = x;
     const myGuests = [];
-    if (numberOfGuests > 0 && numberOfGuests < 5) {
-      for (let index = 0; index < numberOfGuests; index++) {
-        myGuests.push(<GuestSignUpComponent />);
+    if (signupData.noGuests > 0 && signupData.noGuests < 5) {
+      for (let index = 0; index < signupData.noGuests; index++) {
+        myGuests.push(<GuestSignUpComponent index={index} />);
       }
     } else {
     }
@@ -78,133 +77,152 @@ export default function CreateSignUp() {
   }
 
   function carAvailable(x) {
-    if (carStatus) {
+    if (signupData.carStatus) {
       return <CarSignUpComponent />;
     }
   }
 
-  function uploadSignUp() {
-    const Participant = Parse.Object.extend("Participant");
-    const participant = new Participant();
-    participant.set("fullname", fullname);
-    participant.set("name", fullname.split(" ")[0]);
-    participant.set("birthday", birthday);
-    participant.set("age", getAge(birthday));
-    participant.set("address", address);
-    participant.set("email", email);
-    participant.set("phone", Number(phone));
-    participant.set("preferences", preferences);
-    participant.set("carStatus", carStatus);
-    participant.set("numberOfGuests", Number(numberOfGuests));
+  // function uploadSignUp() {
+  //   const Participant = Parse.Object.extend("Participant");
+  //   const participant = new Participant();
+  //   participant.set("fullname", fullname);
+  //   participant.set("name", fullname.split(" ")[0]);
+  //   participant.set("birthday", birthday);
+  //   participant.set("age", getAge(birthday));
+  //   participant.set("address", address);
+  //   participant.set("email", email);
+  //   participant.set("phone", Number(phone));
+  //   participant.set("preferences", preferences);
+  //   participant.set("carStatus", carStatus);
+  //   participant.set("numberOfGuests", Number(numberOfGuests));
 
-    participant.save().then(
-      (participant) => {
-        navigate("/afterSignUp");
-      },
-      (error) => {
-        alert("Something went wrong " + error.message);
-      }
-    );
-  }
+  //   participant.save().then(
+  //     (participant) => {
+  //       navigate("/afterSignUp");
+  //     },
+  //     (error) => {
+  //       alert("Something went wrong " + error.message);
+  //     }
+  //   );
+  // }
+
+  console.log(signupData);
 
   return (
-    <div>
-      <h3>Sign Up for this year's annual excursion</h3>
+    <div className="signup">
+      <h3>Sign up for this year's annual excursion</h3>
       <br />
       <form className="create--form">
         <p>Full name:</p>
         <input
-          onChange={fullNameChange}
-          value={fullname}
           className="create--input"
           type="text"
           placeholder="Full name"
+          onChange={handleChange}
+          name="fullname"
+          value={signupData.fullname}
+          required="required"
         />
 
         <p>Birthday:</p>
         <input
-          onChange={birthdayChange}
-          value={birthday}
           className="create--input"
           type="date"
           placeholder="Birthday"
+          onChange={handleChange}
+          name="birthday"
+          value={signupData.birthday}
+          required="required"
         />
 
         <p>Address:</p>
         <input
-          onChange={addressChange}
-          value={address}
           className="create--input"
           type="text"
           placeholder="Address"
+          onChange={handleChange}
+          name="address"
+          value={signupData.address}
+          required="required"
         />
 
         <p>Email:</p>
         <input
-          onChange={emailChange}
-          value={email}
           className="create--input"
           type="text"
           placeholder="Email"
+          onChange={handleChange}
+          name="email"
+          value={signupData.email}
+          required="required"
         />
 
         <p>Phone:</p>
         <input
-          onChange={phoneChange}
-          value={phone}
           className="create--input"
           type="number"
-          placeholder="Phone"
+          placeholder="Phone number"
+          onChange={handleChange}
+          name="phone"
+          value={signupData.phone}
+          required="required"
         />
 
         <p>Preferences:</p>
+        <label>#1:</label>
+        <select
+          size="1"
+          onChange={handleChange}
+          name="pref1"
+          value={signupData.pref1}
+        >
+          <option value="Cooking">Cooking</option>
+        </select>
         <input
-          onChange={preferenceChange}
-          value={preferences}
           className="create--input"
-          type="Dropdown"
+          type="text"
           placeholder="Preferences"
+          onChange={handleChange}
+          name="preferences"
+          value={signupData.preferences}
+          required="required"
         />
 
         <p>Car Status: </p>
-        <label>
-          
-          Check the box if you will drive to the destination
-          <br/>
-          <input
-            onChange={carStatusToggle}
-            value={carStatus}
-            className="create--input"
-            type="checkbox"
-            placeholder="Car status"
-          />
-        </label>
-        {/* <p/> */}
-        
+        <label>Check this box if you will drive to the destination:        </label>
+        <br />
+        <input
+          className="create--input"
+          type="checkbox"
+          checked={signupData.carStatus}
+          onChange={handleChange}
+          name="carStatus"
+        />
       </form>
       {carAvailable()}
       <br />
-      <br/>
+      <br />
       <form className='create--form'>
         <p>Number of guests:</p>
         <input
-          onChange={numberOfGuestsChange}
-          value={numberOfGuests}
           className="create--input"
           type="number"
+          placeholder="Number of guests"
+          onChange={handleChange}
+          name="noGuests"
+          value={signupData.noGuests}
           min="0"
           max="4"
           pattern="[0-9]+"
-          placeholder="Number of guests"
         />
 
         <br />
       </form>
-      {getGuests(numberOfGuests)}
-      <GreenButton onClick={uploadSignUp}>
+      {getGuests(signupData.noGuests)}
+      <GreenButton onClick={handleSubmit}>
         <ButtonText>Sign Up</ButtonText>
       </GreenButton>
-      <RedButton onClick={clearInput}>
+      <RedButton onClick={resetSignupData}>
         <ButtonText>Cancel</ButtonText>
       </RedButton>
     </div>

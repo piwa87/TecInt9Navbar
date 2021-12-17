@@ -67,6 +67,7 @@ h4 {
   grid-template: 40px 40px / 1fr 3fr;
   gap: 10px;
   font-weight: bold;
+  max-width: 70%;
 }
 
 .create--input {

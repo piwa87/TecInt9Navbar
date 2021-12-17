@@ -75,7 +75,8 @@ export default function CreateExcursion({ setUser }) {
                 onSubmit={handleSubmit}>
 
                 <p>Title:</p>
-                <input className="create--input"
+                <input
+                    className="create--input"
                     type="text"
                     placeholder="Title"
                     onChange={handleChange}
@@ -85,7 +86,8 @@ export default function CreateExcursion({ setUser }) {
                 />
 
                 <p>Date:</p>
-                <input className="create--input"
+                <input
+                    className="create--input"
                     type="date"
                     placeholder="dd-mm-yyyy-dd"
                     onChange={handleChange}
@@ -95,7 +97,8 @@ export default function CreateExcursion({ setUser }) {
                 />
 
                 <p>Location:</p>
-                <input className="create--input"
+                <input
+                    className="create--input"
                     type="text"
                     placeholder="Locationa"
                     onChange={handleChange}
@@ -105,7 +108,8 @@ export default function CreateExcursion({ setUser }) {
                 />
 
                 <p>Price:</p>
-                <input className="create--input"
+                <input
+                    className="create--input"
                     type="number"
                     placeholder="Price (in DKK)"
                     onChange={handleChange}
@@ -116,7 +120,8 @@ export default function CreateExcursion({ setUser }) {
                 />
 
                 <p>Max. Capacity:</p>
-                <input className="create--input"
+                <input
+                    className="create--input"
                     type="number"
                     placeholder="Max. Capacity"
                     onChange={handleChange}
@@ -126,7 +131,8 @@ export default function CreateExcursion({ setUser }) {
                 />
 
                 <p>Picture:</p>
-                <input className="create--input"
+                <input
+                    className="create--input"
                     type="url"
                     placeholder="URL of the title picture"
                     onChange={handleChange}

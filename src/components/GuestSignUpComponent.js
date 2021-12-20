@@ -2,7 +2,7 @@ import Parse from "parse"
 import { useState } from "react"
 import { ButtonText, GreenButton } from "./Button"
 
-export default function GuestSignUpComponent({ index }) {
+export default function GuestSignUpComponent({ i }) {
 
     const [fullname, setFullName] = useState("")
     const [birthday, setBirthday] = useState("")
@@ -50,7 +50,7 @@ export default function GuestSignUpComponent({ index }) {
         <div>
             <form className="create--form">
                 <br />
-                <h3> Guest #{index+1} information:</h3>
+                <h3> Guest #{i + 1} information:</h3>
                 <p>Guest full name: </p>
                 <input
                     onChange={fullNameChange}

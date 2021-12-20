@@ -1,13 +1,13 @@
 import { ButtonText, GreenButton, RedButton } from "../components/Button";
 import { useState } from "react";
-import Parse from "parse";
+// import Parse from "parse";
 import GuestSignUpComponent from "../components/GuestSignUpComponent";
 import CarSignUpComponent from "../components/CarSignUpComponent";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 
 export default function CreateSignUp() {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [signupData, setSignupData] = useState({
     fullname: "",
@@ -52,26 +52,24 @@ export default function CreateSignUp() {
     })
   }
 
-  //Calculates the age based on the birth date
-  function getAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
-  }
+  // //Calculates the age based on the birth date
+  // function getAge(dateString) {
+  //   var today = new Date();
+  //   var birthDate = new Date(dateString);
+  //   var age = today.getFullYear() - birthDate.getFullYear();
+  //   var m = today.getMonth() - birthDate.getMonth();
+  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  //     age--;
+  //   }
+  //   return age;
+  // }
 
   function getGuests() {
-    //const guests = x;
     const myGuests = [];
     if (signupData.noGuests > 0 && signupData.noGuests < 5) {
       for (let index = 0; index < signupData.noGuests; index++) {
-        myGuests.push(<GuestSignUpComponent index={index} />);
+        myGuests.push(<GuestSignUpComponent i={index} />);
       }
-    } else {
     }
     return myGuests;
   }
@@ -115,7 +113,6 @@ export default function CreateSignUp() {
       <form className="create--form">
         <p>Full name:</p>
         <input
-          className="create--input"
           type="text"
           placeholder="Full name"
           onChange={handleChange}
@@ -126,7 +123,6 @@ export default function CreateSignUp() {
 
         <p>Birthday:</p>
         <input
-          className="create--input"
           type="date"
           placeholder="Birthday"
           onChange={handleChange}
@@ -137,7 +133,6 @@ export default function CreateSignUp() {
 
         <p>Address:</p>
         <input
-          className="create--input"
           type="text"
           placeholder="Address"
           onChange={handleChange}
@@ -148,7 +143,6 @@ export default function CreateSignUp() {
 
         <p>Email:</p>
         <input
-          className="create--input"
           type="text"
           placeholder="Email"
           onChange={handleChange}
@@ -159,7 +153,6 @@ export default function CreateSignUp() {
 
         <p>Phone:</p>
         <input
-          className="create--input"
           type="number"
           placeholder="Phone number"
           onChange={handleChange}
@@ -168,31 +161,45 @@ export default function CreateSignUp() {
           required="required"
         />
 
-        <p>Preferences:</p>
+        <p>Duty preferences:</p><p>  </p>
+
         <label>#1:</label>
         <select
           size="1"
           onChange={handleChange}
           name="pref1"
-          value={signupData.pref1}
-        >
+          value={signupData.pref1} >
+          <option value="">-- Choose --</option>
           <option value="Cooking">Cooking</option>
+          <option value="Growling">Growling</option>
         </select>
-        <input
-          className="create--input"
-          type="text"
-          placeholder="Preferences"
+
+        <label>#2:</label>
+        <select
+          size="1"
           onChange={handleChange}
-          name="preferences"
-          value={signupData.preferences}
-          required="required"
-        />
+          name="pref2"
+          value={signupData.pref2} >
+          <option value="">-- Choose --</option>
+          <option value="Cooking">Cooking</option>
+          <option value="Growling">Growling</option>
+        </select>
+
+        <label>#3:</label>
+        <select
+          size="1"
+          onChange={handleChange}
+          name="pref3"
+          value={signupData.pref3} >
+          <option value="">-- Choose --</option>
+          <option value="Cooking">Cooking</option>
+          <option value="Growling">Growling</option>
+        </select>
 
         <p>Car Status: </p>
-        <label>Check this box if you will drive to the destination:        </label>
-        <br />
+        {/* <label>Check this box if you will drive to the destination:        </label> */}
+        {/* <br /> */}
         <input
-          className="create--input"
           type="checkbox"
           checked={signupData.carStatus}
           onChange={handleChange}
@@ -204,8 +211,7 @@ export default function CreateSignUp() {
       <br />
       <form className='create--form'>
         <p>Number of guests:</p>
-        <input
-          className="create--input"
+        {/* <input
           type="number"
           placeholder="Number of guests"
           onChange={handleChange}
@@ -214,7 +220,19 @@ export default function CreateSignUp() {
           min="0"
           max="4"
           pattern="[0-9]+"
-        />
+        /> */}
+        <select
+          size="1"
+          onChange={handleChange}
+          name="noGuests"
+          value={signupData.noGuests} >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
 
         <br />
       </form>

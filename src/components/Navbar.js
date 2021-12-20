@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { Icon } from '@iconify/react'
 
 export default function Navbar({ user }) {
 
@@ -11,6 +12,13 @@ export default function Navbar({ user }) {
                     <a href="/home"> </a>
                 ) : (user === "par") ? (                     // Navbar for participants:
                     <>
+                        <Icon
+                            className="par-icon"
+                            icon="healthicons:travel"
+                            color="#555"
+                            width="50"
+                            height="50"
+                        />
                         <NavLink to="/excursions">Join Excursion</NavLink>
                         <NavLink to="/transport">Find transport</NavLink>
                         <NavLink to="/contact">Contact</NavLink>

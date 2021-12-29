@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Icon } from '@iconify/react'
+import './Navbar.css'
 
 export default function Navbar({ user }) {
 
@@ -13,7 +14,7 @@ export default function Navbar({ user }) {
                 ) : (user === "par") ? (                     // Navbar for participants:
                     <>
                         <Icon
-                            className="par-icon"
+                            className="nav-icon"
                             icon="healthicons:travel"
                             color="#555"
                             width="50"
@@ -27,6 +28,13 @@ export default function Navbar({ user }) {
                     </>
                 ) : (user === "org") && (                    // Navbar for organizers:
                     <>
+                        <Icon
+                            className="nav-icon"
+                            icon="clarity:administrator-solid"
+                            color="#555"
+                            width="50"
+                            height="50"
+                        />
                         <NavLink to="/createExcursion">Create Excursion</NavLink>
                         <NavLink to="/participantList">Participant List</NavLink>
                         <NavLink to="/dutyList">Duty List</NavLink>

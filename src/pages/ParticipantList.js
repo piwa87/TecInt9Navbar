@@ -10,17 +10,17 @@ export default function ParticipantList({ setUser }) {
 
     useEffect(() => setUser("org"));
 
-    // useEffect(async () => {
-    //     setParticipants(await fetchParticipants())
-    // }, []);
-
-    useEffect(() => {
-        async function fetch() {
-            const response = await fetchParticipants()
-            setParticipants(response)
-        }
-        fetch()
+    useEffect(async () => {
+        setParticipants(await fetchParticipants())
     }, []);
+
+    // useEffect(() => {
+    //     async function fetch() {
+    //         const response = await fetchParticipants()
+    //         setParticipants(response)
+    //     }
+    //     fetch()
+    // }, []);
 
     useEffect(() => {
         console.log("Changed ", participants)

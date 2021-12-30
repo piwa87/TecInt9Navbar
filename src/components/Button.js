@@ -14,15 +14,14 @@ export const GreenButton = styled.button`
 
 export const RedButton = styled.button`
     background-color: #591420;
+    width: auto;
+    height: auto;
+    padding: 7px 7px;
+    border-radius: 10px;
     font-family: var(--main-font);
-    border-radius: 12px;
-    right: 0;
-    left: auto;
-    transition: .3s;
-    content: '';
-    width: fit;
-    bottom: 0;
-    height: fit;
+    font-size: 16px;
+    text-align: center;
+    color: white;
 `
 
 export const ButtonText = styled.label`
@@ -55,6 +54,21 @@ export const ButtonSignup = styled.button`
 export const ButtonTextSignUp = styled.label`
     font-family: var(--main-font);
     font-size: 36px;
+    text-align: center;
+    color: white;
+`
+
+export const TheGreenButton = styled.button`
+    background-color: #8A9828;
+    
+    width: auto;
+    height: auto;
+    padding: 4px 15px;
+    
+    border-radius: 10px;
+
+    font-family: var(--main-font);
+    font-size: 16px;
     text-align: center;
     color: white;
 `

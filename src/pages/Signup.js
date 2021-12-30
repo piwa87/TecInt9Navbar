@@ -107,10 +107,10 @@ export default function CreateSignUp() {
   console.log(signupData);
 
   return (
-    <div className="signup">
-      <h3>Sign up for this year's annual excursion</h3>
+    <div className="sign-up">
+      <h2>Sign up for this year's annual excursion</h2>
       <br />
-      <form className="create--form">
+      <form className="create-form">
         <p>Full name:</p>
         <input
           type="text"
@@ -211,27 +211,17 @@ export default function CreateSignUp() {
       <br />
       <form className='create--form'>
         <p>Number of guests:</p>
-        {/* <input
-          type="number"
-          placeholder="Number of guests"
-          onChange={handleChange}
-          name="noGuests"
-          value={signupData.noGuests}
-          min="0"
-          max="4"
-          pattern="[0-9]+"
-        /> */}
         <select
           size="1"
           onChange={handleChange}
           name="noGuests"
           value={signupData.noGuests} >
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
 
         <br />

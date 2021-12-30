@@ -1,4 +1,4 @@
-import { ButtonText, GreenButton, RedButton } from "../components/Button"
+import { TheGreenButton, RedButton } from "../components/Button"
 import { useEffect, useState } from "react"
 import Parse from "parse"
 import { useNavigate } from "react-router-dom"
@@ -16,7 +16,7 @@ export default function CreateExcursion({ setUser }) {
         location: "",
         price: "",
         capacity: "",
-        imgURL: tempURL
+        imgURL: "",
     })
 
     function handleChange(e) {
@@ -66,17 +66,16 @@ export default function CreateExcursion({ setUser }) {
     console.log(excursionData);
 
     return (
-        <div>
+        <div className="create-ex">
             <h3>Fill out the form to create an excursion:</h3>
             <br />
             <form
                 id="excForm"
-                className="create--form"
+                className="create-form"
                 onSubmit={handleSubmit}>
 
                 <p>Title:</p>
                 <input
-                    className="create--input"
                     type="text"
                     placeholder="Title"
                     onChange={handleChange}
@@ -87,7 +86,6 @@ export default function CreateExcursion({ setUser }) {
 
                 <p>Date:</p>
                 <input
-                    className="create--input"
                     type="date"
                     placeholder="dd-mm-yyyy-dd"
                     onChange={handleChange}
@@ -98,9 +96,8 @@ export default function CreateExcursion({ setUser }) {
 
                 <p>Location:</p>
                 <input
-                    className="create--input"
                     type="text"
-                    placeholder="Locationa"
+                    placeholder="Location"
                     onChange={handleChange}
                     name="location"
                     value={excursionData.location}
@@ -109,7 +106,6 @@ export default function CreateExcursion({ setUser }) {
 
                 <p>Price:</p>
                 <input
-                    className="create--input"
                     type="number"
                     placeholder="Price (in DKK)"
                     onChange={handleChange}
@@ -121,7 +117,6 @@ export default function CreateExcursion({ setUser }) {
 
                 <p>Max. Capacity:</p>
                 <input
-                    className="create--input"
                     type="number"
                     placeholder="Max. Capacity"
                     onChange={handleChange}
@@ -132,21 +127,16 @@ export default function CreateExcursion({ setUser }) {
 
                 <p>Picture:</p>
                 <input
-                    className="create--input"
                     type="url"
                     placeholder="URL of the title picture"
                     onChange={handleChange}
                     name="imgURL"
-                    value={tempURL}
+                    value={excursionData.imgURL}
                 />
 
-                <GreenButton>
-                    <ButtonText>Create Excursion</ButtonText>
-                </GreenButton>
+            <TheGreenButton onClick={handleSubmit}>Create Excursion</TheGreenButton>
             </form>
-            <RedButton onClick={resetExcursionData}>
-                <ButtonText>Cancel</ButtonText>
-            </RedButton>
+            <RedButton onClick={() => resetExcursionData()}>Cancel</RedButton>
         </div >
     )
 }

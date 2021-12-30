@@ -21,7 +21,7 @@ export default function Navbar({ user }) {
                             height="50"
                         />
                         <NavLink to="/excursions">Join Excursion</NavLink>
-                        <NavLink to="/transport">Find transport</NavLink>
+                        <NavLink to="/transport">Find Transport</NavLink>
                         <NavLink to="/contact">Contact</NavLink>
                         <NavLink to="/signup">Sign up</NavLink>
                         <a href="/home">Home</a>
@@ -39,7 +39,7 @@ export default function Navbar({ user }) {
                         <NavLink to="/participantList">Participant List</NavLink>
                         <NavLink to="/dutyList">Duty List</NavLink>
                         <NavLink to="/shoppingList">Shopping List</NavLink>
-                        <a className="nav--logout" href="/home">Home</a>
+                        <a href="/home">Home</a>
                     </>
                 )
             }

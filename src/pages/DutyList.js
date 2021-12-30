@@ -1,6 +1,6 @@
 import Parse from "parse"
 import { useEffect, useState } from "react";
-import { ButtonText, GreenButton } from "../components/Button";
+import { ButtonText, TheGreenButton } from "../components/Button";
 
 export default function DutyList({ setUser }) {
 
@@ -89,7 +89,7 @@ export default function DutyList({ setUser }) {
             <label htmlFor="addDuty">Here you can add duties for the excursion:</label>
             <form
                 id="addDuty"
-                className="duty--input"
+                className="duty-input"
                 onSubmit={handleSubmit}>
 
                 <input
@@ -101,11 +101,7 @@ export default function DutyList({ setUser }) {
                     required="required"
                 />
                 <br />
-                <GreenButton>
-                    <ButtonText>
-                        Add Duty
-                    </ButtonText>
-                </GreenButton>
+                <TheGreenButton>Add Duty</TheGreenButton>
             </form>
             <br />
             <h4>Current list of duties:</h4>

@@ -1,7 +1,7 @@
 import SingleParticipant from "../components/SingleParticipant"
 import Parse from "parse"
 import { useEffect, useState } from "react"
-import { GreenButton, ButtonText } from '../components/Button';
+import { TheGreenButton } from '../components/Button';
 import { fetchParticipants } from "../api";
 
 export default function ParticipantList({ setUser }) {
@@ -78,21 +78,20 @@ export default function ParticipantList({ setUser }) {
     }
 
 
-    // RENDER THIS:
 
     return (
-        <div className="participant--list">
-            <h3 className="participant--header">
+        <div className="participant-list">
+            <h3>List of participants for current excursion:</h3>
+            <br/>
+            <section className="participant-header">
                 <span>Name:</span>
                 <span>Duty Prefrences:</span>
                 <span>Age:</span>
-            </h3>
+            </section>
             <br />
             {participantList}
             <br />
-            <GreenButton onClick={createParticipant}>
-                <ButtonText>Add random participant</ButtonText>
-            </GreenButton>
+            <TheGreenButton onClick={createParticipant}>Add random participant</TheGreenButton>
         </div>
     )
 

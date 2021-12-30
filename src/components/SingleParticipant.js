@@ -63,7 +63,7 @@ export default function SingleParticipant({ par }) {
 
     return (
         <>
-            <div className="participant--single">
+            <div className="participant-single">
                 <span>{par.fullname}</span>
                 <span>{par.preferences}</span>
                 <span>{par.age}</span>

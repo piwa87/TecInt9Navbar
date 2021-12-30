@@ -41,14 +41,13 @@ export default function CarSignUpComponent(props) {
 
     return (
         <div>
-            <form className="create--form">
+            <form className="create-form">
                 <h3> Car Information:</h3>
                 <br />
                 <p>License Plate: </p>
                 <input
                     onChange={carLicenseChange}
                     value={carLicense}
-                    className="create--input"
                     type="text"
                     placeholder="Car License" />
 
@@ -56,7 +55,6 @@ export default function CarSignUpComponent(props) {
                 <input
                     onChange={carAvailableSeatsChange}
                     value={carAvailableSeats}
-                    className="create--input"
                     type="text"
                     placeholder="Available Seats" />
 
@@ -64,7 +62,6 @@ export default function CarSignUpComponent(props) {
                 <input
                     onChange={carColorChange}
                     value={carColor}
-                    className="create--input"
                     type="text"
                     placeholder="Color of Car" />
             </form>

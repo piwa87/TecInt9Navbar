@@ -1,6 +1,7 @@
 import Parse from "parse"
 
 
+
 export async function fetchParticipants() {
     const query = new Parse.Query('Participant');
     try {
@@ -9,8 +10,27 @@ export async function fetchParticipants() {
             return {
                 id: parseObject.id,
                 fullname: parseObject.get("fullname"),
-                preferences: parseObject.get("preferences"),
+                pref1: parseObject.get("pref1"),
+                pref2: parseObject.get("pref2"),
+                pref3: parseObject.get("pref3"),
                 age: parseObject.get("age")
+            }
+        })
+    } catch (error) {
+        console.log(`Error: ${JSON.stringify(error)}`);
+    }
+};
+
+//  Funtion for duties:
+
+export async function fetchDuties() {
+    const query = new Parse.Query('Duty');
+    try {
+        const results = await query.findAll();
+        return results.map( obj => {
+            return {
+                dutyID: obj.id,
+                dutyName: obj.get('dutyName')
             }
         })
     } catch (error) {

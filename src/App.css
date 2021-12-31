@@ -14,8 +14,8 @@
   --lightgreen: #c9d95873;
 
   --main-font: "Nunito Sans";
-
   --general-margin: 20px 60px;
+  --general-border-radius: 8px;
 }
 
 ::placeholder {
@@ -45,9 +45,6 @@ h4 {
   font-size: 24px;
 }
 
-
-
-
 /*  Landing page (home)  styling:   */
 
 .home {
@@ -66,8 +63,6 @@ h4 {
   justify-items: center;
   text-align: center;
 }
-
-
 
 /*  Find Transport:   */
 
@@ -95,12 +90,12 @@ h4 {
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
-  text-decoration-line: underline;
+  /* text-decoration-line: underline; */
 }
 .contact-text {
   font-style: normal;
   font-weight: normal;
-  line-height: 54px;
+  line-height: 1.5;
 }
 .contact-email {
   font-style: normal;
@@ -113,18 +108,31 @@ h4 {
 
 .sign-up {
   margin: var(--general-margin);
-  padding-bottom: 50%;
-  height: 100vh;
 }
 
-.guest-save {
-  float: right;
-  margin-top: 10px;
+.guest-header {
+  grid-column: 2;
+  text-decoration: dashed;
+}
+
+.guest-save-button {
+  grid-column: 2;
+  justify-self: end;
 }
 
 .car-save {
-  float: right;
-  margin-top: 10;
+  grid-column: 2;
+  justify-self: end;
+}
+
+.signup-button{
+  grid-column: 2;
+  margin: 15px 40% 8px 0px;
+}
+
+.cancel-button{
+  grid-column: 2;
+  margin: 0px 40% 0px 0px;
 }
 
 
@@ -136,28 +144,46 @@ h4 {
 
 .create-form {
   display: grid;
-  grid-template: 40px 40px / 1fr 4fr;
-  gap: 12px;
-  /* font-weight: bold; */
+  grid-template-columns: 150px auto;
+  font-size: 14px;
   align-items: center;
+  /* justify-items: auto; */
+  min-width: 400px;
+  max-width: 500px;
 }
 
-.create-form > input,
-select,
-option {
-  text-indent: 4px;
-  padding: 10px;
-  margin: 10px 0px;
+.create-form input {
+  font-family: var(--main-font);
+  text-indent: 3px;
+  padding: 8px 6px;
+  margin: 4px 0px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: var(--general-border-radius);
+  height: 14px;
 }
 
-.create-checkbox {
-  margin: left;
-  display: block;
+.create-form select,
+option {
+  font-family: var(--main-font);
+  text-indent: 3px;
+  margin: 8px 0px;
+  height: 28;
+  width: 50%;
+  align-items: baseline;
 }
 
+/* .create-form input[type=checkbox] {
+  align-items: center;
+} */
 
+.create-form-car {
+  display: grid;
+  grid-template-columns: 150px 450px;
+  font-size: 14px;
+  align-items: center;
+  /* justify-items: auto; */
+  min-width: 100%;
+}
 
 /*  Participant list:   */
 
@@ -180,19 +206,20 @@ option {
   display: grid;
   grid-template-columns: 230px 280px 50px 15px 15px;
   gap: 10px;
-  
+
   padding: 4px 4px;
   margin: 0px -4px;
   /* line-height: 1.5p; */
   align-items: center;
   border: 1px solid;
-  border-radius: 8px;
+  border-radius: var(--general-border-radius);
   border-color: transparent;
   transition: border-color 0.2s;
 }
 
 .participant-single:hover {
   border-color: var(--color1);
+  width: auto;
 }
 
 /*  Duty list:  */
@@ -205,20 +232,17 @@ option {
 
 .duty-input [type="text"],
 select {
+  font-family: var(--main-font);
   width: 50%;
   padding: 10px;
   margin: 10px 0px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: var(--general-border-radius);
   box-sizing: border-box;
 }
-
-
 
 /*  Shopping list:  */
 
 .shopping-list {
   margin: var(--general-margin);
 }
-
-

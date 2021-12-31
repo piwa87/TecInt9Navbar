@@ -4,7 +4,7 @@ export default function Contact() {
         <div className="contact-div">
             {/* <p className="contact--header">Contact organizers:</p> */}
             <h1>Contact organizers:</h1>
-            <p classname="contact-text">
+            <p className="contact-text">
                 For more information, help, late sign-ups or changes please contact us
                 on either by mail or phone.
                 <br />
@@ -15,7 +15,7 @@ export default function Contact() {
                 <br />
                 <br />
                 Phone: +45 10 20 30 40
-                <br />
+                <br /></p>
                 <b>Opening hours:</b>
                 <ul>
                     <li>Monday: 08:00-15:30</li>
@@ -25,7 +25,7 @@ export default function Contact() {
                     <li>Friday: 08:00-15:30</li>
                 </ul>
                 <br />
-            </p>
+            
         </div>
     );
 }

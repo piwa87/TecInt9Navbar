@@ -10,27 +10,19 @@ export default function ParticipantList({ setUser }) {
 
     useEffect(() => setUser("org"));
 
-    useEffect(async () => {
-        setParticipants(await fetchParticipants())
+    useEffect(() => {
+        async function fetchData() {
+            const result = await fetchParticipants();
+            setParticipants(result);
+        }
+        fetchData();
     }, []);
-
-    // useEffect(() => {
-    //     async function fetch() {
-    //         const response = await fetchParticipants()
-    //         setParticipants(response)
-    //     }
-    //     fetch()
-    // }, []);
 
     useEffect(() => {
         console.log("Changed ", participants)
     }, [participants]);
 
-    // console.log("Participants", participants);
-
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
-
-    // console.log(participantList);
 
     //  HELPING FUNCTIONS:
 
@@ -55,9 +47,10 @@ export default function ParticipantList({ setUser }) {
         }).then(
             (participant) => {
                 console.log("Created a new participant: " + participant.get("fullname"));
-                setParticipants(prevState => [...prevState, {
-                    id: participant.id, fullname: participant.get("fullname"), preferences: participant.get("preferences"), age: participant.get("age")
-                }])
+                setParticipants(prevState =>
+                    [...prevState, {
+                        id: participant.id, fullname: participant.get("fullname"), preferences: participant.get("preferences"), age: participant.get("age")
+                    }])
             })
     }
 
@@ -82,7 +75,7 @@ export default function ParticipantList({ setUser }) {
     return (
         <div className="participant-list">
             <h3>List of participants for current excursion:</h3>
-            <br/>
+            <br />
             <section className="participant-header">
                 <span>Name:</span>
                 <span>Duty Prefrences:</span>

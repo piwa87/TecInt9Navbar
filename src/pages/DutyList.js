@@ -1,18 +1,28 @@
 import Parse from "parse"
 import { useEffect, useState } from "react";
-import { ButtonText, TheGreenButton } from "../components/Button";
+import { TheGreenButton } from "../components/Button";
+import { fetchDuties } from "../api.js"
 
 export default function DutyList({ setUser }) {
 
+    const [data, setData] = useState({ dutyName: "" })
+    const [duties, setDuties] = useState([])
+
     useEffect(() => { setUser("org") })
 
-    const [data, setData] = useState(
-        {
-            dutyName: "",
+    useEffect(() => {
+        let ignore = false;
+        async function fetchData() {
+            const result = await fetchDuties();
+            if (!ignore) setDuties(result.sort());
         }
-    )
+        fetchData();
+        return () => { ignore = true; }
+    }, []);
 
-    const [duties, setDuties] = useState([])
+    useEffect(() => {
+        console.log("Changed ", duties)
+    }, [duties]);
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -26,7 +36,7 @@ export default function DutyList({ setUser }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        addDuty()
+        addDuty(data.dutyName);
         setData(prev => {
             return {
                 ...prev,
@@ -35,50 +45,41 @@ export default function DutyList({ setUser }) {
         })
     }
 
-    async function addDuty() {
+    function addDuty() {
         const Duty = Parse.Object.extend('Duty');
         const duty = new Duty();
-        duty.set('name', data.dutyName);
-        try {
-            await duty.save();
-            loadDuties()
-        } catch (error) {
-            alert(`Error ${error.message}`);
-        };
-    };
+        duty.save({
+            dutyName: data.dutyName,
+        }).then(
+            (duty) => {
+                console.log("New duty: " + duty.get("dutyName"));
+                setDuties(
+                    (prevState) => [
+                        ...prevState,
+                        {
+                            dutyID: duty.id,
+                            dutyName: duty.get('dutyName')
+                        }])
+            })
+    }
 
-    async function loadDuties() {
-        const query = new Parse.Query('Duty');
-        try {
-            const res = await query.findAll();
-            setDuties(res)
-        } catch (error) {
-            console.log(`Error: ${JSON.stringify(error)}`);
-        };
-    };
-
-    async function deleteDuty(id) {
+    function deleteDuty(id) {
+        setDuties(duties.filter((item) => {
+            return item.dutyID !== id
+        }))
         const Duty = new Parse.Object('Duty');
         Duty.set('objectId', id);
-        try {
-            await Duty.destroy();
-            loadDuties();
-        } catch (error) {
-            alert(`Error ${error.message}`);
-        };
+        Duty.destroy();
     };
 
-    useEffect(() => {
-        loadDuties();
-    }, []);
 
-    const dutyList = duties.map(d =>
-        <li key={d.id}
-            onClick={() => deleteDuty(d.id)}
+    const dutyList = duties.map(item =>
+        <li key={item.dutyID}
+            onClick={() => deleteDuty(item.dutyID)}
             style={{
                 cursor: "pointer"
             }}>
-            {d.get('name')}
+            {item.dutyName}
         </li>
     )
 

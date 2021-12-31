@@ -1,14 +1,16 @@
-import { ButtonText, GreenButton, RedButton } from "../components/Button";
-import { useState } from "react";
-// import Parse from "parse";
+import { TheGreenButton, RedButton } from "../components/Button";
+import { useEffect, useState } from "react";
+import Parse from "parse";
 import GuestSignUpComponent from "../components/GuestSignUpComponent";
 import CarSignUpComponent from "../components/CarSignUpComponent";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+import { fetchDuties } from "../api";
 
 export default function CreateSignUp() {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
+  const [duties, setDuties] = useState([])
   const [signupData, setSignupData] = useState({
     fullname: "",
     birthday: "",
@@ -22,6 +24,14 @@ export default function CreateSignUp() {
     noGuests: "",
   });
 
+  useEffect(() => {
+    async function fetchData() {
+      const result = await fetchDuties();
+      setDuties(result.map(i => i.dutyName));
+    }
+    fetchData();
+  }, []);
+
   function handleChange(e) {
     const { name, value, type, checked } = e.target
     setSignupData(prevState => {
@@ -34,7 +44,9 @@ export default function CreateSignUp() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // code here
+    uploadSignUp();
+    if (signupData.carStatus) {console.log("Uploading car details...");}
+    if (signupData.noGuests > 0) {console.log("Uploading guests...");}
   }
 
   function resetSignupData() {
@@ -52,66 +64,57 @@ export default function CreateSignUp() {
     })
   }
 
-  // //Calculates the age based on the birth date
-  // function getAge(dateString) {
-  //   var today = new Date();
-  //   var birthDate = new Date(dateString);
-  //   var age = today.getFullYear() - birthDate.getFullYear();
-  //   var m = today.getMonth() - birthDate.getMonth();
-  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-  //     age--;
-  //   }
-  //   return age;
-  // }
+  //Calculates the age based on the birth date
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
 
   function getGuests() {
     const myGuests = [];
-    if (signupData.noGuests > 0 && signupData.noGuests < 5) {
-      for (let index = 0; index < signupData.noGuests; index++) {
-        myGuests.push(<GuestSignUpComponent i={index} />);
-      }
+    for (let index = 0; index < signupData.noGuests; index++) {
+      myGuests.push(<GuestSignUpComponent i={index} />);
     }
     return myGuests;
   }
 
-  function carAvailable(x) {
-    if (signupData.carStatus) {
-      return <CarSignUpComponent />;
-    }
+  function uploadSignUp() {
+    const Participant = Parse.Object.extend("Participant");
+    const participant = new Participant();
+    participant.set("fullname", signupData.fullname);
+    participant.set("name", signupData.fullname.split(" ")[0]);
+    participant.set("birthday", signupData.birthday);
+    participant.set("age", getAge(signupData.birthday));
+    participant.set("address", signupData.address);
+    participant.set("email", signupData.email);
+    participant.set("phone", Number(signupData.phone));
+    participant.set("pref1", signupData.pref1);
+    participant.set("pref2", signupData.pref2);
+    participant.set("pref3", signupData.pref3);
+    participant.set("carStatus", signupData.carStatus);
+    participant.set("numberOfGuests", Number(signupData.noGuests));
+    participant.save().then(
+      () => {
+        navigate("/afterSignUp");
+      },
+      (error) => {
+        alert("Something went wrong " + error.message);
+      }
+    );
   }
-
-  // function uploadSignUp() {
-  //   const Participant = Parse.Object.extend("Participant");
-  //   const participant = new Participant();
-  //   participant.set("fullname", fullname);
-  //   participant.set("name", fullname.split(" ")[0]);
-  //   participant.set("birthday", birthday);
-  //   participant.set("age", getAge(birthday));
-  //   participant.set("address", address);
-  //   participant.set("email", email);
-  //   participant.set("phone", Number(phone));
-  //   participant.set("preferences", preferences);
-  //   participant.set("carStatus", carStatus);
-  //   participant.set("numberOfGuests", Number(numberOfGuests));
-
-  //   participant.save().then(
-  //     (participant) => {
-  //       navigate("/afterSignUp");
-  //     },
-  //     (error) => {
-  //       alert("Something went wrong " + error.message);
-  //     }
-  //   );
-  // }
-
-  console.log(signupData);
 
   return (
     <div className="sign-up">
       <h2>Sign up for this year's annual excursion</h2>
       <br />
-      <form className="create-form">
-        <p>Full name:</p>
+      <form className="create-form" id="form">
+        Full name:
         <input
           type="text"
           placeholder="Full name"
@@ -121,7 +124,7 @@ export default function CreateSignUp() {
           required="required"
         />
 
-        <p>Birthday:</p>
+        Birthday:
         <input
           type="date"
           placeholder="Birthday"
@@ -131,7 +134,7 @@ export default function CreateSignUp() {
           required="required"
         />
 
-        <p>Address:</p>
+        Address:
         <input
           type="text"
           placeholder="Address"
@@ -141,9 +144,9 @@ export default function CreateSignUp() {
           required="required"
         />
 
-        <p>Email:</p>
+        Email:
         <input
-          type="text"
+          type="email"
           placeholder="Email"
           onChange={handleChange}
           name="email"
@@ -151,7 +154,7 @@ export default function CreateSignUp() {
           required="required"
         />
 
-        <p>Phone:</p>
+        Phone:
         <input
           type="number"
           placeholder="Phone number"
@@ -161,17 +164,17 @@ export default function CreateSignUp() {
           required="required"
         />
 
-        <p>Duty preferences:</p><p>  </p>
+        <br />
+        Duty preferences:<p></p>
 
-        <label>#1:</label>
+        #1:
         <select
           size="1"
           onChange={handleChange}
           name="pref1"
           value={signupData.pref1} >
           <option value="">-- Choose --</option>
-          <option value="Cooking">Cooking</option>
-          <option value="Growling">Growling</option>
+          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
         </select>
 
         <label>#2:</label>
@@ -181,8 +184,7 @@ export default function CreateSignUp() {
           name="pref2"
           value={signupData.pref2} >
           <option value="">-- Choose --</option>
-          <option value="Cooking">Cooking</option>
-          <option value="Growling">Growling</option>
+          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
         </select>
 
         <label>#3:</label>
@@ -192,25 +194,26 @@ export default function CreateSignUp() {
           name="pref3"
           value={signupData.pref3} >
           <option value="">-- Choose --</option>
-          <option value="Cooking">Cooking</option>
-          <option value="Growling">Growling</option>
+          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
         </select>
 
-        <p>Car Status: </p>
-        {/* <label>Check this box if you will drive to the destination:        </label> */}
-        {/* <br /> */}
-        <input
-          type="checkbox"
-          checked={signupData.carStatus}
-          onChange={handleChange}
-          name="carStatus"
-        />
-      </form>
-      {carAvailable()}
-      <br />
-      <br />
-      <form className='create--form'>
-        <p>Number of guests:</p>
+        Car Status:
+        <p>
+          <input
+            id="check"
+            type="checkbox"
+            checked={signupData.carStatus}
+            onChange={handleChange}
+            name="carStatus"
+          />
+          <label htmlFor="check">
+            <small>&emsp;(check this box if you will drive to the destination)</small>
+          </label>
+        </p>
+
+        {signupData.carStatus && <CarSignUpComponent />}
+
+        Number of guests:
         <select
           size="1"
           onChange={handleChange}
@@ -223,16 +226,10 @@ export default function CreateSignUp() {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-
-        <br />
+        {getGuests(signupData.noGuests)}
+        <TheGreenButton className="signup-button" onClick={handleSubmit}>Sign Up</TheGreenButton>
+        <RedButton className="cancel-button" onClick={resetSignupData}>Cancel</RedButton>
       </form>
-      {getGuests(signupData.noGuests)}
-      <GreenButton onClick={handleSubmit}>
-        <ButtonText>Sign Up</ButtonText>
-      </GreenButton>
-      <RedButton onClick={resetSignupData}>
-        <ButtonText>Cancel</ButtonText>
-      </RedButton>
     </div>
   );
 }

@@ -8,7 +8,6 @@ export default function CreateExcursion({ setUser }) {
     useEffect(() => { setUser("org") })
 
     const navigate = useNavigate();
-    const tempURL = "https://faktalink.dk/sites/default/files/styles/top_image/public/2019-02/ikea_faktalink_20181121-163410-L-1920x1248we.jpg?itok=xsn9RKmg"
 
     const [excursionData, setExcursionData] = useState({
         title: "",

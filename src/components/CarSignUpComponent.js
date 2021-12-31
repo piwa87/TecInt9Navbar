@@ -1,6 +1,6 @@
 import Parse from "parse"
 import { useState } from "react"
-import { ButtonText, GreenButton } from "./Button"
+import { SmallGreenButton } from "./Button"
 
 export default function CarSignUpComponent(props) {
 
@@ -40,37 +40,28 @@ export default function CarSignUpComponent(props) {
     }
 
     return (
-        <div>
-            <form className="create-form">
-                <h3> Car Information:</h3>
-                <br />
-                <p>License Plate: </p>
-                <input
-                    onChange={carLicenseChange}
-                    value={carLicense}
-                    type="text"
-                    placeholder="Car License" />
+        <>
+            License Plate:
+            <input
+                onChange={carLicenseChange}
+                value={carLicense}
+                type="text"
+                placeholder="Car License" />
 
-                <p>Available Seats:</p>
-                <input
-                    onChange={carAvailableSeatsChange}
-                    value={carAvailableSeats}
-                    type="text"
-                    placeholder="Available Seats" />
+            <p>Available Seats:</p>
+            <input
+                onChange={carAvailableSeatsChange}
+                value={carAvailableSeats}
+                type="text"
+                placeholder="Available Seats" />
 
-                <p>Color of car:</p>
-                <input
-                    onChange={carColorChange}
-                    value={carColor}
-                    type="text"
-                    placeholder="Color of Car" />
-            </form>
-            <br />
-
-            <GreenButton className="car-save" onClick={uploadCar}><ButtonText>Save Car Info</ButtonText></GreenButton>
-        </div>
+            <p>Color of car:</p>
+            <input
+                onChange={carColorChange}
+                value={carColor}
+                type="text"
+                placeholder="Color of Car" />
+            <SmallGreenButton className="car-save" onClick={uploadCar}>Save Car Info</SmallGreenButton>
+        </>
     )
 }
-
-
-

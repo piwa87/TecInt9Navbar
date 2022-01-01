@@ -7,13 +7,14 @@ export default function FindTransport({ setUser }) {
 
     useEffect(() => setUser("par"))
 
-    const transportList = transportParticipant.map((item) => <TransportCard key={item.tid} par={item} />)
+    const transportList = transportParticipant.map((item) =>
+        <TransportCard key={item.tid} par={item} />)
 
     return (
 
-        <div>
+        <div className="find-transport">
             <h3>Here you can find an avaliable seat:</h3>
-            <section className="cardShow">{transportList}</section>
+            <section className="find-cards">{transportList}</section>
         </div>
     )
 }

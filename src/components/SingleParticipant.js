@@ -2,7 +2,7 @@ import { BiTrash, BiPencil } from "react-icons/bi";
 import Parse from "parse";
 import { useState } from "react";
 import Modal, { setAppElement } from "react-modal";
-import { GreenButton, RedButton, ButtonText } from '../components/Button';
+import { RedButton, GreyButton } from '../components/Button';
 
 export default function SingleParticipant({ par }) {
 
@@ -63,9 +63,9 @@ export default function SingleParticipant({ par }) {
 
     return (
         <>
-            <div className="participant--single">
+            <div className="participant-single">
                 <span>{par.fullname}</span>
-                <span>{par.preferences}</span>
+                <span>{par.pref1}, {par.pref2}, {par.pref3}</span>
                 <span>{par.age}</span>
                 <BiPencil cursor="pointer" onClick={() => alert("TO DO: Function to edit participant")} />
                 <BiTrash cursor="pointer" onClick={openModal} />
@@ -78,12 +78,8 @@ export default function SingleParticipant({ par }) {
                 contentLabel="Example Modal" >
                 <p>You are about to delete <b>{parName}</b> from this excursion.</p>
                 <p>Are you sure?</p>
-                <GreenButton onClick={closeAndDelete}>
-                    <ButtonText>Delete</ButtonText>
-                </GreenButton>
-                <RedButton onClick={closeModal}>
-                    <ButtonText>Cancel</ButtonText>
-                </RedButton>
+                <RedButton onClick={closeAndDelete}>Delete</RedButton>
+                <GreyButton onClick={closeModal}>Cancel</GreyButton>
             </Modal>
         </>
     )

@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
 
 /*  Color variables from our Figma prototype */
 
 :root {
-  
   --color1: #34401a;
   --color2: #64732f;
   --color3: #cad959;
@@ -15,7 +13,9 @@
   --darkgrey: #c4c4c4;
   --lightgreen: #c9d95873;
 
-  --main-font: 'Nunito Sans';
+  --main-font: "Nunito Sans";
+  --general-margin: 20px 60px;
+  --general-border-radius: 8px;
 }
 
 ::placeholder {
@@ -25,15 +25,13 @@
 /*  The general styling of our main content window */
 .main {
   font-family: var(--main-font);
-  line-height: 1.5;
   background-color: var(--lightgreen);
-  margin-left: 15%;
-  margin-right: 15%;
-  padding-top: 2rem;
-  padding-bottom: 50%;
-  padding-left: 8rem;
-  padding-right: 8rem;
-  height: 100%;
+  margin: 0% 15%;
+  padding-top: 32px;
+  padding-bottom: 20%;
+  padding-left: 127px;
+  padding-right: 127px;
+  height: 100vh;
 }
 
 .main > h1,
@@ -43,103 +41,8 @@ h4 {
   margin: 0;
 }
 
-.hr {
-  background-color: black;
-  width: auto;
-  height: 5;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1;
-}
-
-.cardShow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  overflow-x: auto;
-  justify-content: space-evenly;
-}
-
-/* - - - - Create excursion - - - - */
-
-.create--form {
-  display: grid;
-  grid-template: 40px 40px / 1fr 3fr;
-  gap: 10px;
-  font-weight: bold;
-}
-
-.create--input {
-  text-indent: 6px;
-  border: 0;
-  border-radius: 5px;
-}
-
-.create--checkbox {
-  margin: left;
-  display: block;
-}
-
-/* - - - - Navbar styling - - - - */
-
-nav {
-  font-family: var(--main-font);
-  background-color: var(--color3);
-  /* height: 100px; */
-  /* max-height: 200px; */
-  padding-left: 15%;
-  padding-right: 15%;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  vertical-align: center  ;
-}
-
-nav > a:link,
-a:visited {
-  color: var(--color1);
-  text-decoration: none;
-  font-size: 20px;
-  padding-left: 36px;
-  padding-right: 36px;
-}
-
-nav > a:hover {
-  border: 0;
-  background-color: transparent;
-  background-color: var(--color4);
-  transition-property: background-color;
-  transition-duration: 0.25s;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-nav > .active {
-  border: 0;
-  background-color: var(--color4);
-  max-height: 60px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-/*  Grid for participant list:  */
-
-.participant--header {
-  display: grid;
-  grid-template-columns: 2fr 3fr 0.8fr 0.2fr 0.2fr;
-  gap: 15px;
-
-}
-
-.participant--single {
-  display: grid;
-  grid-template-columns: 2fr 3fr 0.8fr 0.2fr 0.2fr;
-  padding: 3px 0px;
-  gap: 15px;
-}
-
-.guest-save {
-  float: right;
-  margin-top: 10px;
+.main h3 {
+  font-size: 24px;
 }
 
 /*  Landing page (home)  styling:   */
@@ -161,56 +64,185 @@ nav > .active {
   text-align: center;
 }
 
-.car-save {
-  float: right;
-  margin-top: 10;
+/*  Find Transport:   */
+
+.find-transport {
+  margin: var(--general-margin);
+  height: 100%;
 }
 
-/*  Contact page styling:   */
-
-.contact--div {
-  width: 925px;
-  height: 526px;
-  left: 501px;
-  top: 252px;
+.find-cards {
+  margin: 0% -3%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  overflow-x: auto;
+  /* justify-content: space-evenly; */
 }
 
-.contact--header {
-  font-family: var(--main-font);
+/*  Contact:  */
+
+.contact-div {
+  margin: var(--general-margin);
+}
+
+.contact-header {
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
-  line-height: 54px;
-  text-decoration-line: underline;
+  /* text-decoration-line: underline; */
 }
-.contact--text {
-  font-family: var(--main-font);
+.contact-text {
   font-style: normal;
   font-weight: normal;
-  line-height: 54px;
+  line-height: 1.5;
 }
-.email {
-  font-family: var(--main-font);
+.contact-email {
   font-style: normal;
   font-weight: normal;
   text-decoration: underline;
   color: blue;
 }
 
-/*  Duty list styling:    */
+/*  Sign up:  */
+
+.sign-up {
+  margin: var(--general-margin);
+}
+
+.guest-header {
+  grid-column: 2;
+  text-decoration: dashed;
+}
+
+.guest-save-button {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.car-save {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.signup-button{
+  grid-column: 2;
+  margin: 15px 40% 8px 0px;
+}
+
+.cancel-button{
+  grid-column: 2;
+  margin: 0px 40% 0px 0px;
+}
+
+
+/*  Create excursion:   */
+
+.create-ex {
+  margin: var(--general-margin);
+}
+
+.create-form {
+  display: grid;
+  grid-template-columns: 150px auto;
+  font-size: 14px;
+  align-items: center;
+  /* justify-items: auto; */
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.create-form input {
+  font-family: var(--main-font);
+  text-indent: 3px;
+  padding: 8px 6px;
+  margin: 4px 0px;
+  border: 1px solid #ccc;
+  border-radius: var(--general-border-radius);
+  height: 14px;
+}
+
+.create-form select,
+option {
+  font-family: var(--main-font);
+  text-indent: 3px;
+  margin: 8px 0px;
+  height: 28;
+  width: 60%;
+  align-items: baseline;
+}
+
+/* .create-form input[type=checkbox] {
+  align-items: center;
+} */
+
+.create-form-car {
+  display: grid;
+  grid-template-columns: 150px 450px;
+  font-size: 14px;
+  align-items: center;
+  /* justify-items: auto; */
+  min-width: 100%;
+}
+
+/*  Participant list:   */
+
+.participant-list {
+  margin: var(--general-margin);
+  justify-content: center;
+}
+
+.participant-header {
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  display: grid;
+  grid-template-columns: 230px 280px 30px 10px 10px;
+  gap: 10px;
+}
+
+.participant-single {
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: 230px 280px 50px 15px 15px;
+  gap: 10px;
+
+  padding: 4px 4px;
+  margin: 0px -4px;
+  /* line-height: 1.5p; */
+  align-items: center;
+  border: 1px solid;
+  border-radius: var(--general-border-radius);
+  border-color: transparent;
+  transition: border-color 0.2s;
+}
+
+.participant-single:hover {
+  border-color: var(--color1);
+  width: auto;
+}
+
+/*  Duty list:  */
 
 .duty-list {
+  margin: var(--general-margin);
   display: flex;
   flex-direction: column;
 }
 
-.duty--input [type="text"],
+.duty-input [type="text"],
 select {
+  font-family: var(--main-font);
   width: 50%;
   padding: 10px;
   margin: 10px 0px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: var(--general-border-radius);
   box-sizing: border-box;
 }
 
+/*  Shopping list:  */
+
+.shopping-list {
+  margin: var(--general-margin);
+}

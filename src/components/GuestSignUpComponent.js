@@ -1,8 +1,8 @@
 import Parse from "parse"
 import { useState } from "react"
-import { ButtonText, GreenButton } from "./Button"
+import { SmallGreenButton } from "./Button"
 
-export default function GuestSignUpComponent() {
+export default function GuestSignUpComponent({ i }) {
 
     const [fullname, setFullName] = useState("")
     const [birthday, setBirthday] = useState("")
@@ -47,37 +47,33 @@ export default function GuestSignUpComponent() {
     }
 
     return (
-        <div>
-            <form className="create--form">
-                <br />
-                <h3> Guest information:</h3>
-                <p>Guest full name: </p>
-                <input
-                    onChange={fullNameChange}
-                    value={fullname}
-                    className="create--input"
-                    type="text"
-                    placeholder="Guest full name" />
+        <>
+            <p className="guest-header">Guest #{i + 1} information:</p>
+            Guest's full name:
+            <input
+                onChange={fullNameChange}
+                value={fullname}
+                className="create--input"
+                type="text"
+                placeholder="Guest full name" />
 
-                <p>Birthday of guest:</p>
-                <input
-                    onChange={birthdayChange}
-                    value={birthday}
-                    className="create--input"
-                    type="date"
-                    placeholder="Birhday of guest" />
+            <p>Birthday of guest:</p>
+            <input
+                onChange={birthdayChange}
+                value={birthday}
+                className="create--input"
+                type="date"
+                placeholder="Birhday of guest" />
 
-                <p>Preferences of guest:</p>
-                <input
-                    onChange={preferencesChange}
-                    value={preferences}
-                    className="create--input"
-                    type="text"
-                    placeholder="Preferences of guest" />
-            </form>
-            <GreenButton className="guest-save" onClick={uploadGuest}><ButtonText>Save Guest</ButtonText></GreenButton>
-            <br />
-            <br />
-        </div>
+            <p>Preferences of guest:</p>
+            <input
+                onChange={preferencesChange}
+                value={preferences}
+                className="create--input"
+                type="text"
+                placeholder="Preferences of guest" />
+
+            <SmallGreenButton className="guest-save-button" onClick={uploadGuest}>Save Guest</SmallGreenButton>    
+        </>
     )
 }

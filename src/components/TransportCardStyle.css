@@ -1,34 +1,41 @@
 .card {
   background-color: #c7da3b;
-  padding-right: 50px;
-  width: 175px;
+  
   border: 2px solid #000202;
-  box-sizing: border-fit;
   border-spacing: 200px;
-  padding-bottom: 25px;
+  border-radius: var(--general-border-radius);
+  box-sizing: border-fit;
+  
+  width: 175px;
   margin: 1.5rem;
-  border-radius: 12px;
+  
   padding-left: 25px;
+  padding-right: 50px;
+  padding-bottom: 25px;
 }
 
-.card--text {
+.card-text {
   font-size: small;
   text-align: left;
   color: black;
 }
-.card--picture {
+
+.card-picture {
+  object-fit: cover;
+  border-radius: var(--general-border-radius);
+
   height: 150px;
   width: 200px;
-  border-radius: 9px;
 }
-.card--heading {
+
+.card-heading {
   font-size: large;
   text-align: left;
   color: black;
   font-weight: bold;
 }
 
-.card--button {
+.card-button {
   align-self: center;
   margin-top: auto;
 }

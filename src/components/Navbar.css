@@ -1,0 +1,46 @@
+/* - - - - Navbar styling - - - - */
+
+nav {
+  font-family: var(--main-font);
+  background-color: var(--color3);
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  align-items: center;
+}
+
+nav > a:link,
+a:visited {
+  color: var(--color1);
+  text-decoration: none;
+  font-size: 20px;
+  padding-left: 36px;
+  padding-right: 36px;
+}
+
+nav > a:hover {
+  border: 0;
+  background-color: transparent;
+  background-color: var(--color4);
+  transition-property: background-color;
+  transition-duration: 0.25s;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+nav > .active {
+  border: 0;
+  background-color: var(--color4);
+  max-height: 60px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.nav-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: 82px;
+  margin-top: 24px;
+}

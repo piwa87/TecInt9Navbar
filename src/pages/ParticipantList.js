@@ -38,36 +38,41 @@ export default function ParticipantList({ setUser }) {
     function createParticipant() {
         const Participant = Parse.Object.extend("Participant")
         const participant = new Participant()
-        const fullname = makeName()
+        const fullname = rndName()
         participant.save({
             fullname: fullname,
-            age: makeRandomAge(12, 90),
-            preferences: makePreferences(),
+            age: rndAnge(12, 90),
+            pref1: rndPreference(),
+            pref2: rndPreference(),
+            pref3: rndPreference(),
             name: fullname.split(" ")[0],
         }).then(
             (participant) => {
                 console.log("Created a new participant: " + participant.get("fullname"));
                 setParticipants(prevState =>
                     [...prevState, {
-                        id: participant.id, fullname: participant.get("fullname"), preferences: participant.get("preferences"), age: participant.get("age")
+                        id: participant.id,
+                        fullname: participant.get("fullname"),
+                        pref1: participant.get("pref1"),
+                        pref2: participant.get("pref2"),
+                        pref3: participant.get("pref3"),
+                        age: participant.get("age")
                     }])
             })
     }
 
-    function makeName() {
+    function rndName() {
         return possibleNames[Math.floor(Math.random() * possibleNames.length)]
             + " "
             + possibleSurnames[Math.floor(Math.random() * possibleSurnames.length)]
     }
 
-    function makeRandomAge(min, max) {
+    function rndAnge(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    function makePreferences() {
+    function rndPreference() {
         return possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
-            + ", " + possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
-            + ", " + possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
     }
 
 

@@ -2,20 +2,29 @@ import Parse from "parse"
 import { useState } from "react"
 import { SmallGreenButton } from "./Button"
 
-export default function GuestSignUpComponent({ i }) {
+export default function GuestSignUpComponent({ i, duties }) {
 
-    const [fullname, setFullName] = useState("")
-    const [birthday, setBirthday] = useState("")
-    const [preferences, setPreferences] = useState("")
+    const [guestData, setGuestData] = useState({
+        fullname: "",
+        birthday: "",
+        pref1: "",
+        pref2: "",
+        pref3: "",
+    })
 
-    function fullNameChange(e) {
-        setFullName(e.target.value)
-    }
-    function birthdayChange(e) {
-        setBirthday(e.target.value)
-    }
-    function preferencesChange(e) {
-        setPreferences(e.target.value)
+    function handleChange(e) {
+        const { name, value } = e.target
+        setGuestData(prevState => {
+            return {
+                ...prevState,
+                [name]: value
+            }
+        })
+    };
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        uploadGuest();
     }
 
     //Calculates the age based on the birth date
@@ -33,11 +42,13 @@ export default function GuestSignUpComponent({ i }) {
     function uploadGuest() {
         const Participant = Parse.Object.extend("Participant");
         const guest = new Participant();
-        guest.set("fullname", fullname);
-        guest.set("birthday", birthday);
-        guest.set("preferences", preferences);
-        guest.set("name", fullname.split(" ")[0])
-        guest.set("age", getAge(birthday))
+        guest.set("fullname", guestData.fullname);
+        guest.set("birthday", guestData.birthday);
+        guest.set("pref1", guestData.pref1);
+        guest.set("pref2", guestData.pref2);
+        guest.set("pref3", guestData.pref3);
+        guest.set("name", guestData.fullname.split(" ")[0])
+        guest.set("age", getAge(guestData.birthday))
 
         guest.save().then((guest) => {
             alert('You have added a guest: ' + guest.get("fullname"));
@@ -49,31 +60,60 @@ export default function GuestSignUpComponent({ i }) {
     return (
         <>
             <p className="guest-header">Guest #{i + 1} information:</p>
-            Guest's full name:
-            <input
-                onChange={fullNameChange}
-                value={fullname}
-                className="create--input"
-                type="text"
-                placeholder="Guest full name" />
 
-            <p>Birthday of guest:</p>
+            Full name:
             <input
-                onChange={birthdayChange}
-                value={birthday}
-                className="create--input"
+                type="text"
+                placeholder={`Guest #${i + 1} full name`}
+                onChange={handleChange}
+                name="fullname"
+                value={guestData.fullname}
+                required="required"
+            />
+
+            <p>Birthday:</p>
+            <input
                 type="date"
-                placeholder="Birhday of guest" />
+                placeholder="Guest's birthday"
+                onChange={handleChange}
+                name="birthday"
+                value={guestData.birthday}
+                required="required"
+            />
 
-            <p>Preferences of guest:</p>
-            <input
-                onChange={preferencesChange}
-                value={preferences}
-                className="create--input"
-                type="text"
-                placeholder="Preferences of guest" />
+            Duty Preferences:<p></p>
 
-            <SmallGreenButton className="guest-save-button" onClick={uploadGuest}>Save Guest</SmallGreenButton>    
+            #1:
+            <select
+                size="1"
+                onChange={handleChange}
+                name="pref1"
+                value={guestData.pref1}
+            >
+                <option value="">-- Choose --</option>
+                {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+            </select>
+
+            <label>#2:</label>
+            <select
+                size="1"
+                onChange={handleChange}
+                name="pref2"
+                value={guestData.pref2} >
+                <option value="">-- Choose --</option>
+                {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+            </select>
+
+            <label>#3:</label>
+            <select
+                size="1"
+                onChange={handleChange}
+                name="pref3"
+                value={guestData.pref3} >
+                <option value="">-- Choose --</option>
+                {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+            </select>
+            <SmallGreenButton className="guest-save-button" onClick={handleSubmit}>Save Guest</SmallGreenButton>
         </>
     )
 }

@@ -45,8 +45,8 @@ export default function CreateSignUp() {
   function handleSubmit(e) {
     e.preventDefault();
     uploadSignUp();
-    if (signupData.carStatus) {console.log("Uploading car details...");}
-    if (signupData.noGuests > 0) {console.log("Uploading guests...");}
+    if (signupData.carStatus) { console.log("Uploading car details..."); }
+    if (signupData.noGuests > 0) { console.log("Uploading guests..."); }
   }
 
   function resetSignupData() {
@@ -79,7 +79,7 @@ export default function CreateSignUp() {
   function getGuests() {
     const myGuests = [];
     for (let index = 0; index < signupData.noGuests; index++) {
-      myGuests.push(<GuestSignUpComponent i={index} />);
+      myGuests.push(<GuestSignUpComponent i={index} duties={duties} />);
     }
     return myGuests;
   }
@@ -113,7 +113,7 @@ export default function CreateSignUp() {
     <div className="sign-up">
       <h2>Sign up for this year's annual excursion</h2>
       <br />
-      <form className="create-form" id="form">
+      <form className="create-form" id="form" onSubmit={handleSubmit}>
         Full name:
         <input
           type="text"
@@ -165,9 +165,9 @@ export default function CreateSignUp() {
         />
 
         <br />
-        Duty preferences:<p></p>
+        Duty Preferences:<p></p>
 
-        #1:
+        <label>#1:</label>
         <select
           size="1"
           onChange={handleChange}
@@ -213,7 +213,7 @@ export default function CreateSignUp() {
 
         {signupData.carStatus && <CarSignUpComponent />}
 
-        Number of guests:
+        Number of Guests:
         <select
           size="1"
           onChange={handleChange}
@@ -226,9 +226,14 @@ export default function CreateSignUp() {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
+
         {getGuests(signupData.noGuests)}
+
+
         <TheGreenButton className="signup-button" onClick={handleSubmit}>Sign Up</TheGreenButton>
         <RedButton className="cancel-button" onClick={resetSignupData}>Cancel</RedButton>
+
+
       </form>
     </div>
   );

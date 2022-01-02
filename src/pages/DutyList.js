@@ -90,7 +90,6 @@ export default function DutyList({ setUser }) {
             <label htmlFor="addDuty">Here you can add duties for the excursion:</label>
             <form
                 id="addDuty"
-                className="duty-input"
                 onSubmit={handleSubmit}>
 
                 <input

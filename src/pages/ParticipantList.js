@@ -18,9 +18,6 @@ export default function ParticipantList({ setUser }) {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        console.log("Changed ", participants)
-    }, [participants]);
 
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
 
@@ -36,8 +33,7 @@ export default function ParticipantList({ setUser }) {
         "Driving", "Eating", "Heavy Lifting", "Babysitting"]
 
     function createParticipant() {
-        const Participant = Parse.Object.extend("Participant")
-        const participant = new Participant()
+        const participant = new Parse.Object("Participant")
         const fullname = rndName()
         participant.save({
             fullname: fullname,
@@ -75,8 +71,6 @@ export default function ParticipantList({ setUser }) {
         return possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
     }
 
-
-
     return (
         <div className="participant-list">
             <h3>List of participants for current excursion:</h3>
@@ -88,8 +82,9 @@ export default function ParticipantList({ setUser }) {
             </section>
             <br />
             {participantList}
+        
             <br />
-            <TheGreenButton onClick={createParticipant}>Add random participant</TheGreenButton>
+            <TheGreenButton onClick={() => createParticipant()}>Add random participant</TheGreenButton>
         </div>
     )
 

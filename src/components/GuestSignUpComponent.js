@@ -40,8 +40,7 @@ export default function GuestSignUpComponent({ i, duties }) {
     }
 
     function uploadGuest() {
-        const Participant = Parse.Object.extend("Participant");
-        const guest = new Participant();
+        const guest = new Parse.Object("Participant");
         guest.set("fullname", guestData.fullname);
         guest.set("birthday", guestData.birthday);
         guest.set("pref1", guestData.pref1);

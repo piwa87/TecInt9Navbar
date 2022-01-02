@@ -1,7 +1,8 @@
 .ex-info {
   display: flex;
   flex-direction: column;
-  margin: -32px 70px;
+  margin: -32px 70px 0px 70px;
+  padding-bottom: 32px;
 }
 
 .ex-info > h2 {

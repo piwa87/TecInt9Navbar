@@ -16,7 +16,5 @@ export default function Excursions({ setUser }) {
 		fetchData();
 	}, []);
 
-	console.log("Excursions:", excursions);
-
 	return <ExcursionDisplay ex={excursions[excursions.length - 1]} />
 }

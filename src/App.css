@@ -70,15 +70,14 @@ hr {
 
 .find-transport {
   margin: var(--general-margin);
-  height: 100%;
 }
 
 .find-cards {
   margin: 0% -3%;
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
-  overflow-x: auto;
+  gap: 20px;
+
   /* justify-content: space-evenly; */
 }
 
@@ -127,16 +126,15 @@ hr {
   justify-self: end;
 }
 
-.signup-button{
+.signup-button {
   grid-column: 2;
   margin: 15px 40% 8px 0px;
 }
 
-.cancel-button{
+.cancel-button {
   grid-column: 2;
   margin: 0px 40% 0px 0px;
 }
-
 
 /*  Create excursion:   */
 
@@ -216,6 +214,11 @@ option {
   justify-content: center;
 }
 
+.plist {
+  height: 60vh;
+  overflow: auto;
+}
+
 .participant-header {
   font-size: 14px;
   font-weight: 600;
@@ -257,6 +260,20 @@ option {
 
 .shopping-list {
   margin: var(--general-margin);
+}
+
+.shopping-add {
+  padding-top: 15px;
+  display: grid;
+  grid-template-columns: 300px 100px 100px auto;
+  grid-gap: 4px 20px;
+}
+
+.shopping-item {
+  display: grid;
+  grid-template-columns: 300px 100px 100px auto auto;
+  grid-gap: 4px 20px;
+  margin-left: 5px;
 }
 
 .just-margin {

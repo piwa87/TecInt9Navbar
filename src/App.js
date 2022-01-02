@@ -37,10 +37,10 @@ export default function App() {
 						<Route path="/dutyList" element={<DutyList setUser={setUser} />} />
 						<Route path="/shoppingList" element={<ShoppingList />} />
 
-						<Route path="/excursions" element={<Excursions setUser={setUser} user={user} />} />
+						<Route path="/excursions" element={<Excursions setUser={setUser} />} />
 						<Route path="/transport" element={<Transport setUser={setUser} />} />
 						<Route path="/contact" element={<Contact />} />
-						<Route path="/signup" element={<Signup />} />
+						<Route path="/signup" element={<Signup setUser={setUser} />} />
 
 						<Route path="/afterSignUp" element={<AfterSignUp />} />
 					</Routes>

@@ -21,8 +21,6 @@ export default function CreateExcursion({ setUser }) {
         imgURL: "",
     })
 
-    console.log(excursionData);
-
     function handleChange(e) {
         const { name, value } = e.target
         setExcursionData(prevState => {

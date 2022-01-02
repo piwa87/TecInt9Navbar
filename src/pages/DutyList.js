@@ -5,24 +5,18 @@ import { fetchDuties } from "../api.js"
 
 export default function DutyList({ setUser }) {
 
-    const [data, setData] = useState({ dutyName: "" })
     const [duties, setDuties] = useState([])
+    const [data, setData] = useState({ dutyName: "" })
 
     useEffect(() => { setUser("org") })
 
     useEffect(() => {
-        let ignore = false;
         async function fetchData() {
             const result = await fetchDuties();
-            if (!ignore) setDuties(result.sort());
+            setDuties(result.sort());
         }
         fetchData();
-        return () => { ignore = true; }
     }, []);
-
-    useEffect(() => {
-        console.log("Changed ", duties)
-    }, [duties]);
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -46,8 +40,7 @@ export default function DutyList({ setUser }) {
     }
 
     function addDuty() {
-        const Duty = Parse.Object.extend('Duty');
-        const duty = new Duty();
+        const duty = new Parse.Object('Duty');
         duty.save({
             dutyName: data.dutyName,
         }).then(

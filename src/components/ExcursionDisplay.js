@@ -8,8 +8,6 @@ export default function ExcursionDisplay({ ex }) {
 
     const navigate = useNavigate();
 
-    console.log(ex);
-
     return (
         (ex) ?
             <div className="ex-info">
@@ -28,8 +26,10 @@ export default function ExcursionDisplay({ ex }) {
 
                 <hr />
 
-                <section className="ex-description" style={{textAlign: "center"}}>
-                    Join this year’s excursion, there is room for {ex.capacity} people.
+                <section
+                    className="ex-description"
+                    style={{ textAlign: "center" }}>
+                    Join this year`s excursion, there is room for {ex.capacity} people.
                     <br />
                     We are looking forward to see you!
                 </section>
@@ -38,8 +38,8 @@ export default function ExcursionDisplay({ ex }) {
                     <ButtonTextSignUp>Sign up</ButtonTextSignUp>
                 </ButtonSignup>
             </div>
-            : <div className="just_margin">
-                <p>Unforunately there are no excursions yet...</p>
-            </div>
+            :
+            <p className="just_margin">Unforunately there are no excursions yet...</p>
+
     )
 }

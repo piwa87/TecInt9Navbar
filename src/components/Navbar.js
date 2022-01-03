@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { Icon } from '@iconify/react'
 import './Navbar.css'
 
-export default function Navbar({ user }) {
+export default function Navbar({ user, noEx }) {
 
     const isLoggedIn = (!user ? false : true);
 
@@ -21,9 +21,11 @@ export default function Navbar({ user }) {
                             height="50"
                         />
                         <NavLink to="/excursions">Join Excursion</NavLink>
-                        <NavLink to="/transport">Find Transport</NavLink>
+                        {noEx &&
+                            <NavLink to="/transport">Find Transport</NavLink>}
                         <NavLink to="/contact">Contact</NavLink>
-                        <NavLink to="/signup">Sign up</NavLink>
+                        {noEx &&
+                            <NavLink to="/signup">Sign up</NavLink>}
                         <a href="/home">Home</a>
                     </>
                 ) : (user === "org") && (                    // Navbar for organizers:
@@ -35,7 +37,7 @@ export default function Navbar({ user }) {
                             width="50"
                             height="50"
                         />
-                        <NavLink to="/createExcursion">Create Excursion</NavLink>
+                        <NavLink to="/admin">Excursions</NavLink>
                         <NavLink to="/participantList">Participant List</NavLink>
                         <NavLink to="/dutyList">Duty List</NavLink>
                         <NavLink to="/shoppingList">Shopping List</NavLink>

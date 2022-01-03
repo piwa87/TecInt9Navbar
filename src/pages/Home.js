@@ -8,7 +8,7 @@ export default function Home({ setUser }) {
     function logInOrganizer(e) {
         e.preventDefault()
         setUser("org")
-        navigate("/createExcursion")
+        navigate("/excursionsAdmin")
     }
 
     function logInParticipant(e) {

@@ -1,20 +1,20 @@
 import ExcursionDisplay from '../components/ExcursionDisplay';
-import { useEffect, useState } from 'react';
-import { fetchExcursions } from '../api';
+import { useEffect } from 'react';
+import { Icon } from '@iconify/react'
 
-export default function Excursions({ setUser }) {
+export default function Excursions({ setUser, excursions }) {
 
-	const [excursions, setExcursions] = useState([])
+	const currentExcursion = excursions[excursions.length - 1];
+	// const pastExcursions = excursions.slice(0, -1)
 
 	useEffect(() => { setUser("par") })
 
-	useEffect(() => {
-		async function fetchData() {
-			const result = await fetchExcursions();
-			setExcursions(result)
-		}
-		fetchData();
-	}, []);
-
-	return <ExcursionDisplay ex={excursions[excursions.length - 1]} />
+	return (currentExcursion === undefined) ?
+		<section className="no-excursion">
+			<h3>Unforunately there are no excursions yet...</h3>
+			<br />
+			<Icon icon="et:sad" color="#555" width="190" height="190" />
+		</section>
+		:
+		<ExcursionDisplay excursionData={currentExcursion} />
 }

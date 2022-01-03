@@ -37,20 +37,6 @@ export default function CreateExcursion({ setUser }) {
         navigate('/home');
     };
 
-    function resetExcursionData() {
-        setExcursionData({
-            title: "",
-            description: "",
-            startDate: "",
-            endDate: "",
-            price: "",
-            location: "",
-            deadline: "",
-            capacity: "",
-            imgURL: "",
-        })
-    }
-
     return (
         <div className="create-ex">
             <h3>Create Excursion:</h3>
@@ -86,7 +72,7 @@ export default function CreateExcursion({ setUser }) {
                         name="startDate"
                         value={excursionData.startDate}
                         required="required"
-                        max={Date(excursionData.endDate)}
+                        max={excursionData.endDate}
                     />
 
                     &emsp;&emsp;&emsp;&emsp;
@@ -155,8 +141,8 @@ export default function CreateExcursion({ setUser }) {
                         value={excursionData.imgURL}
                     />
                     <section className="create-ex-buttons">
-                        <TheGreenButton onClick={handleSubmit}>Create Excursion</TheGreenButton>
-                        <RedButton onClick={() => resetExcursionData()}>Cancel</RedButton>
+                        <TheGreenButton>Create Excursion</TheGreenButton>
+                        <RedButton type="reset" onClick={() => navigate('/')}>Cancel</RedButton>
                     </section>
                 </section>
             </form>

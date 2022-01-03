@@ -33,7 +33,7 @@ export default function CreateSignUp({ setUser }) {
 
   useEffect(() => setUser("par"))
 
-  useEffect(() => {
+  useEffect( () => {
     async function fetchData() {
       const result = await fetchDuties();
       setDuties(result.map(i => i.dutyName));
@@ -146,7 +146,7 @@ export default function CreateSignUp({ setUser }) {
           name="pref1"
           value={signupData.pref1} >
           <option value="">-- Choose --</option>
-          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
         </select>
 
         <label>#2:</label>
@@ -156,7 +156,7 @@ export default function CreateSignUp({ setUser }) {
           name="pref2"
           value={signupData.pref2} >
           <option value="">-- Choose --</option>
-          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
         </select>
 
         <label>#3:</label>
@@ -166,7 +166,7 @@ export default function CreateSignUp({ setUser }) {
           name="pref3"
           value={signupData.pref3} >
           <option value="">-- Choose --</option>
-          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
         </select>
 
         Car Status:
@@ -202,7 +202,7 @@ export default function CreateSignUp({ setUser }) {
         {getGuests(signupData.noGuests)}
 
         <TheGreenButton className="signup-button" onClick={handleSubmit}>Sign Up</TheGreenButton>
-        <RedButton className="cancel-button" onClick={resetSignupData}>Cancel</RedButton>
+        <RedButton className="cancel-button" type="reset" onClick={() => navigate('/excursions')}>Cancel</RedButton>
       </form>
     </div>
   );

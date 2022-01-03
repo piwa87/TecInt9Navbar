@@ -22,7 +22,8 @@
   font-family: var(--main-font);
 }
 
-/*  The general styling of our main content window */
+/*  The general styling of our main content window  */
+
 .main {
   font-family: var(--main-font);
   background-color: var(--lightgreen);
@@ -47,7 +48,7 @@ hr {
   margin: 20px 30px;
 }
 
-/*  Landing page (home)  styling:   */
+/*  Landing page (/home)  styling:   */
 
 .home {
   display: flex;
@@ -154,7 +155,6 @@ hr {
 .create-form-date {
   display: grid;
   grid-template-columns: 150px 110px auto 110px;
-  /* gap: 10px; */
   align-items: center;
   min-width: 400px;
   max-width: 500px;
@@ -181,6 +181,7 @@ input {
   border: 1px solid #ccc;
   border-radius: var(--general-border-radius);
   height: 60px;
+  resize: vertical;
 }
 
 .create-form select,
@@ -198,7 +199,6 @@ option {
   grid-template-columns: 150px 450px;
   font-size: 14px;
   align-items: center;
-  /* justify-items: auto; */
   min-width: 100%;
 }
 
@@ -280,6 +280,9 @@ option {
   border-bottom: 1px dotted black;
 }
 
-.just-margin {
+.no-excursion {
   margin: var(--general-margin);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

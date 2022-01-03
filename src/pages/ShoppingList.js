@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { BiTrash, BiPencil } from "react-icons/bi";
 import { TheGreenButton } from "../components/Button";
-import { addShoppingItem, fetchShoppingItems } from "../api";
-
-
+import { addShoppingItem, destroyShoppingItem, fetchShoppingItems } from "../api";
 
 export default function ShoppingList() {
 
@@ -23,7 +21,7 @@ export default function ShoppingList() {
     }, []);
 
     useEffect(() => {
-        console.log("Fechted items: ", items);
+        console.log("Items from DB: ", items);
     }, [items])
 
     function handleChange(e) {
@@ -58,10 +56,17 @@ export default function ShoppingList() {
             <span>{i.item}</span>
             <span>{i.quantity}</span>
             <span>{i.unit}</span>
-            <BiPencil cursor="pointer" />
-            <BiTrash cursor="pointer" />
+            <BiPencil cursor="pointer" onClick={() => alert('Editing function')} />
+            <BiTrash cursor="pointer" onClick={() => deleteItem(i.itemID)}/>
         </section>
     )
+
+    function deleteItem(id) {
+        setItems(items.filter((item) => {
+            return item.itemID !== id
+        }))
+        destroyShoppingItem(id);
+    };
 
     return (
         <div className="shopping-list">
@@ -69,7 +74,7 @@ export default function ShoppingList() {
             <h3>Shopping List:</h3>
             <br />
 
-            <section className="shopping-add">
+            <form className="shopping-add" onSubmit={handleSubmit}>
                 <b>Item:</b>
                 <b>Quantity:</b>
                 <b>Unit:</b>
@@ -80,6 +85,7 @@ export default function ShoppingList() {
                     onChange={handleChange}
                     name="item"
                     value={inputData.item}
+                    required="required"
                 />
                 <input
                     type="number"
@@ -87,6 +93,7 @@ export default function ShoppingList() {
                     onChange={handleChange}
                     name="quantity"
                     value={inputData.quantity}
+                    required="required"
                 />
                 <input
                     type="text"
@@ -94,10 +101,10 @@ export default function ShoppingList() {
                     onChange={handleChange}
                     name="unit"
                     value={inputData.unit}
+                    required="required"
                 />
-
-                <TheGreenButton onClick={handleSubmit}>Add</TheGreenButton>
-            </section>
+                <TheGreenButton>Add</TheGreenButton>
+            </form>
             <hr />
             {showItems}
         </div>

@@ -146,6 +146,15 @@ export async function fetchShoppingItems() {
     }
 };
 
+export function destroyShoppingItem(id) {
+    const item = new Parse.Object('ShoppingItem');
+    item.set('objectId', id);
+    item.destroy()
+        .then(
+            console.log("Deleted shopping item: " + id)
+        );
+}
+
 //  Other functions:
 
 //  Calculates the age based on the birth date
@@ -159,4 +168,25 @@ function getAge(dateString) {
         age--;
     }
     return age;
+};
+
+export function getWeekday(inputDate) {
+    switch (new Date(inputDate).getDay()) {
+        case 0:
+            return "Sunday";
+        case 1:
+            return "Monday";
+        case 2:
+            return "Tuesday";
+        case 3:
+            return "Wednesday";
+        case 4:
+            return "Thursday";
+        case 5:
+            return "Friday";
+        case 6:
+            return "Saturday";
+        default:
+            return "null"
+    }
 };

@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router";
-import "../tempData/excursionDetails";
 import { ButtonSignup, ButtonTextSignUp } from './Button';
+import { getWeekday } from "../api"
+
+import "../tempData/excursionDetails";
 import "./ExDisplay.css";
 
 
 export default function ExcursionDisplay({ ex }) {
 
     const navigate = useNavigate();
+
+    console.log(getWeekday("2022-01-01"));
 
     return (
         (ex) ?
@@ -18,11 +22,13 @@ export default function ExcursionDisplay({ ex }) {
                 </section>
 
                 <section className="ex-data">
-                    Dates:<b>{ex.startDate} - {ex.endDate}</b>
+                    Dates:<b>{getWeekday(ex.startDate)} to {getWeekday(ex.endDate)}<br></br> {ex.startDate} - {ex.endDate}</b>
                     Location: <b>{ex.location}</b>
                     Adult: <b>{ex.price} Kr.</b>
                     Child: <b>{ex.price / 2} Kr.</b>
                 </section>
+
+
 
                 <hr />
 

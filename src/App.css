@@ -273,7 +273,11 @@ option {
   display: grid;
   grid-template-columns: 300px 100px 100px auto auto;
   grid-gap: 4px 20px;
-  margin-left: 5px;
+  margin-left: 4px;
+  padding-top: 6px;
+  box-sizing: content-box;
+  width: 97%;
+  border-bottom: 1px dotted black;
 }
 
 .just-margin {

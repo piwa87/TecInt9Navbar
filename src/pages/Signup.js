@@ -54,22 +54,7 @@ export default function CreateSignUp({ setUser }) {
   function handleSubmit(e) {
     e.preventDefault();
     uploadSignUp(signupData, carData);
-    navigate("/AfterSignUp")
-  }
-
-  function resetSignupData() {
-    setSignupData({
-      fullname: "",
-      birthday: "",
-      address: "",
-      email: "",
-      phone: "",
-      pref1: "",
-      pref2: "",
-      pref3: "",
-      carStatus: "",
-      noGuests: "",
-    })
+    navigate('/AfterSignUp')
   }
 
   function getGuests() {

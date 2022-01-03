@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router"
 import { Icon } from '@iconify/react'
+import { useEffect } from "react"
 
 export default function Home({ setUser }) {
 
@@ -8,13 +9,13 @@ export default function Home({ setUser }) {
     function logInOrganizer(e) {
         e.preventDefault()
         setUser("org")
-        navigate("/excursionsAdmin")
+        navigate('/admin')
     }
 
     function logInParticipant(e) {
         e.preventDefault()
         setUser("par")
-        navigate("/excursions")
+        navigate('/excursions')
     }
 
     return (

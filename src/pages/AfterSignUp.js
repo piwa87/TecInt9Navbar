@@ -6,7 +6,7 @@ export default function AfterSignUp() {
     const navigate = useNavigate()
 
     function findRide() {
-        navigate("/transport")
+        navigate('/transport')
     }
 
     return (

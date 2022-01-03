@@ -142,7 +142,7 @@ export default function CreateExcursion({ setUser }) {
                     />
                     <section className="create-ex-buttons">
                         <TheGreenButton>Create Excursion</TheGreenButton>
-                        <RedButton type="reset" onClick={() => navigate('/')}>Cancel</RedButton>
+                        <RedButton type="reset" onClick={() => navigate('/home')}>Cancel</RedButton>
                     </section>
                 </section>
             </form>

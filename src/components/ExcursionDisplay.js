@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import { ButtonSignup, ButtonTextSignUp } from './Button';
-import { Icon } from '@iconify/react'
 import { getWeekday } from "../api"
 
 import "../tempData/excursionDetails";
@@ -36,7 +35,7 @@ export default function ExcursionDisplay({ excursionData: ex }) {
                 We are looking forward to see you!
             </section>
             <br />
-            <ButtonSignup className="ex-button" onClick={() => navigate("/signup")}>
+            <ButtonSignup className="ex-button" onClick={() => navigate('/signup')}>
                 <ButtonTextSignUp>Sign up</ButtonTextSignUp>
             </ButtonSignup>
         </div>

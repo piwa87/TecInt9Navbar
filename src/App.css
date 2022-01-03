@@ -282,7 +282,14 @@ option {
 
 .no-excursion {
   margin: var(--general-margin);
+  padding-top: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.just-margin {
+  margin: var(--general-margin);
+  display: flex;
+  flex-direction: column;
 }

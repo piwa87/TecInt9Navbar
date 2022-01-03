@@ -4,10 +4,9 @@ import { Icon } from '@iconify/react'
 
 export default function Excursions({ setUser, excursions }) {
 
-	const currentExcursion = excursions[excursions.length - 1];
-	// const pastExcursions = excursions.slice(0, -1)
-
 	useEffect(() => { setUser("par") })
+	
+	const currentExcursion = excursions[excursions.length - 1];
 
 	return (currentExcursion === undefined) ?
 		<section className="no-excursion">

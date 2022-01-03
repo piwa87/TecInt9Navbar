@@ -4,9 +4,12 @@ import { useEffect, useState } from "react"
 import { TheGreenButton } from '../components/Button';
 import { fetchParticipants } from "../api";
 
-export default function ParticipantList({ setUser }) {
+export default function ParticipantList({ setUser, ex }) {
 
     const [participants, setParticipants] = useState([])
+    const where = (ex === undefined) ? "" : ex.location;
+
+    console.log("#", where);
 
     useEffect(() => setUser("org"));
 
@@ -73,7 +76,7 @@ export default function ParticipantList({ setUser }) {
 
     return (
         <div className="participant-list">
-            <h3>List of participants for current excursion:</h3>
+            <h3>List of participants for:&ensp;<b>{where}</b></h3>
             <br />
             <section className="participant-header">
                 <span>Name:</span>

@@ -39,14 +39,14 @@ export default function App() {
 	return (
 		<>
 			<BrowserRouter>
-				<Navbar user={user} noEx={(excursions === undefined)} />
+				<Navbar user={user} noEx={!(excursions.length === 0)} />
 				<section className="main">
 					<Routes>
 						<Route path="/" element={<Home setUser={setUser} />} />
 						<Route path="/home" element={<Home setUser={setUser} />} />
 
-						<Route path="/admin" element={<ExcursionsAdmin setUser={setUser} />} />
-						<Route path="/participantList" element={<ParticipantList setUser={setUser} />} />
+						<Route path="/admin" element={<ExcursionsAdmin setUser={setUser} excursions={excursions} />} />
+						<Route path="/participantList" element={<ParticipantList setUser={setUser} ex={excursions[excursions.length - 1]} />} />
 						<Route path="/dutyList" element={<DutyList setUser={setUser} />} />
 						<Route path="/shoppingList" element={<ShoppingList />} />
 

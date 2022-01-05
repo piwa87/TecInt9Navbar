@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router"
 import { Icon } from '@iconify/react'
-import { useEffect } from "react"
 
 export default function Home({ setUser }) {
 

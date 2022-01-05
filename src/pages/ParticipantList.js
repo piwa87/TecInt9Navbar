@@ -7,9 +7,7 @@ import { fetchParticipants } from "../api";
 export default function ParticipantList({ setUser, ex }) {
 
     const [participants, setParticipants] = useState([])
-    const where = (ex === undefined) ? "" : ex.location;
-
-    console.log("#", where);
+    const where = (ex === undefined) ? "<empty>" : ex.location;
 
     useEffect(() => setUser("org"));
 
@@ -21,8 +19,19 @@ export default function ParticipantList({ setUser, ex }) {
         fetchData();
     }, []);
 
+    function deleteParticipant(parID) {
+        setParticipants(participants.filter(p => { return p.id !== parID }))
+        const Participant = new Parse.Object('Participant');
+        Participant.set('objectId', parID);
+        const name = Participant.get('fullname');
+        Participant.destroy().then(
+            console.log("Deleted participant: " + name)
+        );
+    };
 
-    const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
+
+
+    const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} deleteParticipant={deleteParticipant} />)
 
     //  HELPING FUNCTIONS:
 
@@ -40,7 +49,7 @@ export default function ParticipantList({ setUser, ex }) {
         const fullname = rndName()
         participant.save({
             fullname: fullname,
-            age: rndAnge(12, 90),
+            age: rndAnge(12, 64),
             pref1: rndPreference(),
             pref2: rndPreference(),
             pref3: rndPreference(),
@@ -85,7 +94,7 @@ export default function ParticipantList({ setUser, ex }) {
             </section>
             <br />
             {participantList}
-        
+
             <br />
             <TheGreenButton onClick={() => createParticipant()}>Add random participant</TheGreenButton>
         </div>

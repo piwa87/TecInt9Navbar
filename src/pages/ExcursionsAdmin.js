@@ -14,8 +14,6 @@ export default function ExcursionsAdmin({ setUser, excursions }) {
             <ExMiniDisplay key={item.id} excursionData={item} />
     )
 
-    console.log("Past:", pastExcursions);
-
     return (currentExcursion === undefined) ?
         <section className="no-excursion">
             <h3>No excursions yet</h3>

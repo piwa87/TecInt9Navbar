@@ -54,7 +54,7 @@ export default function ShoppingList() {
     const showItems = items.map(i =>
         <section key={i.item} className="shopping-item">
             <span>{i.item}</span>
-            <span>{i.quantity}</span>
+            <span className="shopping-quan">{i.quantity}</span>
             <span>{i.unit}</span>
             <BiPencil cursor="pointer" onClick={() => alert('Editing function')} />
             <BiTrash cursor="pointer" onClick={() => deleteItem(i.itemID)}/>

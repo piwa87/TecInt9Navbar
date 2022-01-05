@@ -16,7 +16,25 @@ export default function DutyList({ setUser }) {
             setDuties(result.sort());
         }
         fetchData();
+        fetchRest();
     }, []);
+
+    async function fetchRest() {
+        const rawResponse = await fetch(
+            "https://parseapi.back4app.com/classes/Duty/",
+            {
+                method: "GET",
+                headers: {
+                    "X-Parse-Application-Id": "mDBjX2yw6jZOqBzaD7dtM8AtxbUdLcJFqUY9XBxL",
+                    "X-Parse-REST-API-Key": "ouMbrbWhs5C5g1La2gwdWDxxyxaTzwplwpPTvdI6"
+                }
+            }
+        );
+        const content = await rawResponse.json();
+        console.log("Content:", content);
+    };
+
+
 
     function handleChange(e) {
         const { name, value } = e.target

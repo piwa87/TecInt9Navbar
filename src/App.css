@@ -280,6 +280,11 @@ option {
   border-bottom: 1px dotted black;
 }
 
+.shopping-quan {
+  justify-self: end;
+  padding-right: 10px;
+}
+
 .no-excursion {
   margin: var(--general-margin);
   padding-top: 10%;

@@ -1,24 +1,12 @@
 import { BiTrash, BiPencil } from "react-icons/bi";
-import Parse from "parse";
 import { useState } from "react";
 import Modal, { setAppElement } from "react-modal";
 import { RedButton, GreyButton } from '../components/Button';
 
-export default function SingleParticipant({ par }) {
+export default function SingleParticipant({ par, deleteParticipant }) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [parName, setParName] = useState('');
-
-    async function deleteParticipant() {
-        const Participant = new Parse.Object('Participant');
-        Participant.set('objectId', par.id);
-        try {
-            await Participant.destroy();
-            window.location.reload();
-        } catch (error) {
-            alert(`Error ${error.message}`);
-        };
-    };
 
     // Modal functionality:
 
@@ -33,12 +21,12 @@ export default function SingleParticipant({ par }) {
     };
 
     function closeModal() {
-        setIsOpen(false)
+        setIsOpen(false);
     };
 
     function closeAndDelete() {
-        deleteParticipant()
-        closeModal()
+        deleteParticipant(par.id);
+        closeModal();
     };
 
     const customStyles = {

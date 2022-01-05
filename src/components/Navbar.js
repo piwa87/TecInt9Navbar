@@ -5,7 +5,6 @@ import './Navbar.css'
 export default function Navbar({ user, noEx }) {
 
     const isLoggedIn = (!user ? false : true);
-    console.log("noEx: ", noEx);
 
     return (
         <nav className="navbar">

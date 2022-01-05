@@ -29,7 +29,7 @@ export default function CreateSignUp({ setUser }) {
     seats: 0,
   })
 
-  console.log("CarData: ", carData);
+  // console.log("CarData: ", carData);
 
   useEffect(() => setUser("par"))
 
@@ -60,7 +60,7 @@ export default function CreateSignUp({ setUser }) {
   function getGuests() {
     const myGuests = [];
     for (let i = 0; i < signupData.noGuests; i++) {
-      myGuests.push(<GuestSignUpComponent i={i} duties={duties} />);
+      myGuests.push(<GuestSignUpComponent key={i+4} i={i} duties={duties} />);
     }
     return myGuests;
   }

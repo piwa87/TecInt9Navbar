@@ -36,8 +36,6 @@ export default function App() {
 		fetchData();
 	}, []);
 
-	console.log("Initial load: ", excursions);
-
 	if (!excursions) {
 		return <>Loading...</>
 	}

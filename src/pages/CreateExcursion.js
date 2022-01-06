@@ -1,7 +1,7 @@
 import { TheGreenButton, RedButton } from "../components/Button"
 import { useEffect, useState } from "react"
-import Parse from "parse"
 import { useNavigate } from "react-router-dom"
+import { uploadExcursion } from "../api"
 
 export default function CreateExcursion({ setUser }) {
 
@@ -11,9 +11,12 @@ export default function CreateExcursion({ setUser }) {
 
     const [excursionData, setExcursionData] = useState({
         title: "",
-        date: "",
-        location: "",
+        description: "",
+        startDate: "",
+        endDate: "",
         price: "",
+        location: "",
+        deadline: "",
         capacity: "",
         imgURL: "",
     })
@@ -30,112 +33,119 @@ export default function CreateExcursion({ setUser }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        uploadExcursion();
+        uploadExcursion(excursionData);
         navigate('/home');
     };
 
-    function resetExcursionData() {
-        setExcursionData({
-            title: "",
-            date: "",
-            location: "",
-            price: "",
-            capacity: "",
-            imgURL: ""
-        })
-    }
-
-    async function uploadExcursion() {
-        const Excursion = Parse.Object.extend("Excursion");
-        const excursion = new Excursion();
-        excursion.set("title", excursionData.title);
-        excursion.set("date", excursionData.date);
-        excursion.set("location", excursionData.location);
-        excursion.set("price", excursionData.price);
-        excursion.set("capacity", excursionData.capacity);
-        excursion.set("imgurl", excursionData.imgURL)
-        try {
-            await excursion.save();
-            alert('Success, your excursion has been created: ' + excursionData.title)
-        } catch (error) {
-            alert(`Error ${error.message}`);
-        };
-    };
-
-    console.log(excursionData);
-
     return (
         <div className="create-ex">
-            <h3>Fill out the form to create an excursion:</h3>
+            <h3>Create Excursion:</h3>
             <br />
-            <form
-                id="excForm"
-                className="create-form"
-                onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
+                <section className="create-form">
 
-                <p>Title:</p>
-                <input
-                    type="text"
-                    placeholder="Title"
-                    onChange={handleChange}
-                    name="title"
-                    value={excursionData.title}
-                    required="required"
-                />
+                    Title:
+                    <input
+                        type="text"
+                        placeholder="Title"
+                        onChange={handleChange}
+                        name="title"
+                        value={excursionData.title}
+                        required="required"
+                    />
 
-                <p>Date:</p>
-                <input
-                    type="date"
-                    placeholder="dd-mm-yyyy-dd"
-                    onChange={handleChange}
-                    name="date"
-                    value={excursionData.date}
-                    required="required"
-                />
+                    Description:
+                    <textarea
+                        type="textarea"
+                        placeholder="Description"
+                        onChange={handleChange}
+                        name="description"
+                        value={excursionData.description}
+                    />
+                </section>
 
-                <p>Location:</p>
-                <input
-                    type="text"
-                    placeholder="Location"
-                    onChange={handleChange}
-                    name="location"
-                    value={excursionData.location}
-                    required="required"
-                />
+                <section className="create-form-date">
+                    Start Date:
+                    <input
+                        type="date"
+                        onChange={handleChange}
+                        name="startDate"
+                        value={excursionData.startDate}
+                        required="required"
+                        max={excursionData.endDate}
+                    />
 
-                <p>Price:</p>
-                <input
-                    type="number"
-                    placeholder="Price (in DKK)"
-                    onChange={handleChange}
-                    name="price"
-                    value={excursionData.price}
-                    min="100"
-                    required="required"
-                />
+                    &emsp;&emsp;&emsp;&emsp;
+                    End Date:
+                    <input
+                        type="date"
+                        onChange={handleChange}
+                        name="endDate"
+                        value={excursionData.endDate}
+                        required="required"
+                        min={excursionData.startDate}
+                    />
+                </section>
 
-                <p>Max. Capacity:</p>
-                <input
-                    type="number"
-                    placeholder="Max. Capacity"
-                    onChange={handleChange}
-                    name="capacity"
-                    value={excursionData.capacity}
-                    required="required"
-                />
+                <section className="create-form">
+                    Price:
+                    <input
+                        type="number"
+                        placeholder="Price (in DKK)"
+                        onChange={handleChange}
+                        name="price"
+                        value={excursionData.price}
+                        min="100"
+                        required="required"
+                    />
 
-                <p>Picture:</p>
-                <input
-                    type="url"
-                    placeholder="URL of the title picture"
-                    onChange={handleChange}
-                    name="imgURL"
-                    value={excursionData.imgURL}
-                />
+                    Location:
+                    <input
+                        type="text"
+                        placeholder="Location"
+                        onChange={handleChange}
+                        name="location"
+                        value={excursionData.location}
+                        required="required"
+                    />
 
-            <TheGreenButton onClick={handleSubmit}>Create Excursion</TheGreenButton>
+                    Deadline:
+                    <input
+                        type="date"
+                        onChange={handleChange}
+                        name="deadline"
+                        value={excursionData.deadline}
+                        required="required"
+                        style={{
+                            width: "96px",
+                        }}
+                    />
+
+
+                    Max. Capacity:
+                    <input
+                        type="number"
+                        placeholder="Max. Capacity"
+                        onChange={handleChange}
+                        name="capacity"
+                        value={excursionData.capacity}
+                        required="required"
+                    />
+
+                    Picture:
+                    <input
+                        type="url"
+                        placeholder="URL of the title picture"
+                        onChange={handleChange}
+                        name="imgURL"
+                        value={excursionData.imgURL}
+                    />
+                    <section className="create-ex-buttons">
+                        <TheGreenButton>Create Excursion</TheGreenButton>
+                        <RedButton type="reset" onClick={() => navigate('/admin')}>Cancel</RedButton>
+                    </section>
+                </section>
             </form>
-            <RedButton onClick={() => resetExcursionData()}>Cancel</RedButton>
         </div >
     )
 }

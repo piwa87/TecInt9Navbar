@@ -22,16 +22,14 @@
   font-family: var(--main-font);
 }
 
-/*  The general styling of our main content window */
+/*  The general styling of our main content window  */
+
 .main {
   font-family: var(--main-font);
   background-color: var(--lightgreen);
   margin: 0% 15%;
-  padding-top: 32px;
-  padding-bottom: 20%;
-  padding-left: 127px;
-  padding-right: 127px;
-  height: 100vh;
+  padding: 32px 127px;
+  min-height: 100vh;
 }
 
 .main > h1,
@@ -39,13 +37,19 @@ h2,
 h3,
 h4 {
   margin: 0;
+  padding: 0;
 }
 
 .main h3 {
   font-size: 24px;
 }
 
-/*  Landing page (home)  styling:   */
+hr {
+  border: 1px solid var(--color1);
+  margin: 20px 30px;
+}
+
+/*  Landing page (/home)  styling:   */
 
 .home {
   display: flex;
@@ -68,15 +72,14 @@ h4 {
 
 .find-transport {
   margin: var(--general-margin);
-  height: 100%;
 }
 
 .find-cards {
   margin: 0% -3%;
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
-  overflow-x: auto;
+  gap: 20px;
+
   /* justify-content: space-evenly; */
 }
 
@@ -125,16 +128,15 @@ h4 {
   justify-self: end;
 }
 
-.signup-button{
+.signup-button {
   grid-column: 2;
   margin: 15px 40% 8px 0px;
 }
 
-.cancel-button{
+.cancel-button {
   grid-column: 2;
   margin: 0px 40% 0px 0px;
 }
-
 
 /*  Create excursion:   */
 
@@ -147,19 +149,40 @@ h4 {
   grid-template-columns: 150px auto;
   font-size: 14px;
   align-items: center;
-  /* justify-items: auto; */
   min-width: 400px;
   max-width: 500px;
 }
 
-.create-form input {
+.create-form-date {
+  display: grid;
+  grid-template-columns: 150px 110px auto 110px;
+  align-items: center;
+  min-width: 400px;
+  max-width: 500px;
+  font-size: 14px;
+}
+
+input {
   font-family: var(--main-font);
+  font-size: 12px;
   text-indent: 3px;
   padding: 8px 6px;
   margin: 4px 0px;
   border: 1px solid #ccc;
   border-radius: var(--general-border-radius);
   height: 14px;
+}
+
+.create-ex textarea {
+  font-family: var(--main-font);
+  font-size: 12px;
+  text-indent: 3px;
+  padding: 8px 6px;
+  margin: 4px 0px;
+  border: 1px solid #ccc;
+  border-radius: var(--general-border-radius);
+  height: 60px;
+  resize: vertical;
 }
 
 .create-form select,
@@ -172,24 +195,28 @@ option {
   align-items: baseline;
 }
 
-/* .create-form input[type=checkbox] {
-  align-items: center;
-} */
-
 .create-form-car {
   display: grid;
   grid-template-columns: 150px 450px;
   font-size: 14px;
   align-items: center;
-  /* justify-items: auto; */
   min-width: 100%;
+}
+
+.create-ex-buttons {
+  grid-column: 2;
+  padding: 14px 0px;
 }
 
 /*  Participant list:   */
 
 .participant-list {
   margin: var(--general-margin);
-  justify-content: center;
+}
+
+.plist {
+  height: 60vh;
+  overflow: auto;
 }
 
 .participant-header {
@@ -197,30 +224,27 @@ option {
   font-weight: 600;
   text-decoration: underline;
   display: grid;
-  grid-template-columns: 230px 280px 30px 10px 10px;
+  grid-template-columns: 200px 320px 50px 10px 10px;
   gap: 10px;
 }
 
 .participant-single {
   font-size: 14px;
+
   display: grid;
-  grid-template-columns: 230px 280px 50px 15px 15px;
+  grid-template-columns: 200px 320px 50px 15px 15px;
   gap: 10px;
+  padding-top: 6px;
 
-  padding: 4px 4px;
-  margin: 0px -4px;
-  /* line-height: 1.5p; */
+  box-sizing: content-box;
   align-items: center;
-  border: 1px solid;
-  border-radius: var(--general-border-radius);
-  border-color: transparent;
-  transition: border-color 0.2s;
+  justify-items: left;
+
+  border-bottom: 1px dotted;
+  width: 100%;
+  transition: border-bottom 0.2s;
 }
 
-.participant-single:hover {
-  border-color: var(--color1);
-  width: auto;
-}
 
 /*  Duty list:  */
 
@@ -230,19 +254,51 @@ option {
   flex-direction: column;
 }
 
-.duty-input [type="text"],
-select {
-  font-family: var(--main-font);
-  width: 50%;
-  padding: 10px;
-  margin: 10px 0px;
-  border: 1px solid #ccc;
-  border-radius: var(--general-border-radius);
-  box-sizing: border-box;
-}
-
 /*  Shopping list:  */
 
 .shopping-list {
   margin: var(--general-margin);
+}
+
+.shopping-add {
+  padding-top: 15px;
+  display: grid;
+  grid-template-columns: 300px 100px 100px auto;
+  grid-gap: 4px 20px;
+}
+
+.shopping-item {
+  display: grid;
+  grid-template-columns: 300px 100px 100px auto auto;
+  grid-gap: 4px 20px;
+  margin-left: 4px;
+  padding-top: 6px;
+  box-sizing: content-box;
+  width: 97%;
+  border-bottom: 1px dotted black;
+}
+
+.shopping-quan {
+  justify-self: end;
+  padding-right: 10px;
+}
+
+.no-excursion {
+  margin: var(--general-margin);
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ex-admin {
+  margin: var(--general-margin);
+  display: flex;
+  flex-direction: column;
+}
+
+.ex-details {
+  font-weight: 900;
+  margin: 0;
+  padding-top: 18px;
 }

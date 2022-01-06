@@ -2,27 +2,40 @@ import Parse from "parse"
 import { useEffect, useState } from "react";
 import { TheGreenButton } from "../components/Button";
 import { fetchDuties } from "../api.js"
+import ExDetails from "../components/ExDetails";
 
-export default function DutyList({ setUser }) {
+export default function DutyList({ setUser, excursions }) {
 
-    const [data, setData] = useState({ dutyName: "" })
     const [duties, setDuties] = useState([])
+    const [data, setData] = useState({ dutyName: "" })
 
     useEffect(() => { setUser("org") })
 
     useEffect(() => {
-        let ignore = false;
         async function fetchData() {
             const result = await fetchDuties();
-            if (!ignore) setDuties(result.sort());
+            setDuties(result.sort());
         }
         fetchData();
-        return () => { ignore = true; }
+        fetchRest();
     }, []);
 
-    useEffect(() => {
-        console.log("Changed ", duties)
-    }, [duties]);
+    async function fetchRest() {
+        const rawResponse = await fetch(
+            "https://parseapi.back4app.com/classes/Duty/",
+            {
+                method: "GET",
+                headers: {
+                    "X-Parse-Application-Id": "mDBjX2yw6jZOqBzaD7dtM8AtxbUdLcJFqUY9XBxL",
+                    "X-Parse-REST-API-Key": "ouMbrbWhs5C5g1La2gwdWDxxyxaTzwplwpPTvdI6"
+                }
+            }
+        );
+        const content = await rawResponse.json();
+        console.log("Content:", content);
+    };
+
+
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -46,8 +59,7 @@ export default function DutyList({ setUser }) {
     }
 
     function addDuty() {
-        const Duty = Parse.Object.extend('Duty');
-        const duty = new Duty();
+        const duty = new Parse.Object('Duty');
         duty.save({
             dutyName: data.dutyName,
         }).then(
@@ -83,14 +95,16 @@ export default function DutyList({ setUser }) {
         </li>
     )
 
+
+
     return (
         <div className="duty-list">
-            <h3>Welcome to the duty manager.</h3>
+            <h3>Duty list:</h3>
+            {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
             <br />
             <label htmlFor="addDuty">Here you can add duties for the excursion:</label>
             <form
                 id="addDuty"
-                className="duty-input"
                 onSubmit={handleSubmit}>
 
                 <input

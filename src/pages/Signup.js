@@ -1,12 +1,12 @@
 import { TheGreenButton, RedButton } from "../components/Button";
 import { useEffect, useState } from "react";
-import Parse from "parse";
 import GuestSignUpComponent from "../components/GuestSignUpComponent";
 import CarSignUpComponent from "../components/CarSignUpComponent";
 import { useNavigate } from "react-router";
-import { fetchDuties } from "../api";
+import { fetchDuties, uploadSignUp } from "../api";
+import ExDetails from "../components/ExDetails";
 
-export default function CreateSignUp() {
+export default function CreateSignUp({ setUser, excursions }) {
 
   const navigate = useNavigate();
 
@@ -23,6 +23,14 @@ export default function CreateSignUp() {
     carStatus: false,
     noGuests: "",
   });
+
+  const [carData, setCarData] = useState({
+    license: "",
+    color: "",
+    seats: 0,
+  })
+
+  useEffect(() => setUser("par"))
 
   useEffect(() => {
     async function fetchData() {
@@ -44,76 +52,26 @@ export default function CreateSignUp() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    uploadSignUp();
-    if (signupData.carStatus) {console.log("Uploading car details...");}
-    if (signupData.noGuests > 0) {console.log("Uploading guests...");}
-  }
-
-  function resetSignupData() {
-    setSignupData({
-      fullname: "",
-      birthday: "",
-      address: "",
-      email: "",
-      phone: "",
-      pref1: "",
-      pref2: "",
-      pref3: "",
-      carStatus: "",
-      noGuests: "",
-    })
-  }
-
-  //Calculates the age based on the birth date
-  function getAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
+    uploadSignUp(signupData, carData);
+    window.scrollTo(0, 0);
+    navigate('/AfterSignUp');
   }
 
   function getGuests() {
     const myGuests = [];
-    for (let index = 0; index < signupData.noGuests; index++) {
-      myGuests.push(<GuestSignUpComponent i={index} />);
+    for (let i = 0; i < signupData.noGuests; i++) {
+      myGuests.push(<GuestSignUpComponent key={i + 4} i={i} duties={duties} />);
     }
     return myGuests;
   }
 
-  function uploadSignUp() {
-    const Participant = Parse.Object.extend("Participant");
-    const participant = new Participant();
-    participant.set("fullname", signupData.fullname);
-    participant.set("name", signupData.fullname.split(" ")[0]);
-    participant.set("birthday", signupData.birthday);
-    participant.set("age", getAge(signupData.birthday));
-    participant.set("address", signupData.address);
-    participant.set("email", signupData.email);
-    participant.set("phone", Number(signupData.phone));
-    participant.set("pref1", signupData.pref1);
-    participant.set("pref2", signupData.pref2);
-    participant.set("pref3", signupData.pref3);
-    participant.set("carStatus", signupData.carStatus);
-    participant.set("numberOfGuests", Number(signupData.noGuests));
-    participant.save().then(
-      () => {
-        navigate("/afterSignUp");
-      },
-      (error) => {
-        alert("Something went wrong " + error.message);
-      }
-    );
-  }
 
   return (
     <div className="sign-up">
-      <h2>Sign up for this year's annual excursion</h2>
+      <h2>Sign up for this year's annual excursion:</h2>
+      {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
       <br />
-      <form className="create-form" id="form">
+      <form className="create-form" id="form" onSubmit={handleSubmit}>
         Full name:
         <input
           type="text"
@@ -165,16 +123,16 @@ export default function CreateSignUp() {
         />
 
         <br />
-        Duty preferences:<p></p>
+        Duty Preferences:<p></p>
 
-        #1:
+        <label>#1:</label>
         <select
           size="1"
           onChange={handleChange}
           name="pref1"
           value={signupData.pref1} >
           <option value="">-- Choose --</option>
-          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
         </select>
 
         <label>#2:</label>
@@ -184,7 +142,7 @@ export default function CreateSignUp() {
           name="pref2"
           value={signupData.pref2} >
           <option value="">-- Choose --</option>
-          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
         </select>
 
         <label>#3:</label>
@@ -194,7 +152,7 @@ export default function CreateSignUp() {
           name="pref3"
           value={signupData.pref3} >
           <option value="">-- Choose --</option>
-          {duties.map(d => <option ket={d} value={d}>{d}</option>)}
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
         </select>
 
         Car Status:
@@ -211,9 +169,9 @@ export default function CreateSignUp() {
           </label>
         </p>
 
-        {signupData.carStatus && <CarSignUpComponent />}
+        {signupData.carStatus && <CarSignUpComponent setCarData={setCarData} />}
 
-        Number of guests:
+        Number of Guests:
         <select
           size="1"
           onChange={handleChange}
@@ -226,9 +184,11 @@ export default function CreateSignUp() {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
+
         {getGuests(signupData.noGuests)}
-        <TheGreenButton className="signup-button" onClick={handleSubmit}>Sign Up</TheGreenButton>
-        <RedButton className="cancel-button" onClick={resetSignupData}>Cancel</RedButton>
+
+        <TheGreenButton className="signup-button">Sign Up</TheGreenButton>
+        <RedButton className="cancel-button" type="reset" onClick={() => navigate('/excursions')}>Cancel</RedButton>
       </form>
     </div>
   );

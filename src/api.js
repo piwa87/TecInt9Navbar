@@ -170,6 +170,21 @@ function getAge(dateString) {
     return age;
 };
 
+export function getDayOfMonth(inputDate) {
+    return new Date(inputDate).getDate();
+}
+
+export function getMonth(inputDate) {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    return monthNames[new Date(inputDate).getMonth()];
+}
+
+export function getYear(inputDate) {
+    return new Date(inputDate).getFullYear();
+}
+
 export function getWeekday(inputDate) {
     switch (new Date(inputDate).getDay()) {
         case 0:

@@ -19,7 +19,7 @@ export const RedButton = styled.button`     // Edited.
     padding: 4px 15px;
     border-radius: var(--general-border-radius);
     font-family: var(--main-font);
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
     color: white;
 `
@@ -44,14 +44,10 @@ export const ButtonDisabled = styled.button`
 
 export const ButtonSignup = styled.button`
     background-color: #8A9828;
-    width: 350px;
-    height: 70px;
-    left: 746px;
-    top: 905px;
+    width: auto;
+    height: auto;
+    padding: 10px 50px;
     border-radius: var(--general-border-radius);
-`
-
-export const ButtonTextSignUp = styled.label`
     font-family: var(--main-font);
     font-size: 36px;
     text-align: center;
@@ -65,7 +61,7 @@ export const TheGreenButton = styled.button`
     padding: 4px 15px;
     border-radius: var(--general-border-radius);
     font-family: var(--main-font);
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
     color: white;
 `
@@ -90,7 +86,7 @@ export const GreyButton = styled.button`
     padding: 4px 15px;
     border-radius: var(--general-border-radius);
     font-family: var(--main-font);
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
     color: white;
 `

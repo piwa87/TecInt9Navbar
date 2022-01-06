@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router";
-import { ButtonSignup, ButtonTextSignUp } from './Button';
-import { getWeekday } from "../api"
+import { TheGreenButton } from './Button';
+import { getWeekday, getMonth, getDayOfMonth, getYear } from "../api"
 
 import "../tempData/excursionDetails";
-import "./ExDisplay.css";
+import "./ExcursionDisplay.css";
 
 
 export default function ExcursionDisplay({ excursionData: ex }) {
 
     const navigate = useNavigate();
+
+
 
     return (
         <div className="ex-info">
@@ -19,7 +21,9 @@ export default function ExcursionDisplay({ excursionData: ex }) {
             </section>
 
             <section className="ex-data">
-                Dates:<b>{getWeekday(ex.startDate)} to {getWeekday(ex.endDate)}<br></br> {ex.startDate} - {ex.endDate}</b>
+                Dates: <b>{getWeekday(ex.startDate)} to {getWeekday(ex.endDate)}
+                &emsp;&emsp;{getMonth(ex.endDate)}&ensp;{getDayOfMonth(ex.startDate)} - {getDayOfMonth(ex.endDate)}&ensp;{getYear(ex.endDate)}
+                </b>
                 Location: <b>{ex.location}</b>
                 Adult: <b>{ex.price} Kr.</b>
                 Child: <b>{ex.price / 2} Kr.</b>
@@ -34,10 +38,7 @@ export default function ExcursionDisplay({ excursionData: ex }) {
                 <br />
                 We are looking forward to see you!
             </section>
-            <br />
-            <ButtonSignup className="ex-button" onClick={() => navigate('/signup')}>
-                <ButtonTextSignUp>Sign up</ButtonTextSignUp>
-            </ButtonSignup>
+            <TheGreenButton className="ex-button" onClick={() => navigate('/signup')}>Sign up</TheGreenButton>
         </div>
     )
 }

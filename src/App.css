@@ -37,6 +37,7 @@ h2,
 h3,
 h4 {
   margin: 0;
+  padding: 0;
 }
 
 .main h3 {
@@ -211,7 +212,6 @@ option {
 
 .participant-list {
   margin: var(--general-margin);
-  justify-content: center;
 }
 
 .plist {
@@ -224,29 +224,27 @@ option {
   font-weight: 600;
   text-decoration: underline;
   display: grid;
-  grid-template-columns: 230px 280px 30px 10px 10px;
+  grid-template-columns: 200px 320px 50px 10px 10px;
   gap: 10px;
 }
 
 .participant-single {
   font-size: 14px;
+
   display: grid;
-  grid-template-columns: 230px 280px 50px 15px 15px;
+  grid-template-columns: 200px 320px 50px 15px 15px;
   gap: 10px;
+  padding-top: 6px;
 
-  padding: 4px 4px;
-  margin: 0px -4px;
+  box-sizing: content-box;
   align-items: center;
-  border: 1px solid;
-  border-radius: var(--general-border-radius);
-  border-color: transparent;
+  justify-items: left;
+
+  border-bottom: 1px dotted;
   width: 100%;
-  transition: border-color 0.2s;
+  transition: border-bottom 0.2s;
 }
 
-.participant-single:hover {
-  border-color: var(--color1);
-}
 
 /*  Duty list:  */
 
@@ -293,8 +291,14 @@ option {
   align-items: center;
 }
 
-.just-margin {
+.ex-admin {
   margin: var(--general-margin);
   display: flex;
   flex-direction: column;
+}
+
+.ex-details {
+  font-weight: 900;
+  margin: 0;
+  padding-top: 18px;
 }

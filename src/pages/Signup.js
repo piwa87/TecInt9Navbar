@@ -4,8 +4,9 @@ import GuestSignUpComponent from "../components/GuestSignUpComponent";
 import CarSignUpComponent from "../components/CarSignUpComponent";
 import { useNavigate } from "react-router";
 import { fetchDuties, uploadSignUp } from "../api";
+import ExDetails from "../components/ExDetails";
 
-export default function CreateSignUp({ setUser }) {
+export default function CreateSignUp({ setUser, excursions }) {
 
   const navigate = useNavigate();
 
@@ -29,11 +30,9 @@ export default function CreateSignUp({ setUser }) {
     seats: 0,
   })
 
-  // console.log("CarData: ", carData);
-
   useEffect(() => setUser("par"))
 
-  useEffect( () => {
+  useEffect(() => {
     async function fetchData() {
       const result = await fetchDuties();
       setDuties(result.map(i => i.dutyName));
@@ -54,13 +53,14 @@ export default function CreateSignUp({ setUser }) {
   function handleSubmit(e) {
     e.preventDefault();
     uploadSignUp(signupData, carData);
-    navigate('/AfterSignUp')
+    window.scrollTo(0, 0);
+    navigate('/AfterSignUp');
   }
 
   function getGuests() {
     const myGuests = [];
     for (let i = 0; i < signupData.noGuests; i++) {
-      myGuests.push(<GuestSignUpComponent key={i+4} i={i} duties={duties} />);
+      myGuests.push(<GuestSignUpComponent key={i + 4} i={i} duties={duties} />);
     }
     return myGuests;
   }
@@ -68,7 +68,8 @@ export default function CreateSignUp({ setUser }) {
 
   return (
     <div className="sign-up">
-      <h2>Sign up for this year's annual excursion</h2>
+      <h2>Sign up for this year's annual excursion:</h2>
+      {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
       <br />
       <form className="create-form" id="form" onSubmit={handleSubmit}>
         Full name:
@@ -186,7 +187,7 @@ export default function CreateSignUp({ setUser }) {
 
         {getGuests(signupData.noGuests)}
 
-        <TheGreenButton className="signup-button" onClick={handleSubmit}>Sign Up</TheGreenButton>
+        <TheGreenButton className="signup-button">Sign Up</TheGreenButton>
         <RedButton className="cancel-button" type="reset" onClick={() => navigate('/excursions')}>Cancel</RedButton>
       </form>
     </div>

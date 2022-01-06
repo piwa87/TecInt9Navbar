@@ -9,7 +9,7 @@ export default function ExcursionsAdmin({ setUser, excursions }) {
 
     const navigate = useNavigate();
     const currentExcursion = excursions[excursions.length - 1];
-    const pastExcursions = excursions.slice(0, -1).map(
+    const pastExcursions = excursions.slice(0, -1).reverse().map(
         (item) =>
             <ExMiniDisplay key={item.id} excursionData={item} />
     )
@@ -22,7 +22,7 @@ export default function ExcursionsAdmin({ setUser, excursions }) {
             <TheGreenButton onClick={() => navigate('/createExcursion')}>Create excursion</TheGreenButton>
         </section>
         :
-        <section className='just-margin'>
+        <section className="ex-admin">
             <section>
                 <p><b>Next excursion:</b></p>
                 <ExMiniDisplay excursionData={currentExcursion} />

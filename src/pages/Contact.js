@@ -2,7 +2,6 @@ export default function Contact() {
 
     return (
         <div className="contact-div">
-            {/* <p className="contact--header">Contact organizers:</p> */}
             <h1>Contact organizers:</h1>
             <p className="contact-text">
                 For more information, help, late sign-ups or changes please contact us

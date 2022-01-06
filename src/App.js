@@ -50,14 +50,14 @@ export default function App() {
 						<Route path="/home" element={<Home setUser={setUser} />} />
 
 						<Route path="/admin" element={<ExcursionsAdmin setUser={setUser} excursions={excursions} />} />
-						<Route path="/participantList" element={<ParticipantList setUser={setUser} ex={excursions[excursions.length - 1]} />} />
-						<Route path="/dutyList" element={<DutyList setUser={setUser} />} />
-						<Route path="/shoppingList" element={<ShoppingList />} />
+						<Route path="/participantList" element={<ParticipantList setUser={setUser} excursions={excursions} />} />
+						<Route path="/dutyList" element={<DutyList setUser={setUser} excursions={excursions} />} />
+						<Route path="/shoppingList" element={<ShoppingList setUser={setUser} excursions={excursions} />} />
 
 						<Route path="/excursions" element={<Excursions setUser={setUser} excursions={excursions} />} />
 						<Route path="/transport" element={<Transport setUser={setUser} />} />
 						<Route path="/contact" element={<Contact />} />
-						<Route path="/signup" element={<Signup setUser={setUser} />} />
+						<Route path="/signup" element={<Signup setUser={setUser} excursions={excursions} />} />
 
 						<Route path="/createExcursion" element={<CreateExcursion setUser={setUser} />} />
 						<Route path="/afterSignUp" element={<AfterSignUp />} />

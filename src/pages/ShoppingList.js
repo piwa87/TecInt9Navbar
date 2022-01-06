@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { BiTrash, BiPencil } from "react-icons/bi";
 import { TheGreenButton } from "../components/Button";
 import { addShoppingItem, destroyShoppingItem, fetchShoppingItems } from "../api";
+import ExDetails from "../components/ExDetails";
 
-export default function ShoppingList() {
+
+export default function ShoppingList({ excursions }) {
 
     const [items, setItems] = useState([]);
     const [inputData, setInputData] = useState({
@@ -57,7 +59,7 @@ export default function ShoppingList() {
             <span className="shopping-quan">{i.quantity}</span>
             <span>{i.unit}</span>
             <BiPencil cursor="pointer" onClick={() => alert('Editing function')} />
-            <BiTrash cursor="pointer" onClick={() => deleteItem(i.itemID)}/>
+            <BiTrash cursor="pointer" onClick={() => deleteItem(i.itemID)} />
         </section>
     )
 
@@ -70,9 +72,9 @@ export default function ShoppingList() {
 
     return (
         <div className="shopping-list">
-
+            
             <h3>Shopping List:</h3>
-            <br />
+            {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
 
             <form className="shopping-add" onSubmit={handleSubmit}>
                 <b>Item:</b>

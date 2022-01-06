@@ -2,8 +2,9 @@ import Parse from "parse"
 import { useEffect, useState } from "react";
 import { TheGreenButton } from "../components/Button";
 import { fetchDuties } from "../api.js"
+import ExDetails from "../components/ExDetails";
 
-export default function DutyList({ setUser }) {
+export default function DutyList({ setUser, excursions }) {
 
     const [duties, setDuties] = useState([])
     const [data, setData] = useState({ dutyName: "" })
@@ -94,9 +95,12 @@ export default function DutyList({ setUser }) {
         </li>
     )
 
+
+
     return (
         <div className="duty-list">
-            <h3>Welcome to the duty manager.</h3>
+            <h3>Duty list:</h3>
+            {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
             <br />
             <label htmlFor="addDuty">Here you can add duties for the excursion:</label>
             <form

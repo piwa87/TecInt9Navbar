@@ -1,13 +1,14 @@
 import SingleParticipant from "../components/SingleParticipant"
+import ExDetails from "../components/ExDetails";
+
 import Parse from "parse"
 import { useEffect, useState } from "react"
 import { TheGreenButton } from '../components/Button';
 import { fetchParticipants } from "../api";
 
-export default function ParticipantList({ setUser, ex }) {
+export default function ParticipantList({ setUser, excursions }) {
 
     const [participants, setParticipants] = useState([])
-    const where = (ex === undefined) ? "<empty>" : ex.location;
 
     useEffect(() => setUser("org"));
 
@@ -28,7 +29,6 @@ export default function ParticipantList({ setUser, ex }) {
             console.log("Deleted participant: " + name)
         );
     };
-
 
 
     const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} deleteParticipant={deleteParticipant} />)
@@ -85,7 +85,8 @@ export default function ParticipantList({ setUser, ex }) {
 
     return (
         <div className="participant-list">
-            <h3>List of participants for:&ensp;<b>{where}</b></h3>
+            <h3>Participant list:</h3>
+            {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
             <br />
             <section className="participant-header">
                 <span>Name:</span>

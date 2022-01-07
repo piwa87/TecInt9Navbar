@@ -205,3 +205,4 @@ export function getWeekday(inputDate) {
             return "null"
     }
 };
+

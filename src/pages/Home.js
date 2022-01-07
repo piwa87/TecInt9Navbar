@@ -1,18 +1,20 @@
 import { useNavigate } from "react-router"
-import { Icon } from '@iconify/react';
+import { Icon } from '@iconify/react'
 
 export default function Home({ setUser }) {
 
     const navigate = useNavigate()
 
-    function logInOrganizer() {
+    function logInOrganizer(e) {
+        e.preventDefault()
         setUser("org")
-        navigate("/createExcursion")
+        navigate('/admin')
     }
 
-    function logInParticipant() {
+    function logInParticipant(e) {
+        e.preventDefault()
         setUser("par")
-        navigate("/excursions")
+        navigate('/excursions')
     }
 
     return (
@@ -22,7 +24,7 @@ export default function Home({ setUser }) {
             <h3>Please choose your role:</h3>
             <br />
             <div className="home--icons">
-                <div className="home--par">
+                <div>
                     <Icon
                         icon="healthicons:travel"
                         color="#555"
@@ -33,7 +35,7 @@ export default function Home({ setUser }) {
                     />
                     <h4>Participant</h4>
                 </div>
-                <div className="home--org">
+                <div>
                     <Icon icon="clarity:administrator-solid"
                         color="#555"
                         width="190"

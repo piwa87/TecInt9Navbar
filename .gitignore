@@ -13,6 +13,7 @@
 
 # misc
 .env
+TODO.txt
 
 .DS_Store
 .env.local

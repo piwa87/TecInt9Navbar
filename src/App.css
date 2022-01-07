@@ -1,13 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+
+/*  Color variables from our Figma prototype */
+
+:root {
+  --color1: #34401a;
+  --color2: #64732f;
+  --color3: #cad959;
+  --color4: #7d8541;
+  --color5: #252617;
+  --red1: #591420;
+  --red2: #350c13;
+  --darkgrey: #c4c4c4;
+  --lightgreen: #c9d95873;
+
+  --main-font: "Nunito Sans";
+  --general-margin: 20px 60px;
+  --general-border-radius: 8px;
+}
+
+::placeholder {
+  font-family: var(--main-font);
+}
+
+/*  The general styling of our main content window  */
+
 .main {
-  font-family: STIXVariants;
-  background: rgba(201, 217, 88, 0.45);
-  margin-left: 15%;
-  margin-right: 15%;
-  padding-top: 2rem;
-  padding-bottom: 50%;
-  padding-left: 8rem;
-  padding-right: 8rem;
-  height: 50vh;
+  font-family: var(--main-font);
+  background-color: var(--lightgreen);
+  margin: 0% 15%;
+  padding: 32px 127px;
+  min-height: 100vh;
 }
 
 .main > h1,
@@ -15,91 +37,19 @@ h2,
 h3,
 h4 {
   margin: 0;
+  padding: 0;
 }
 
-.hr {
-  background-color: black;
-  width: auto;
-  height: 5;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1;
+.main h3 {
+  font-size: 24px;
 }
 
-.cardShow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  overflow-x: auto;
-  justify-content: space-evenly;
+hr {
+  border: 1px solid var(--color1);
+  margin: 20px 30px;
 }
 
-/* - - - - Create excursion - - - - */
-
-.create--form {
-  display: grid;
-  grid-template: 40px 40px / 1fr 3fr;
-  gap: 10px;
-  font-weight: bold;
-}
-
-.create--input {
-  text-indent: 6px;
-  border: 0;
-  border-radius: 5px;
-}
-
-.create--checkbox {
-  margin: left;
-  display: block;
-}
-
-/* - - - - Navbar styling - - - - */
-
-nav {
-  /* display: flex; */
-  height: 80px;
-  background-color: #cad959;
-  font-family: STIXVariants;
-  padding-left: 15%;
-  padding-right: 15%;
-  padding-top: 40px;
-  padding-bottom: 0px;
-}
-
-nav > a:link {
-  color: #34401a;
-  text-decoration: none;
-  font-size: 20px;
-  padding-left: 36px;
-  padding-right: 36px;
-}
-
-nav > a:visited {
-  color: #34401a;
-}
-
-nav > a:hover {
-  background-color: #64732f;
-  padding-top: 40px;
-  padding-bottom: 50px;
-  border-radius: 7px;
-}
-
-.participant--header {
-  display: grid;
-  grid-template-columns: 2fr 3fr 0.5fr 0.5fr 0.5fr;
-}
-
-.participant--single {
-  display: grid;
-  grid-template-columns: 2fr 3fr 0.5fr 0.5fr 0.5fr;
-}
-
-.guest-save {
-  float: right;
-  margin-top: 10px;
-}
+/*  Landing page (/home)  styling:   */
 
 .home {
   display: flex;
@@ -118,36 +68,237 @@ nav > a:hover {
   text-align: center;
 }
 
-.car-save {
-  float: right;
-  margin-top: 10;
+/*  Find Transport:   */
+
+.find-transport {
+  margin: var(--general-margin);
 }
 
-.contact--div {
-  width: 925px;
-  height: 526px;
-  left: 501px;
-  top: 252px;
+.find-cards {
+  margin: 0% -3%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  /* justify-content: space-evenly; */
 }
 
-.contact--header {
-  font-family: STIXVariants;
+/*  Contact:  */
+
+.contact-div {
+  margin: var(--general-margin);
+}
+
+.contact-header {
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
-  line-height: 54px;
-  text-decoration-line: underline;
+  /* text-decoration-line: underline; */
 }
-.contact--text {
-  font-family: STIXVariants;
+.contact-text {
   font-style: normal;
   font-weight: normal;
-  line-height: 54px;
+  line-height: 1.5;
 }
-.email {
-  font-family: STIXVariants;
+.contact-email {
   font-style: normal;
   font-weight: normal;
   text-decoration: underline;
   color: blue;
+}
+
+/*  Sign up:  */
+
+.sign-up {
+  margin: var(--general-margin);
+}
+
+.guest-header {
+  grid-column: 2;
+  text-decoration: dashed;
+}
+
+.guest-save-button {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.car-save {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.signup-button {
+  grid-column: 2;
+  margin: 15px 40% 8px 0px;
+}
+
+.cancel-button {
+  grid-column: 2;
+  margin: 0px 40% 0px 0px;
+}
+
+/*  Create excursion:   */
+
+.create-ex {
+  margin: var(--general-margin);
+}
+
+.create-form {
+  display: grid;
+  grid-template-columns: 150px auto;
+  font-size: 14px;
+  align-items: center;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.create-form-date {
+  display: grid;
+  grid-template-columns: 150px 110px auto 110px;
+  align-items: center;
+  min-width: 400px;
+  max-width: 500px;
+  font-size: 14px;
+}
+
+input {
+  font-family: var(--main-font);
+  font-size: 12px;
+  text-indent: 3px;
+  padding: 8px 6px;
+  margin: 4px 0px;
+  border: 1px solid #ccc;
+  border-radius: var(--general-border-radius);
+  height: 14px;
+}
+
+.create-ex textarea {
+  font-family: var(--main-font);
+  font-size: 12px;
+  text-indent: 3px;
+  padding: 8px 6px;
+  margin: 4px 0px;
+  border: 1px solid #ccc;
+  border-radius: var(--general-border-radius);
+  height: 60px;
+  resize: vertical;
+}
+
+.create-form select,
+option {
+  font-family: var(--main-font);
+  text-indent: 3px;
+  margin: 8px 0px;
+  height: 28;
+  width: 60%;
+  align-items: baseline;
+}
+
+.create-form-car {
+  display: grid;
+  grid-template-columns: 150px 450px;
+  font-size: 14px;
+  align-items: center;
+  min-width: 100%;
+}
+
+.create-ex-buttons {
+  grid-column: 2;
+  padding: 14px 0px;
+}
+
+/*  Participant list:   */
+
+.participant-list {
+  margin: var(--general-margin);
+}
+
+.plist {
+  height: 60vh;
+  overflow: auto;
+}
+
+.participant-header {
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  display: grid;
+  grid-template-columns: 200px 320px 50px 10px 10px;
+  gap: 10px;
+}
+
+.participant-single {
+  font-size: 14px;
+
+  display: grid;
+  grid-template-columns: 200px 320px 50px 15px 15px;
+  gap: 10px;
+  padding-top: 6px;
+
+  box-sizing: content-box;
+  align-items: center;
+  justify-items: left;
+
+  border-bottom: 1px dotted;
+  width: 100%;
+  transition: border-bottom 0.2s;
+}
+
+
+/*  Duty list:  */
+
+.duty-list {
+  margin: var(--general-margin);
+  display: flex;
+  flex-direction: column;
+}
+
+/*  Shopping list:  */
+
+.shopping-list {
+  margin: var(--general-margin);
+}
+
+.shopping-add {
+  padding-top: 15px;
+  display: grid;
+  grid-template-columns: 300px 100px 100px auto;
+  grid-gap: 4px 20px;
+}
+
+.shopping-item {
+  display: grid;
+  grid-template-columns: 300px 100px 100px auto auto;
+  grid-gap: 4px 20px;
+  margin-left: 4px;
+  padding-top: 6px;
+  box-sizing: content-box;
+  width: 97%;
+  border-bottom: 1px dotted black;
+}
+
+.shopping-quan {
+  justify-self: end;
+  padding-right: 10px;
+}
+
+.no-excursion {
+  margin: var(--general-margin);
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ex-admin {
+  margin: var(--general-margin);
+  display: flex;
+  flex-direction: column;
+}
+
+.ex-details {
+  font-weight: 900;
+  margin: 0;
+  padding-top: 18px;
 }

@@ -1,220 +1,195 @@
-import { ButtonText, GreenButton, RedButton } from "../components/Button";
-import { useState } from "react";
-import Parse from "parse";
+import { TheGreenButton, RedButton } from "../components/Button";
+import { useEffect, useState } from "react";
 import GuestSignUpComponent from "../components/GuestSignUpComponent";
 import CarSignUpComponent from "../components/CarSignUpComponent";
 import { useNavigate } from "react-router";
+import { fetchDuties, uploadSignUp } from "../api";
+import ExDetails from "../components/ExDetails";
 
-export default function CreateSignUp() {
+export default function CreateSignUp({ setUser, excursions }) {
+
   const navigate = useNavigate();
-  const [fullname, setFullName] = useState("");
-  const [address, setAddress] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [preferences, setPreferences] = useState("");
-  const [carStatus, setCarStatus] = useState(false);
-  const [numberOfGuests, setNumberOfGuests] = useState(0);
 
-  function fullNameChange(e) {
-    setFullName(e.target.value);
-  }
+  const [duties, setDuties] = useState([])
+  const [signupData, setSignupData] = useState({
+    fullname: "",
+    birthday: "",
+    address: "",
+    email: "",
+    phone: "",
+    pref1: "",
+    pref2: "",
+    pref3: "",
+    carStatus: false,
+    noGuests: "",
+  });
 
-  function birthdayChange(e) {
-    setBirthday(e.target.value);
-  }
-  function addressChange(e) {
-    setAddress(e.target.value);
-  }
-  function emailChange(e) {
-    setEmail(e.target.value);
-  }
-  function phoneChange(e) {
-    setPhone(e.target.value);
-  }
-  function preferenceChange(e) {
-    setPreferences(e.target.value);
-  }
-  function carStatusChangeToYes(e) {
-    setCarStatus(true);
-  }
-  function carStatusChangeToNo(e) {
-    setCarStatus(false);
-  }
-  function numberOfGuestsChange(e) {
-    setNumberOfGuests(e.target.value);
-  }
+  const [carData, setCarData] = useState({
+    license: "",
+    color: "",
+    seats: 0,
+  })
 
-  function clearInput() {
-    setFullName("");
-    setBirthday("");
-    setAddress("");
-    setEmail("");
-    setPhone("");
-    setPreferences("");
-    setCarStatus(false);
-    setNumberOfGuests(0);
-  }
+  useEffect(() => setUser("par"))
 
-  //Calculates the age based on the birth date
-  function getAge(dateString) {
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+  useEffect(() => {
+    async function fetchData() {
+      const result = await fetchDuties();
+      setDuties(result.map(i => i.dutyName));
     }
-    return age;
+    fetchData();
+  }, []);
+
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target
+    setSignupData(prevState => {
+      return {
+        ...prevState,
+        [name]: type === "checkbox" ? checked : value
+      }
+    })
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    uploadSignUp(signupData, carData);
+    window.scrollTo(0, 0);
+    navigate('/AfterSignUp');
   }
 
   function getGuests() {
-    //const guests = x;
     const myGuests = [];
-    if (numberOfGuests > 0 && numberOfGuests < 5) {
-      for (let index = 0; index < numberOfGuests; index++) {
-        myGuests.push(<GuestSignUpComponent />);
-      }
-    } else {
+    for (let i = 0; i < signupData.noGuests; i++) {
+      myGuests.push(<GuestSignUpComponent key={i + 4} i={i} duties={duties} />);
     }
     return myGuests;
   }
 
-  function carAvailable(x) {
-    if (carStatus) {
-      return <CarSignUpComponent />;
-    }
-  }
-
-  function uploadSignUp() {
-    const Participant = Parse.Object.extend("Participant");
-    const participant = new Participant();
-    participant.set("fullname", fullname);
-    participant.set("name", fullname.split(" ")[0]);
-    participant.set("birthday", birthday);
-    participant.set("age", getAge(birthday));
-    participant.set("address", address);
-    participant.set("email", email);
-    participant.set("phone", Number(phone));
-    participant.set("preferences", preferences);
-    participant.set("carStatus", carStatus);
-    participant.set("numberOfGuests", Number(numberOfGuests));
-
-    participant.save().then(
-      (participant) => {
-        navigate("/afterSignUp");
-      },
-      (error) => {
-        alert("Something went wrong " + error.message);
-      }
-    );
-  }
 
   return (
-    <div>
-      <h3>Sign Up for this year's annual excursion</h3>
+    <div className="sign-up">
+      <h2>Sign up for this year's annual excursion:</h2>
+      {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
       <br />
-      <form className="create--form">
-        <p>Full name:</p>
+      <form className="create-form" id="form" onSubmit={handleSubmit}>
+        Full name:
         <input
-          onChange={fullNameChange}
-          value={fullname}
-          className="create--input"
           type="text"
           placeholder="Full name"
+          onChange={handleChange}
+          name="fullname"
+          value={signupData.fullname}
+          required="required"
         />
 
-        <p>Birthday:</p>
+        Birthday:
         <input
-          onChange={birthdayChange}
-          value={birthday}
-          className="create--input"
           type="date"
           placeholder="Birthday"
+          onChange={handleChange}
+          name="birthday"
+          value={signupData.birthday}
+          required="required"
         />
 
-        <p>Address:</p>
+        Address:
         <input
-          onChange={addressChange}
-          value={address}
-          className="create--input"
           type="text"
           placeholder="Address"
+          onChange={handleChange}
+          name="address"
+          value={signupData.address}
+          required="required"
         />
 
-        <p>Email:</p>
+        Email:
         <input
-          onChange={emailChange}
-          value={email}
-          className="create--input"
-          type="text"
+          type="email"
           placeholder="Email"
+          onChange={handleChange}
+          name="email"
+          value={signupData.email}
+          required="required"
         />
 
-        <p>Phone:</p>
+        Phone:
         <input
-          onChange={phoneChange}
-          value={phone}
-          className="create--input"
           type="number"
-          placeholder="Phone"
-        />
-
-        <p>Preferences:</p>
-        <input
-          onChange={preferenceChange}
-          value={preferences}
-          className="create--input"
-          type="Dropdown"
-          placeholder="Preferences"
-        />
-
-        <p>Car Status: </p>
-        <label>
-          
-          Check the box if you will drive to the destination
-          <br/>
-          <input
-            onClick={carStatusChangeToYes}
-            value={carStatus}
-            className="create--input"
-            type="checkbox"
-          />
-        </label>
-        <p/>
-        <input
-          onChange={carStatusChangeToNo}
-          value={carStatus}
-          className="create--input"
-          type="checkbox"
-          placeholder="Car status"
-        />
-      </form>
-      {carAvailable()}
-      <br />
-      <br/>
-      <form className='create--form'>
-        <p>Number of guests:</p>
-        <input
-          onChange={numberOfGuestsChange}
-          value={numberOfGuests}
-          className="create--input"
-          type="number"
-          min="0"
-          max="4"
-          pattern="[0-9]+"
-          placeholder="Number of guests"
+          placeholder="Phone number"
+          onChange={handleChange}
+          name="phone"
+          value={signupData.phone}
+          required="required"
         />
 
         <br />
+        Duty Preferences:<p></p>
+
+        <label>#1:</label>
+        <select
+          size="1"
+          onChange={handleChange}
+          name="pref1"
+          value={signupData.pref1} >
+          <option value="">-- Choose --</option>
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
+        </select>
+
+        <label>#2:</label>
+        <select
+          size="1"
+          onChange={handleChange}
+          name="pref2"
+          value={signupData.pref2} >
+          <option value="">-- Choose --</option>
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
+        </select>
+
+        <label>#3:</label>
+        <select
+          size="1"
+          onChange={handleChange}
+          name="pref3"
+          value={signupData.pref3} >
+          <option value="">-- Choose --</option>
+          {duties.map(d => <option key={d} value={d}>{d}</option>)}
+        </select>
+
+        Car Status:
+        <p>
+          <input
+            id="check"
+            type="checkbox"
+            checked={signupData.carStatus}
+            onChange={handleChange}
+            name="carStatus"
+          />
+          <label htmlFor="check">
+            <small>&emsp;(check this box if you will drive to the destination)</small>
+          </label>
+        </p>
+
+        {signupData.carStatus && <CarSignUpComponent setCarData={setCarData} />}
+
+        Number of Guests:
+        <select
+          size="1"
+          onChange={handleChange}
+          name="noGuests"
+          value={signupData.noGuests} >
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        {getGuests(signupData.noGuests)}
+
+        <TheGreenButton className="signup-button">Sign Up</TheGreenButton>
+        <RedButton className="cancel-button" type="reset" onClick={() => navigate('/excursions')}>Cancel</RedButton>
       </form>
-      {getGuests(numberOfGuests)}
-      <GreenButton onClick={uploadSignUp}>
-        <ButtonText>Sign Up</ButtonText>
-      </GreenButton>
-      <RedButton onClick={clearInput}>
-        <ButtonText>Cancel</ButtonText>
-      </RedButton>
     </div>
   );
 }

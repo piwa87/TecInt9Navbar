@@ -1,32 +1,37 @@
 import SingleParticipant from "../components/SingleParticipant"
+import ExDetails from "../components/ExDetails";
+
 import Parse from "parse"
 import { useEffect, useState } from "react"
-import { GreenButton, ButtonText } from '../components/Button';
+import { TheGreenButton } from '../components/Button';
+import { fetchParticipants } from "../api";
 
-export default function ParticipantList({ setUser }) {
-
-    useEffect(() => setUser("org"))
-
-    // BUSINESS LOGIC:
+export default function ParticipantList({ setUser, excursions }) {
 
     const [participants, setParticipants] = useState([])
 
+    useEffect(() => setUser("org"));
+
     useEffect(() => {
-        (async () => {
-            const query = new Parse.Query('Participant');
-            try {
-                const results = await query.find();
-                setParticipants(results)
-            } catch (error) {
-                console.log(`Error: ${JSON.stringify(error)}`);
-            }
-        })();
-    }, [])
+        async function fetchData() {
+            const result = await fetchParticipants();
+            setParticipants(result);
+        }
+        fetchData();
+    }, []);
 
-    console.log(participants);
+    function deleteParticipant(parID) {
+        setParticipants(participants.filter(p => { return p.id !== parID }))
+        const Participant = new Parse.Object('Participant');
+        Participant.set('objectId', parID);
+        const name = Participant.get('fullname');
+        Participant.destroy().then(
+            console.log("Deleted participant: " + name)
+        );
+    };
 
 
-    const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} />)
+    const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} deleteParticipant={deleteParticipant} />)
 
     //  HELPING FUNCTIONS:
 
@@ -35,56 +40,64 @@ export default function ParticipantList({ setUser }) {
 
     const possibleSurnames = ["Szakacs", "Frøling", "Munk Johnsen", "Hjorth Westh", "Bruhn", "Terte Andersen", "Teglbrænder",
         "Pampoukos", "Fischer", "Krivaa", "Hauser", "Lungu", "Tolstrup", "Wasilewski"]
-        
+
     const possiblePreferences = ["Kitchen", "Toilet", "Shopping", "Cleaning", "Cooking", "Scouting", "Plowing", "Guarding",
         "Driving", "Eating", "Heavy Lifting", "Babysitting"]
 
     function createParticipant() {
-        const Participant = Parse.Object.extend("Participant")
-        const participant = new Participant()
-        const fullname = makeName()
+        const participant = new Parse.Object("Participant")
+        const fullname = rndName()
         participant.save({
             fullname: fullname,
-            age: makeRandomAge(12, 90),
-            preferences: makePreferences(),
+            age: rndAnge(12, 64),
+            pref1: rndPreference(),
+            pref2: rndPreference(),
+            pref3: rndPreference(),
             name: fullname.split(" ")[0],
         }).then(
             (participant) => {
                 console.log("Created a new participant: " + participant.get("fullname"));
-                window.location.reload()
+                setParticipants(prevState =>
+                    [...prevState, {
+                        id: participant.id,
+                        fullname: participant.get("fullname"),
+                        pref1: participant.get("pref1"),
+                        pref2: participant.get("pref2"),
+                        pref3: participant.get("pref3"),
+                        age: participant.get("age")
+                    }])
             })
     }
 
-    function makeName() {
+    function rndName() {
         return possibleNames[Math.floor(Math.random() * possibleNames.length)]
             + " "
             + possibleSurnames[Math.floor(Math.random() * possibleSurnames.length)]
     }
 
-    function makeRandomAge(min, max) {
+    function rndAnge(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    function makePreferences() {
+    function rndPreference() {
         return possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
-            + ", " + possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
-            + ", " + possiblePreferences[Math.floor(Math.random() * possiblePreferences.length)]
     }
 
-
-    // RENDER THIS:
-
     return (
-        <div className="participant--list">
-            <h3 className="participant--header">
+        <div className="participant-list">
+            <h3>Participant list:</h3>
+            {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
+            <br />
+            <section className="participant-header">
                 <span>Name:</span>
                 <span>Duty Prefrences:</span>
                 <span>Age:</span>
-            </h3>
+            </section>
             <br />
             {participantList}
+
             <br />
-            <GreenButton onClick={createParticipant}><ButtonText>Add random participant</ButtonText></GreenButton>
+            <TheGreenButton onClick={() => createParticipant()}>Add random participant</TheGreenButton>
         </div>
     )
 

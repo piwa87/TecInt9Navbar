@@ -10,8 +10,6 @@ export default function ExcursionDisplay({ excursionData: ex }) {
 
     const navigate = useNavigate();
 
-
-
     return (
         <div className="ex-info">
             <img alt="" className="ex-image" src={ex.imgURL} />

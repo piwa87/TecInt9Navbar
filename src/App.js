@@ -26,7 +26,7 @@ import AfterSignUp from './pages/AfterSignUp'
 export default function App() {
 
 	const [user, setUser] = useState(null)
-	
+
 	const [excursions, setExcursions] = useState([]);
 	useEffect(() => {
 		async function fetchData() {
@@ -56,7 +56,7 @@ export default function App() {
 
 						<Route path="/excursions" element={<Excursions setUser={setUser} excursions={excursions} />} />
 						<Route path="/transport" element={<Transport setUser={setUser} />} />
-						<Route path="/contact" element={<Contact />} />
+						<Route path="/contact" element={<Contact setUser={setUser} />} />
 						<Route path="/signup" element={<Signup setUser={setUser} excursions={excursions} />} />
 
 						<Route path="/createExcursion" element={<CreateExcursion setUser={setUser} />} />

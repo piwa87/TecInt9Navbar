@@ -6,7 +6,7 @@ export default function ExMiniDisplay({ excursionData: ex }) {
         <div
             className="mini"
             style={{ cursor: "pointer" }}
-            onClick={() => alert('Edit me!')}
+            onClick={() => alert('Clicking on the component is meant to bring up a window for editing an active excursion, or looking up the deails of a past event.')}
         >
             <img alt="" className="mini-image" src={ex.imgURL} /><span></span>
             <section className="mini-data">

@@ -1,5 +1,3 @@
-// import { useState } from "react"
-// import { SmallGreenButton } from "./Button"
 
 export default function CarSignUpComponent({ setCarData }) {
 

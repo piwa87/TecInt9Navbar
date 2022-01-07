@@ -103,10 +103,7 @@ export default function DutyList({ setUser, excursions }) {
             {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
             <br />
             <label htmlFor="addDuty">Here you can add duties for the excursion:</label>
-            <form
-                id="addDuty"
-                onSubmit={handleSubmit}>
-
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Duty Name"

@@ -13,8 +13,8 @@ export default function TransportCard(props) {
             <p className="card-text"> Seats:<b> {props.par.seats}</b></p>
             <p className="card-text"> Departure:<b> {props.par.depature} </b></p>
             <p className="card-button">
-                <GreenButton><ButtonText> Reserve seat</ButtonText></GreenButton>
-                <ButtonDisabled><ButtonText> Cancel seat</ButtonText></ButtonDisabled>
+                <GreenButton><ButtonText> Reserve Seat</ButtonText></GreenButton>
+                <ButtonDisabled><ButtonText> Cancel Seat</ButtonText></ButtonDisabled>
             </p>
         </div>
     )

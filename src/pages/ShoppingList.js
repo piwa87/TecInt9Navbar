@@ -5,7 +5,9 @@ import { addShoppingItem, destroyShoppingItem, fetchShoppingItems } from "../api
 import ExDetails from "../components/ExDetails";
 
 
-export default function ShoppingList({ excursions }) {
+export default function ShoppingList({ excursions, setUser }) {
+
+    useEffect(() => { setUser("org") })
 
     const [items, setItems] = useState([]);
     const [inputData, setInputData] = useState({

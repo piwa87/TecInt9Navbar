@@ -9,17 +9,21 @@ export default function Contact({ setUser }) {
         <div className="contact-div">
             <h1>Contact organizers:</h1>
             <p className="contact-text">
-                For more information, help, late sign-ups or changes please contact us
-                on either by mail or phone.
+                For more information, help, late sign-ups or changes please don't hesitate to contact us
+                by email or phone.
                 <br />
                 <br />
                 Email:
                 <br />
-                <u className="contact-email">info@annualexcursion.com</u>
+                <a className="contact-email" href="mailto:info@annualexcursion.com">info@annualexcursion.com</a>
                 <br />
                 <br />
-                Phone: +45 10 20 30 40
-                <br /></p>
+                Phone:
+                <br />
+                <a className="contact-email" href="tel:+4510203040">+45 10 20 30 40</a>
+                <br />
+                <br />
+            </p>
             <b>Opening hours:</b>
             <ul>
                 <li>Monday: 08:00-15:30</li>

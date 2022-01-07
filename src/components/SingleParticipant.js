@@ -55,7 +55,7 @@ export default function SingleParticipant({ par, deleteParticipant }) {
                 <span>{par.fullname}</span>
                 <span>{par.pref1}, {par.pref2}, {par.pref3}</span>
                 <span>{par.age}</span>
-                <BiPencil cursor="pointer" onClick={() => alert("This would open a window showing all data about the participant and allowing the edit it")} />
+                <BiPencil cursor="pointer" onClick={() => alert("#missing - a window showing all data about this participant and allowing an organizer to edit it")} />
                 <BiTrash cursor="pointer" onClick={openModal} />
             </div>
             <Modal

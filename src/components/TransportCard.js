@@ -13,8 +13,8 @@ export default function TransportCard(props) {
             <p className="card-text"> Seats:<b> {props.par.seats}</b></p>
             <p className="card-text"> Departure:<b> {props.par.depature} </b></p>
             <p className="card-button">
-                <GreenButton><ButtonText> Reserve Seat</ButtonText></GreenButton>
-                <ButtonDisabled><ButtonText> Cancel Seat</ButtonText></ButtonDisabled>
+                <GreenButton onClick={() => alert('#missing - functionality to reserve seats')}><ButtonText>Reserve Seat</ButtonText></GreenButton>
+                <ButtonDisabled onClick={() => alert('#missing - functionality to cancel reserved seats')}><ButtonText>Cancel Seat</ButtonText></ButtonDisabled>
             </p>
         </div>
     )

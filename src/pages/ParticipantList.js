@@ -95,9 +95,6 @@ export default function ParticipantList({ setUser, excursions }) {
             </section>
             <br />
             {participantList}
-
-            <br />
-            <TheGreenButton onClick={() => createParticipant()}>Add random participant</TheGreenButton>
         </div>
     )
 

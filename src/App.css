@@ -79,8 +79,6 @@ hr {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-
-  /* justify-content: space-evenly; */
 }
 
 /*  Contact:  */
@@ -93,15 +91,15 @@ hr {
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
-  /* text-decoration-line: underline; */
 }
 .contact-text {
   font-style: normal;
   font-weight: normal;
   line-height: 1.5;
 }
-.contact-email {
-  font-style: normal;
+
+.contact-div a {
+  font-style: small;
   font-weight: normal;
   text-decoration: underline;
   color: blue;

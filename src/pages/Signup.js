@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import GuestSignUpComponent from "../components/GuestSignUpComponent";
 import CarSignUpComponent from "../components/CarSignUpComponent";
 import { useNavigate } from "react-router";
-import { fetchDuties, uploadSignUp } from "../api";
+import { fetchAllDuties, uploadSignUp } from "../api";
 import ExDetails from "../components/ExDetails";
 
 export default function CreateSignUp({ setUser, excursions }) {
@@ -34,7 +34,7 @@ export default function CreateSignUp({ setUser, excursions }) {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await fetchDuties();
+      const result = await fetchAllDuties();
       setDuties(result.map(i => i.dutyName));
     }
     fetchData();

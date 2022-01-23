@@ -60,20 +60,70 @@ export async function fetchParticipants() {
 
 //  Function for duties:
 
-export async function fetchDuties() {
+export async function fetchAllDuties() {
     const query = new Parse.Query('Duty');
     try {
         const results = await query.findAll();
         return results.map(obj => {
             return {
                 dutyID: obj.id,
-                dutyName: obj.get('dutyName')
+                excID: obj.get('excID'),
+                name: obj.get('dutyName'),
+                boss: obj.get('boss'),
+                par1: obj.get('par1'),
+                par2: obj.get('par2')
             }
         })
     } catch (error) {
         console.log(`Error: ${JSON.stringify(error)}`);
     }
 };
+
+export async function addDutyByRest(name, excID) {
+    try {
+        const response = await fetch(
+            `https://parseapi.back4app.com/classes/Duty/`,
+            {
+                method: "POST",
+                headers: {
+                    "X-Parse-Application-Id": "dhoOTyRY0dgcKRHSKi8Qz5WEAUfhk6vulrzpqXfX",
+                    "X-Parse-REST-API-Key": "X09kIa74hAneFs2dYwsxlRjRjtMOEGI8uqGZmI9D",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    excID: excID,
+                    dutyName: name
+                })
+            });
+        if (!response.ok) {
+            const message = "Error with Status Code: " + response.status;
+            throw new Error(message);
+        }
+        const res = await response.json();
+        console.log("Success:", res);
+        return res.objectId;
+    } catch (error) {
+        console.log("Error: " + error);
+    }
+}
+
+export async function deleteDutyByIdRest(dutyID) {
+    await fetch(
+        `https://parseapi.back4app.com/classes/Duty/${dutyID}`,
+        {
+            method: "DELETE",
+            headers: {
+                "X-Parse-Application-Id": "dhoOTyRY0dgcKRHSKi8Qz5WEAUfhk6vulrzpqXfX",
+                "X-Parse-REST-API-Key": "X09kIa74hAneFs2dYwsxlRjRjtMOEGI8uqGZmI9D"
+            }
+        }
+    ).then(
+        console.log(`Duty with ID[${dutyID}] has been deleted 💀`)
+    )
+};
+
+
+
 
 //  Functions for excursions:
 
@@ -132,7 +182,7 @@ export async function fetchShoppingItems() {
     const query = new Parse.Query('ShoppingItem');
     try {
         const results = await query.findAll();
-        console.log("Fetched! ###");
+        console.log("Fetched: Shopping items");
         return results.map(obj => {
             return {
                 itemID: obj.id,

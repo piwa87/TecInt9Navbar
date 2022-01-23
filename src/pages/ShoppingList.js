@@ -24,10 +24,6 @@ export default function ShoppingList({ excursions, setUser }) {
         fetch();
     }, []);
 
-    useEffect(() => {
-        console.log("Items from DB: ", items);
-    }, [items])
-
     function handleChange(e) {
         const { name, value } = e.target
         setInputData(prevState => {

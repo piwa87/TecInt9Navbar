@@ -11,6 +11,10 @@ import './index.css'
 // Alternative server:
 Parse.initialize("mDBjX2yw6jZOqBzaD7dtM8AtxbUdLcJFqUY9XBxL", "2P3cwrXiKTTZLxzNze2gAkxZ5ya5LPhFK01Lc2EM");
 
+
+// New server after exam:
+Parse.initialize("dhoOTyRY0dgcKRHSKi8Qz5WEAUfhk6vulrzpqXfX","69YlJUF6XADsX89GVxFpl2ggI15UUNGOIhgTnDjT");
+
 // Parse.initialize(process.env.REACT_APP_API_KEY, process.env.REACT_APP_JS_KEY);
 Parse.serverURL = "https://parseapi.back4app.com/";
 

@@ -292,12 +292,14 @@ option {
   display: grid;
   grid-template-columns: 300px 100px 100px auto;
   grid-gap: 4px 20px;
+  align-items: center;
 }
 
 .shopping-item {
   display: grid;
   grid-template-columns: 300px 100px 100px auto auto;
   grid-gap: 4px 20px;
+  align-items: center;
   margin-left: 4px;
   padding-top: 6px;
   box-sizing: content-box;

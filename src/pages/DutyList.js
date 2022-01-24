@@ -25,6 +25,7 @@ export default function DutyList({ setUser, excursions }) {
     const [dutyForModal, setDutyForModal] = useState("");
     const [idForModal, setidForModal] = useState("");
     const [namesForModal, setNamesForModal] = useState([]);
+    const [trigger, setTrigger] = useState(false);
 
     useEffect(() => { setUser("org") })
 
@@ -35,16 +36,16 @@ export default function DutyList({ setUser, excursions }) {
         }
         fetchData();
         console.log("Fetched duties from server!");
-    }, [isOpen]);
+    }, [trigger]);
 
     function handleChange(e) {
-        const { name, value } = e.target
+        const { name, value } = e.target;
         setData(prevState => {
             return {
                 ...prevState,
                 [name]: value
             }
-        })
+        });
     }
 
     function handleSubmit(e) {
@@ -102,7 +103,8 @@ export default function DutyList({ setUser, excursions }) {
                 console.log(response.get('par1'));
                 console.log(response.get('par2'));
                 console.log('Duty updated', response);
-                alert('Duty updated!')
+                // alert('Duty updated!')
+                setTrigger(prevState => !prevState);
             } catch (error) {
                 console.error('Error while updating Duty', error);
             }
@@ -130,7 +132,7 @@ export default function DutyList({ setUser, excursions }) {
 
     function closeAndDelete() {
         updateDutyManning(idForModal, data.boss, data.par1, data.par2);
-        // closeModal();
+        closeModal();
     };
 
     const thisModalStyle = {

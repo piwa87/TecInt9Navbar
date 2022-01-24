@@ -49,7 +49,9 @@ export default function ParticipantList({ excursions }) {
                 <span>Age:</span>
             </section>
             <br />
-            {participantList}
+            <section className="participant-list-container">
+                {participantList}
+            </section>
         </div>
     )
 }

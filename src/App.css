@@ -212,9 +212,9 @@ option {
   margin: var(--general-margin);
 }
 
-.plist {
-  height: 60vh;
-  overflow: auto;
+.participant-list-container {
+  max-width: fit-content;
+  border-radius: 8px;
 }
 
 .participant-header {
@@ -231,16 +231,12 @@ option {
 
   display: grid;
   grid-template-columns: 200px 320px 50px 15px 15px;
-  gap: 10px;
-  padding-top: 6px;
+  grid-gap: 10px;
+  padding-top: 8px;
 
-  box-sizing: content-box;
   align-items: center;
-  justify-items: left;
-
   border-bottom: 1px dotted;
-  width: 100%;
-  transition: border-bottom 0.2s;
+  /* width: 100%; */
 }
 
 /*  Duty list:  */
@@ -276,10 +272,9 @@ option {
   grid-template-columns: 25% 65% auto auto;
   grid-gap: 10px;
   align-items: center;
-  padding-top: 6px;
+  padding-top: 8px;
 
   border-bottom: 1px dotted;
-  transition: border-bottom 0.2s;
 }
 
 /*  Shopping list:  */

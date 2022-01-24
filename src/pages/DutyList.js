@@ -114,13 +114,21 @@ export default function DutyList({ excursions }) {
 
     setAppElement('#root');
 
-    async function openModal(dutyName, dutyID) {
+    async function openModal(dutyName, dutyID, duty) {
         setIsOpen(true);
         setDutyForModal(dutyName);
         const names = await getNamesByDuty(dutyName);
         setNamesForModal(names);
         setidForModal(dutyID);
         console.log(`Name is ${dutyName} and ID is ${dutyID}`);
+        setData(prev => {
+            return {
+                ...prev,
+                boss: duty.boss,
+                par1: duty.par1,
+                par2: duty.par2,
+            }
+        })
     };
 
     function closeModal() {
@@ -211,7 +219,7 @@ export default function DutyList({ excursions }) {
                     value={data.boss} >
                     <option value="">-- Show volunteers --</option>
                     {namesForModal.map(name => <option key={name} value={name}>{name}</option>)}
-                    <option value="[TBC]">[TBC]</option>
+                    <option value=" ">(leave empty)</option>
                 </select>
 
                 Participant #1:
@@ -221,7 +229,7 @@ export default function DutyList({ excursions }) {
                     value={data.par1} >
                     <option value="">-- Show volunteers --</option>
                     {namesForModal.map(name => <option key={name} value={name}>{name}</option>)}
-                    <option value="[TBC]">[TBC]</option>
+                    <option value=" ">(leave empty)</option>
                 </select>
 
                 Participant #2:
@@ -231,7 +239,7 @@ export default function DutyList({ excursions }) {
                     value={data.par2} >
                     <option value="">-- Show volunteers --</option>
                     {namesForModal.map(name => <option key={name} value={name}>{name}</option>)}
-                    <option value="[TBC]">[TBC]</option>
+                    <option value=" ">(leave empty)</option>
                 </select>
                 <br />
                 <TheGreenButton onClick={saveAndExit}>Save Changes</TheGreenButton>

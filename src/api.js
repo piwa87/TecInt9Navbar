@@ -87,8 +87,8 @@ export async function addDutyByRest(name, excID) {
             {
                 method: "POST",
                 headers: {
-                    "X-Parse-Application-Id": "dhoOTyRY0dgcKRHSKi8Qz5WEAUfhk6vulrzpqXfX",
-                    "X-Parse-REST-API-Key": "X09kIa74hAneFs2dYwsxlRjRjtMOEGI8uqGZmI9D",
+                    "X-Parse-Application-Id": "mDBjX2yw6jZOqBzaD7dtM8AtxbUdLcJFqUY9XBxL",
+                    "X-Parse-REST-API-Key": "ouMbrbWhs5C5g1La2gwdWDxxyxaTzwplwpPTvdI6",
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
@@ -114,8 +114,8 @@ export async function deleteDutyByIdRest(dutyID) {
         {
             method: "DELETE",
             headers: {
-                "X-Parse-Application-Id": "dhoOTyRY0dgcKRHSKi8Qz5WEAUfhk6vulrzpqXfX",
-                "X-Parse-REST-API-Key": "X09kIa74hAneFs2dYwsxlRjRjtMOEGI8uqGZmI9D"
+                "X-Parse-Application-Id": "mDBjX2yw6jZOqBzaD7dtM8AtxbUdLcJFqUY9XBxL",
+                    "X-Parse-REST-API-Key": "ouMbrbWhs5C5g1La2gwdWDxxyxaTzwplwpPTvdI6"
             }
         }
     ).then(

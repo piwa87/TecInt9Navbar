@@ -62,13 +62,14 @@ export async function fetchParticipants() {
 
 export async function fetchAllDuties() {
     const query = new Parse.Query('Duty');
+    query.ascending('dutyName');
     try {
-        const results = await query.findAll();
+        const results = await query.find();
         return results.map(obj => {
             return {
                 dutyID: obj.id,
                 excID: obj.get('excID'),
-                name: obj.get('dutyName'),
+                dutyName: obj.get('dutyName'),
                 boss: obj.get('boss'),
                 par1: obj.get('par1'),
                 par2: obj.get('par2')

@@ -60,11 +60,12 @@ export default function CreateSignUp({ setUser, excursions }) {
   function getGuests() {
     const myGuests = [];
     for (let i = 0; i < signupData.noGuests; i++) {
-      myGuests.push(<GuestSignUpComponent key={i + 4} i={i} duties={duties} />);
+      myGuests.push(<GuestSignUpComponent key={i} i={i} duties={duties} />);
     }
     return myGuests;
   }
 
+  console.log("D:", duties);
 
   return (
     <div className="sign-up">

@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
-import { TheGreenButton } from "../components/Button";
+import { TheGreenButton, GreyButton } from "../components/Button";
 import { fetchAllDuties, addDutyByRest, deleteDutyByIdRest } from "../api.js"
 import ExDetails from "../components/ExDetails";
 import SingleDuty from "../components/SingleDuty";
 import Parse from "parse"
-
-
 import Modal, { setAppElement } from "react-modal";
-import { RedButton, GreyButton } from '../components/Button';
 
 
 export default function DutyList({ setUser, excursions }) {
 
     const [duties, setDuties] = useState([]);
     const [data, setData] = useState({
+        dutyID: "",
         excID: "",
         dutyName: "",
         boss: "",
         par1: "",
         par2: ""
     });
-    const [isOpen, setIsOpen] = useState(false);
-    const [modalData, setModalData] = useState("");
-    const [modalNames, setModalNames] = useState([]);
 
-    console.log("Data:", data);
+    // Modal useStates:
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [dutyForModal, setDutyForModal] = useState("");
+    const [idForModal, setidForModal] = useState("");
+    const [namesForModal, setNamesForModal] = useState([]);
 
     useEffect(() => { setUser("org") })
 
@@ -34,7 +34,8 @@ export default function DutyList({ setUser, excursions }) {
             setDuties(result.sort());
         }
         fetchData();
-    }, []);
+        console.log("Fetched duties from server!");
+    }, [isOpen]);
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -58,7 +59,6 @@ export default function DutyList({ setUser, excursions }) {
     }
 
     async function addDuty(name, excID) {
-        console.log("Duties:", duties);
         const dutyID = await addDutyByRest(name, excID);
         setDuties((prevState) => [
             ...prevState,
@@ -86,25 +86,42 @@ export default function DutyList({ setUser, excursions }) {
         const composedQuery = Parse.Query.or(query1, query2, query3)
         const result = await composedQuery.findAll();
         const namesForDuty = result.map(item => item.get('name'))
-        // console.log(`Names for duty '${duty}': `, result);
-        // console.log(lst);
         return namesForDuty;
+    }
+
+    async function updateDutyManning(id, boss, par1, par2) {
+        const query = new Parse.Query('Duty');
+        try {
+            const object = await query.get(id);
+            object.set('boss', boss);
+            object.set('par1', par1);
+            object.set('par2', par2);
+            try {
+                const response = await object.save();
+                console.log(response.get('boss'));
+                console.log(response.get('par1'));
+                console.log(response.get('par2'));
+                console.log('Duty updated', response);
+                alert('Duty updated!')
+            } catch (error) {
+                console.error('Error while updating Duty', error);
+            }
+        } catch (error) {
+            console.error('Error while retrieving object Duty', error);
+        }
     }
 
     // Modal functionality:
 
     setAppElement('#root');
 
-    async function openModal(dutyName) {
+    async function openModal(dutyName, dutyID) {
         setIsOpen(true);
-        setModalData(dutyName);
-        
-    };
-
-    async function afterOpenModal(dutyName) {
+        setDutyForModal(dutyName);
         const names = await getNamesByDuty(dutyName);
-        setModalNames(names)
-        console.log("Names:", modalNames);
+        setNamesForModal(names);
+        setidForModal(dutyID);
+        console.log(`Name is ${dutyName} and ID is ${dutyID}`);
     };
 
     function closeModal() {
@@ -112,7 +129,8 @@ export default function DutyList({ setUser, excursions }) {
     };
 
     function closeAndDelete() {
-        closeModal();
+        updateDutyManning(idForModal, data.boss, data.par1, data.par2);
+        // closeModal();
     };
 
     const thisModalStyle = {
@@ -123,30 +141,38 @@ export default function DutyList({ setUser, excursions }) {
             flexGrow: 1,
             top: '30%',
             left: '50%',
+            width: '250px',
             right: 'auto',
             bottom: 'auto',
-            transform: 'translate(-50%, 90%)',
+            transform: 'translate(45%, -30%)',
             background: "#cad959",
             border: "1px solid #34401a",
             borderRadius: '8px',
             boxShadow: '5%',
         },
         overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.15)",
+            backgroundColor: "rgba(0, 0, 0, 0.25)",
             transition: "all 0.6s linear"
         },
     };
 
 
-    const listOfDuties = duties.map(
-        (item) =>
-            <SingleDuty key={item.dutyID} duty={item} deleteDuty={deleteDuty} openModal={openModal} />
-    )
+    const listOfDuties = duties.map(item =>
+        <SingleDuty
+            key={item.dutyID}
+            duty={item}
+            deleteDuty={deleteDuty}
+            openModal={openModal}
+        />)
 
     return (
         <div className="duty-list">
             <h3>Duty list:</h3>
-            {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
+            {(excursions[excursions.length - 1] === undefined)
+                ?
+                <></>
+                :
+                <ExDetails excursion={excursions[excursions.length - 1]} />}
             <br />
 
             Here you can add duties for the excursion:
@@ -166,38 +192,48 @@ export default function DutyList({ setUser, excursions }) {
             <section className="duty-list-container">
                 <section className="duty-list-header">
                     <b>Duties:</b><b>Names:</b>
-
                 </section>
                 {listOfDuties}
             </section>
 
             <Modal
                 isOpen={isOpen}
-                onAfterOpen={()=> afterOpenModal(modalData)}
                 onRequestClose={closeModal}
                 style={thisModalStyle}
-                contentLabel="Example Modal">
+            >
                 Duty:
-                <input type="text" value={modalData} readOnly />
+                <input type="text" value={dutyForModal} readOnly />
                 <br />
                 Boss:
-                <select size="1">
-                    <option value="<none>">-- Show volunteers --</option>
-                    {modalNames.map(name => <option key={name} value={name}>{name}</option>)}
+                <select size="1"
+                    onChange={handleChange}
+                    name="boss"
+                    value={data.boss} >
+                    <option value="">-- Show volunteers --</option>
+                    {namesForModal.map(name => <option key={name} value={name}>{name}</option>)}
+                    <option value="[TBC]">[TBC]</option>
                 </select>
                 Participant #1:
-                <select size="1">
-                    <option value="<none>">-- Show volunteers --</option>
-                    {modalNames.map(name => <option key={name} value={name}>{name}</option>)}
+                <select size="1"
+                    onChange={handleChange}
+                    name="par1"
+                    value={data.par1} >
+                    <option value="">-- Show volunteers --</option>
+                    {namesForModal.map(name => <option key={name} value={name}>{name}</option>)}
+                    <option value="[TBC]">[TBC]</option>
                 </select>
                 Participant #2:
-                <select size="1">
-                    <option value="<none>">-- Show volunteers --</option>
-                    {modalNames.map(name => <option key={name} value={name}>{name}</option>)}
+                <select size="1"
+                    onChange={handleChange}
+                    name="par2"
+                    value={data.par2} >
+                    <option value="">-- Show volunteers --</option>
+                    {namesForModal.map(name => <option key={name} value={name}>{name}</option>)}
+                    <option value="[TBC]">[TBC]</option>
                 </select>
                 <br />
-                <RedButton onClick={closeAndDelete}>Delete</RedButton>
-                <GreyButton onClick={closeModal}>Cancel</GreyButton>
+                <TheGreenButton onClick={closeAndDelete}>Save Changes</TheGreenButton>
+                <GreyButton onClick={closeModal}>Exit</GreyButton>
             </Modal>
         </div>
     )

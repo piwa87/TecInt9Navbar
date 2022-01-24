@@ -26,7 +26,7 @@ const tempTransportParticipant = [
     licensePlate: "UM 345 00",
     seats: 2,
     depature: "Vedbæk",
-    img: "https://caricom.org/wp-content/uploads/Floyd-Morris-Remake-1024x879-1.jpg",
+    img: "https://www.tubefilter.com/wp-content/uploads/2019/11/dobrik-people-1400x825.jpg",
 },
 {
     tid: 4,
@@ -35,7 +35,7 @@ const tempTransportParticipant = [
     licensePlate: "AG 123 34",
     seats: 2,
     depature: "Amager",
-    img: "http://www.aconsciousrethink.com/wp-content/uploads/2020/12/cool-person-702x336.jpg",
+    img: "https://i.insider.com/5cb8b133b8342c1b45130629?width=1300&format=jpeg&auto=webp",
 }
 
 ]

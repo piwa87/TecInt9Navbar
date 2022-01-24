@@ -1,9 +1,5 @@
-import { useEffect } from "react";
 
-
-export default function Contact({ setUser }) {
-
-    useEffect(() => { setUser("par") })
+export default function Contact() {
 
     return (
         <div className="contact-div">
@@ -33,7 +29,6 @@ export default function Contact({ setUser }) {
                 <li>Friday: 08:00-15:30</li>
             </ul>
             <br />
-
         </div>
     );
 }

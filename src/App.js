@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { fetchExcursions } from './api';
+import { getCurrentUser } from './api';
 import './App.css'
 
 // Importing Navbar component:
@@ -25,13 +26,14 @@ import AfterSignUp from './pages/AfterSignUp'
 
 export default function App() {
 
-	const [user, setUser] = useState(null)
-
+	const [user, setUser] = useState(null);
 	const [excursions, setExcursions] = useState([]);
+
 	useEffect(() => {
 		async function fetchData() {
 			const result = await fetchExcursions();
-			setExcursions(result)
+			setExcursions(result);
+			setUser(getCurrentUser());
 		}
 		fetchData();
 	}, []);
@@ -49,17 +51,17 @@ export default function App() {
 						<Route path="/" element={<Home setUser={setUser} />} />
 						<Route path="/home" element={<Home setUser={setUser} />} />
 
-						<Route path="/admin" element={<ExcursionsAdmin setUser={setUser} excursions={excursions} />} />
-						<Route path="/participantList" element={<ParticipantList setUser={setUser} excursions={excursions} />} />
-						<Route path="/dutyList" element={<DutyList setUser={setUser} excursions={excursions} />} />
-						<Route path="/shoppingList" element={<ShoppingList setUser={setUser} excursions={excursions} />} />
+						<Route path="/admin" element={<ExcursionsAdmin excursions={excursions} />} />
+						<Route path="/participantList" element={<ParticipantList excursions={excursions} />} />
+						<Route path="/dutyList" element={<DutyList excursions={excursions} />} />
+						<Route path="/shoppingList" element={<ShoppingList excursions={excursions} />} />
 
-						<Route path="/excursions" element={<Excursions setUser={setUser} excursions={excursions} />} />
-						<Route path="/transport" element={<Transport setUser={setUser} />} />
-						<Route path="/contact" element={<Contact setUser={setUser} />} />
-						<Route path="/signup" element={<Signup setUser={setUser} excursions={excursions} />} />
+						<Route path="/excursions" element={<Excursions excursions={excursions} />} />
+						<Route path="/transport" element={<Transport />} />
+						<Route path="/contact" element={<Contact />} />
+						<Route path="/signup" element={<Signup excursions={excursions} />} />
 
-						<Route path="/createExcursion" element={<CreateExcursion setUser={setUser} />} />
+						<Route path="/createExcursion" element={<CreateExcursion />} />
 						<Route path="/afterSignUp" element={<AfterSignUp />} />
 					</Routes>
 				</section>

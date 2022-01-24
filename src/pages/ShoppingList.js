@@ -5,9 +5,7 @@ import { addShoppingItem, destroyShoppingItem, fetchShoppingItems } from "../api
 import ExDetails from "../components/ExDetails";
 
 
-export default function ShoppingList({ excursions, setUser }) {
-
-    useEffect(() => { setUser("org") })
+export default function ShoppingList({ excursions }) {
 
     const [items, setItems] = useState([]);
     const [inputData, setInputData] = useState({
@@ -51,7 +49,7 @@ export default function ShoppingList({ excursions, setUser }) {
         })
     }
 
-    const showItems = items.map(i =>
+    const shoppingList = items.map(i =>
         <section key={i.item} className="shopping-item">
             <span>{i.item}</span>
             <span className="shopping-quan">{i.quantity}</span>
@@ -62,17 +60,20 @@ export default function ShoppingList({ excursions, setUser }) {
     )
 
     function deleteItem(id) {
-        setItems(items.filter((item) => {
-            return item.itemID !== id
-        }))
+        setItems(items.filter(item => { return item.itemID !== id }))
         destroyShoppingItem(id);
     };
 
     return (
         <div className="shopping-list">
-            
+
             <h3>Shopping List:</h3>
-            {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
+
+            {(excursions[excursions.length - 1] === undefined)
+                ?
+                <></>
+                :
+                <ExDetails excursion={excursions[excursions.length - 1]} />}
 
             <form className="shopping-add" onSubmit={handleSubmit}>
                 <b>Item:</b>
@@ -106,7 +107,7 @@ export default function ShoppingList({ excursions, setUser }) {
                 <TheGreenButton>Add</TheGreenButton>
             </form>
             <hr />
-            {showItems}
+            {shoppingList}
         </div>
     )
 }

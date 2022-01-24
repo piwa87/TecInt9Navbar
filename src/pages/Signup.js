@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { fetchAllDuties, uploadSignUp } from "../api";
 import ExDetails from "../components/ExDetails";
 
-export default function CreateSignUp({ setUser, excursions }) {
+export default function CreateSignUp({ excursions }) {
 
   const navigate = useNavigate();
 
@@ -29,8 +29,6 @@ export default function CreateSignUp({ setUser, excursions }) {
     color: "",
     seats: 0,
   })
-
-  useEffect(() => setUser("par"))
 
   useEffect(() => {
     async function fetchData() {
@@ -65,12 +63,14 @@ export default function CreateSignUp({ setUser, excursions }) {
     return myGuests;
   }
 
-  console.log("D:", duties);
-
   return (
     <div className="sign-up">
-      <h2>Sign up for this year's annual excursion:</h2>
-      {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
+      <h3>Sign up for this year's annual excursion:</h3>
+      {(excursions[excursions.length - 1] === undefined)
+        ?
+        <></>
+        :
+        <ExDetails excursion={excursions[excursions.length - 1]} />}
       <br />
       <form className="create-form" id="form" onSubmit={handleSubmit}>
         Full name:

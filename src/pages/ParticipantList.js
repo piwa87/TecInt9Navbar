@@ -5,11 +5,9 @@ import Parse from "parse"
 import { useEffect, useState } from "react"
 import { fetchParticipants } from "../api";
 
-export default function ParticipantList({ setUser, excursions }) {
+export default function ParticipantList({ excursions }) {
 
     const [participants, setParticipants] = useState([])
-
-    useEffect(() => setUser("org"));
 
     useEffect(() => {
         async function fetchData() {
@@ -29,15 +27,21 @@ export default function ParticipantList({ setUser, excursions }) {
         );
     };
 
-
-    const participantList = participants.map((item) => <SingleParticipant key={item.id} par={item} deleteParticipant={deleteParticipant} />)
-
-   
+    const participantList = participants.map(item =>
+        <SingleParticipant
+            key={item.id}
+            par={item}
+            deleteParticipant={deleteParticipant}
+        />)
 
     return (
         <div className="participant-list">
             <h3>Participant list:</h3>
-            {(excursions[excursions.length - 1] === undefined) ? <></> : <ExDetails excursion={excursions[excursions.length - 1]} />}
+            {(excursions[excursions.length - 1] === undefined)
+                ?
+                <></>
+                :
+                <ExDetails excursion={excursions[excursions.length - 1]} />}
             <br />
             <section className="participant-header">
                 <span>Name:</span>
@@ -48,5 +52,4 @@ export default function ParticipantList({ setUser, excursions }) {
             {participantList}
         </div>
     )
-
 }

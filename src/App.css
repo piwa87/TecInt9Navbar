@@ -260,6 +260,7 @@ option {
   padding-right: 8px;
   border-radius: 8px;
 }
+
 .duty-list-header {
   display: grid;
   grid-template-columns: 25% 65%;

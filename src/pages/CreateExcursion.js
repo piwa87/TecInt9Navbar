@@ -1,11 +1,9 @@
 import { TheGreenButton, RedButton } from "../components/Button"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { uploadExcursion } from "../api"
 
-export default function CreateExcursion({ setUser }) {
-
-    useEffect(() => { setUser("org") })
+export default function CreateExcursion() {
 
     const navigate = useNavigate();
 
@@ -34,7 +32,7 @@ export default function CreateExcursion({ setUser }) {
     function handleSubmit(e) {
         e.preventDefault();
         uploadExcursion(excursionData);
-        navigate('/home');
+        navigate('/admin');
     };
 
     return (

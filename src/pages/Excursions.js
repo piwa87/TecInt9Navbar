@@ -1,11 +1,8 @@
 import ExcursionDisplay from '../components/ExcursionDisplay';
-import { useEffect } from 'react';
 import { Icon } from '@iconify/react'
 
-export default function Excursions({ setUser, excursions }) {
+export default function Excursions({ excursions }) {
 
-	useEffect(() => { setUser("par") })
-	
 	const currentExcursion = excursions[excursions.length - 1];
 
 	return (currentExcursion === undefined) ?

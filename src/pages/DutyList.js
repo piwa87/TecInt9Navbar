@@ -7,7 +7,7 @@ import Parse from "parse"
 import Modal, { setAppElement } from "react-modal";
 
 
-export default function DutyList({ setUser, excursions }) {
+export default function DutyList({ excursions }) {
 
     const [duties, setDuties] = useState([]);
     const [data, setData] = useState({
@@ -26,8 +26,6 @@ export default function DutyList({ setUser, excursions }) {
     const [idForModal, setidForModal] = useState("");
     const [namesForModal, setNamesForModal] = useState([]);
     const [trigger, setTrigger] = useState(false);
-
-    useEffect(() => { setUser("org") })
 
     useEffect(() => {
         async function fetchData() {
@@ -103,7 +101,6 @@ export default function DutyList({ setUser, excursions }) {
                 console.log(response.get('par1'));
                 console.log(response.get('par2'));
                 console.log('Duty updated', response);
-                // alert('Duty updated!')
                 setTrigger(prevState => !prevState);
             } catch (error) {
                 console.error('Error while updating Duty', error);
@@ -130,7 +127,7 @@ export default function DutyList({ setUser, excursions }) {
         setIsOpen(false);
     };
 
-    function closeAndDelete() {
+    function saveAndExit() {
         updateDutyManning(idForModal, data.boss, data.par1, data.par2);
         closeModal();
     };
@@ -206,6 +203,7 @@ export default function DutyList({ setUser, excursions }) {
                 Duty:
                 <input type="text" value={dutyForModal} readOnly />
                 <br />
+
                 Boss:
                 <select size="1"
                     onChange={handleChange}
@@ -215,6 +213,7 @@ export default function DutyList({ setUser, excursions }) {
                     {namesForModal.map(name => <option key={name} value={name}>{name}</option>)}
                     <option value="[TBC]">[TBC]</option>
                 </select>
+
                 Participant #1:
                 <select size="1"
                     onChange={handleChange}
@@ -224,6 +223,7 @@ export default function DutyList({ setUser, excursions }) {
                     {namesForModal.map(name => <option key={name} value={name}>{name}</option>)}
                     <option value="[TBC]">[TBC]</option>
                 </select>
+
                 Participant #2:
                 <select size="1"
                     onChange={handleChange}
@@ -234,7 +234,7 @@ export default function DutyList({ setUser, excursions }) {
                     <option value="[TBC]">[TBC]</option>
                 </select>
                 <br />
-                <TheGreenButton onClick={closeAndDelete}>Save Changes</TheGreenButton>
+                <TheGreenButton onClick={saveAndExit}>Save Changes</TheGreenButton>
                 <GreyButton onClick={closeModal}>Exit</GreyButton>
             </Modal>
         </div>

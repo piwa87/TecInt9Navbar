@@ -141,7 +141,8 @@ export async function uploadExcursion(data) {
     excursion.set("imgURL", data.imgURL);
     try {
         await excursion.save();
-        alert('Success, your excursion has been created: ' + data.title)
+        window.location.reload();
+        // alert('Success, your excursion has been created: ' + data.title)
     } catch (error) {
         console.log(`Error: ${JSON.stringify(error)}`);
     };
@@ -257,3 +258,39 @@ export function getWeekday(inputDate) {
     }
 };
 
+//  Login functionality:
+
+export async function doUserLogIn(user) {
+    try {
+        const loggedInUser = await Parse.User.logIn(user, "12345");
+        const currentUser = Parse.User.current();
+        console.log(loggedInUser === currentUser);
+        console.log(`New login by [${currentUser.get('username')}]`);
+        return currentUser.get('username');
+    } catch (error) {
+        alert(`Error! ${error.message}`);
+        return false;
+    }
+}
+
+export function getCurrentUser() {
+    const currentUser = Parse.User.current();
+    if (currentUser !== null) {
+        return currentUser.get('username')
+    }
+    return null;
+};
+
+export async function logOut() {
+    try {
+        await Parse.User.logOut();
+        const currentUser = Parse.User.current();
+        if (currentUser === null) {
+            console.log('Success! No user is logged in anymore!');
+        }
+        return true;
+    } catch (error) {
+        console.log(`Error! ${error.message}`);
+        return false;
+    }
+};

@@ -1,17 +1,13 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TheGreenButton } from '../components/Button';
 import ExMiniDisplay from '../components/ExMiniDisplay';
 
-export default function ExcursionsAdmin({ setUser, excursions }) {
-
-    useEffect(() => { setUser("org") })
+export default function ExcursionsAdmin({ excursions }) {
 
     const navigate = useNavigate();
     const currentExcursion = excursions[excursions.length - 1];
-    const pastExcursions = excursions.slice(0, -1).reverse().map(
-        (item) =>
-            <ExMiniDisplay key={item.id} excursionData={item} />
+    const pastExcursions = excursions.slice(0, -1).reverse().map(item =>
+        <ExMiniDisplay key={item.id} excursionData={item} />
     )
 
     return (currentExcursion === undefined) ?

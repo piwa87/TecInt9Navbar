@@ -214,6 +214,7 @@ option {
 
 .participant-list-container {
   max-width: fit-content;
+  min-width: fit-content;
   border-radius: 8px;
 }
 
@@ -236,7 +237,6 @@ option {
 
   align-items: center;
   border-bottom: 1px dotted;
-  /* width: 100%; */
 }
 
 /*  Duty list:  */

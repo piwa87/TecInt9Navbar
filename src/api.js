@@ -142,7 +142,6 @@ export async function uploadExcursion(data) {
     try {
         await excursion.save();
         window.location.reload();
-        // alert('Success, your excursion has been created: ' + data.title)
     } catch (error) {
         console.log(`Error: ${JSON.stringify(error)}`);
     };
@@ -165,7 +164,7 @@ export async function fetchExcursions() {
                 capacity: obj.get('capacity'),
                 imgURL: obj.get('imgURL'),
             }
-        })
+        });
     } catch (error) {
         console.log(`Error: ${JSON.stringify(error)}`);
     }
@@ -176,7 +175,7 @@ export async function fetchExcursions() {
 export function addShoppingItem(data) {
     const item = new Parse.Object('ShoppingItem');
     item.save(data).then(
-        (item) => console.log("New shopping item: " + item.get('item'))
+        item => console.log("New shopping item: " + item.get('item'))
     )
 };
 

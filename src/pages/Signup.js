@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { fetchDuties, uploadSignUp } from "../api";
 import ExDetails from "../components/ExDetails";
 
-export default function CreateSignUp({ setUser, excursions }) {
+export default function Signup({ setUser, excursions }) {
 
   const navigate = useNavigate();
 

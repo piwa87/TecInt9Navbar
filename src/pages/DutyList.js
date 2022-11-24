@@ -4,8 +4,9 @@ import { TheGreenButton } from "../components/Button";
 import { fetchDuties } from "../api.js"
 import ExDetails from "../components/ExDetails";
 
-export default function DutyList({ setUser, excursions }) {
+export default function DutyList(props) {
 
+    const { setUser, excursions } = props;
     const [duties, setDuties] = useState([])
     const [data, setData] = useState({ dutyName: "" })
 

@@ -4,16 +4,16 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.0.0",
     "bootstrap": "^5.2.3",
     "parse": "^8.5.0",
-    "react": "^17.0.2",
+    "react": "^18.0.0",
     "react-bootstrap": "^2.6.0",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.0.0",
     "react-icons": "^4.6.0",
     "react-modal": "^3.16.1",
-    "react-router-dom": "^6.30.3",
+    "react-router-dom": "^7.18.2",
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.1.2"
@@ -41,6 +41,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "overrides": {
+    "ws": "^8.21.0",
+    "nth-check": "^2.0.1",
+    "postcss": "^8.5.26",
+    "serialize-javascript": "^7.1.0",
+    "underscore": "^1.13.8",
+    "@tootallnate/once": "^2.0.1"
   },
   "devDependencies": {
     "@iconify/react": "^3.1.0"

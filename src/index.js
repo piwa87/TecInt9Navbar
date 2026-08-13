@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import Parse from "parse"
 import App from './App'
 import './index.css'
@@ -14,9 +14,9 @@ Parse.initialize("mDBjX2yw6jZOqBzaD7dtM8AtxbUdLcJFqUY9XBxL", "2P3cwrXiKTTZLxzNze
 // Parse.initialize(process.env.REACT_APP_API_KEY, process.env.REACT_APP_JS_KEY);
 Parse.serverURL = "https://parseapi.back4app.com/";
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'))
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 )

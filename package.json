@@ -48,7 +48,13 @@
     "postcss": "^8.5.26",
     "serialize-javascript": "^7.1.0",
     "underscore": "^1.13.8",
-    "@tootallnate/once": "^2.0.1"
+    "@tootallnate/once": "^2.0.1",
+    "qs": "^6.16.0",
+    "uuid": "^11.1.1",
+    "webpack-dev-server": "^6.0.0",
+    "@svgr/plugin-svgo": {
+      "svgo": "^2.8.3"
+    }
   },
   "devDependencies": {
     "@iconify/react": "^3.1.0"
